@@ -7,6 +7,9 @@ from .views import (
     quiz_view,
     submit_quiz_view,
     quiz_result_view,
+    question_view,
+    menu_view,
+    leaderboard_view
 )
 
 urlpatterns = [
@@ -16,5 +19,11 @@ urlpatterns = [
     path('level-detail/<int:level_id>/', level_detail_view, name='level_detail'),
     path('quiz/<int:quiz_id>/', quiz_view, name='quiz'),
     path('submit-quiz/<int:quiz_id>/', submit_quiz_view, name='submit_quiz'),
-    path('quiz-result/<int:point_id>/', quiz_result_view, name='quiz_result'),
+    path('game/quiz-result/<int:quiz_id>/<int:point_id>/', quiz_result_view, name='quiz_result'),
+
+    # path('quiz-result/<int:point_id>/', quiz_result_view, name='quiz_result'),
+    path('quiz/<int:quiz_id>/question/<int:question_index>/', question_view, name='question'),
+    path('menu/', menu_view, name='menu'),
+    path('leaderboard/', leaderboard_view, name='leaderboard'),
+
 ]

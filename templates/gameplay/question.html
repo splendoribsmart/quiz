@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- question.html -->
+
+<h1>Quiz: {{ quiz.title }}</h1>
+
+<h2>Question {{ question_number }} of {{ total_questions }}</h2>
+
+<p>{{ question.text }}</p>
+
+<form method="POST" action="{% url 'question' quiz_id=quiz.id question_index=question_number|add:'-1' %}">
+  {% csrf_token %}
+  
+  {% for choice in choices %}
+    <input type="radio" id="choice_{{ choice.id }}" name="selected_choice" value="{{ choice.id }}">
+    <label for="choice_{{ choice.id }}">{{ choice.text }}</label><br>
+  {% endfor %}
+  
+  <input type="submit" value="Submit">
+</form>
+
+<p>Quiz Point: {{ quiz_point.quiz_score }}</p>
+
+{% endblock %}

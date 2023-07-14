@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Quiz Result</h1>
+
+<h3>Total Score: {{ quiz_point.total_score }}</h3>
+
+<p>Your Score: {{ quiz_point.quiz_score }} / {{ total_questions }}</p>
+
+{% if can_proceed %}
+	<p>Congratulations! You can proceed to the next level.</p>
+    <a href="{% url 'quiz' quiz_id=next_level.id %}">Next Level</a>
+{% else %}
+    <p>Sorry, you need to improve your score to proceed to the next level.</p>
+{% endif %}
+
+
+<a href="{% url 'quiz' quiz_id=quiz.id %}">Restart</a>
+<a href="{% url 'menu' %}">Menu</a>
+{% endblock content %}
+

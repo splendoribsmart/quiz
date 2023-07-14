@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Quiz Result</h1>
+  <p>Congratulations! You have achieved a passing score of {{ point.score }}.</p>
+  {% if next_level %}
+    <p>Proceed to the next level: <a href="{% url 'level_selection' subject_id=next_level.subject.id %}">Next Level</a></p>
+  {% endif %}
+{% endblock %}

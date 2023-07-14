@@ -17,14 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
+from game import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home_view, name='home'),
 
     # Authentication URLs
     path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+
+    path('logout/', views.custom_logout, name='custom_logout'),
     # path('accounts/register/', RegisterView.as_view(), name='register'),  # Replace 'RegisterView' with your actual registration view
 
     path('game/', include("game.urls")),
+    path('', include("autheticate.urls")),
+    path('accounts/', include('allauth.urls')),
+
 ]

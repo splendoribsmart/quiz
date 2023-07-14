@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 
 class Subject(models.Model):
     name = models.CharField(max_length=255)
@@ -16,14 +17,22 @@ class Level(models.Model):
         return f"Level {self.number} ({self.subject.name})"
 
 
+from django.db import models
+
 class Quiz(models.Model):
     level = models.ForeignKey(Level, on_delete=models.CASCADE)
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    questions_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.title
+        return f"Quiz level {self.level.number} {self.level.subject.name}"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        # Update the questions_count based on the number of questions related to the quiz
+        self.questions_count = self.question_set.count()
+        super().save(update_fields=['questions_count'])
+
 
 
 class Question(models.Model):
@@ -52,11 +61,34 @@ class Answer(models.Model):
         return f"{self.user.username}'s answer to {self.question.text}"
 
 
+# class Point(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     level = models.ForeignKey(Level, on_delete=models.CASCADE)
+#     score = models.IntegerField(default=0)
+
+#     def __str__(self):
+#         return f"{self.user.username}'s score in Level {self.level.number} ({self.level.subject.name})"
+
+
 class Point(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     level = models.ForeignKey(Level, on_delete=models.CASCADE)
-    score = models.IntegerField(default=0)
+    general_score = models.PositiveIntegerField(default=0)
+    quiz_score = models.PositiveIntegerField(default=0)
+    total_score = models.PositiveIntegerField(default=0)
 
-    def __str__(self):
-        return f"{self.user.username}'s score in Level {self.level.number} ({self.level.subject.name})"
+    def update_total_score(self):
+        # Check if the total score exists for the user
+        total_score, created = TotalScore.objects.get_or_create(user=self.user)
 
+        # Retrieve the current total score for the level
+        level_total_score = total_score.level_scores.get(str(self.level_id), 0)
+
+        # Update the total score if the quiz score is higher
+        if self.quiz_score > level_total_score:
+            total_score.level_scores[str(self.level_id)] = self.quiz_score
+            total_score.save()
+
+        # Calculate the new total score by summing the quiz scores for all levels
+        total_score.total_score = sum(total_score.level_scores.values())
+        total_score.save()

@@ -2,6 +2,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Level, Subject, Quiz, Question, Choice, Answer, Point
 from .forms import SubjectSelectionForm
+from django.db.models import Sum
+import random
+from django.contrib.auth.models import User
+from django.contrib.auth import logout
+from .models import Point, User
+
+
+def home_view(request):
+    return render(request, 'home.html', {})
 
 @login_required
 def subject_selection_view(request):
@@ -9,57 +18,213 @@ def subject_selection_view(request):
         form = SubjectSelectionForm(request.POST)
         if form.is_valid():
             selected_subject = form.cleaned_data['subject']
-            levels = Level.objects.filter(subject=selected_subject)
-            context = {'levels': levels}
-            return render(request, 'level_selection.html', context)
+            sub_id = selected_subject.id
+            request.session['sid'] = sub_id
+            # levels = Level.objects.filter(subject=selected_subject)
+            context = {}    # {'levels': levels}
+            return redirect('menu')
     else:
         form = SubjectSelectionForm()
     
     context = {'form': form}
-    return render(request, 'subject_selection.html', context)
+    return render(request, 'gameplay/subject_selection.html', context)
+
+def menu_view(request):
+    subject_id = request.session['sid']
+    print(subject_id)
+    context = {'subject_id' : subject_id}
+    return render(request, 'gameplay/menu.html', context)
 
 @login_required
 def level_selection_view(request, subject_id):
     subject = get_object_or_404(Subject, pk=subject_id)
     levels = Level.objects.filter(subject=subject)
     context = {'subject': subject, 'levels': levels}
-    return render(request, 'level_selection.html', context)
+    return render(request, 'gameplay/level_selection.html', context)
 
-# def level_selection_view(request, subject_id):
-#     subject = get_object_or_404(Subject, pk=subject_id)
-#     levels = Level.objects.filter(subject=subject)
-#     quizzes = Quiz.objects.filter(level__subject=subject)
-#     context = {'subject': subject, 'levels': levels, 'quizzes': quizzes}
-#     return render(request, 'level_selection.html', context)
-# def level_selection_view(request, level_id):
-#     level = Level.objects.get(pk=level_id)
-#     quizzes = Quiz.objects.filter(level=level)
-#     context = {'level': level, 'quizzes': quizzes}
-#     return render(request, 'level_selection.html', context)
 
 @login_required
 def level_detail_view(request, level_id):
     level = get_object_or_404(Level, pk=level_id)
     quizzes = Quiz.objects.filter(level=level)
     context = {'level': level, 'quizzes': quizzes}
-    return render(request, 'level_detail.html', context)
+    return render(request, 'gameplay/level_detail.html', context)
 
 @login_required
 def quiz_view(request, quiz_id):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
-    questions = quiz.question_set.all()
-    context = {'quiz': quiz, 'questions': questions}
-    return render(request, 'quiz.html', context)
+    request.session['result_quiz_id'] = quiz_id
+    print("Quiz ID:  ",request.session['result_quiz_id'])
+    user = request.user
+    level = quiz.level
+
+    # Reset the quiz points to zero
+    quiz_point, created = Point.objects.get_or_create(user=user, level=level)
+    quiz_point.quiz_score = 0
+    quiz_point.save()
+
+    # Randomly select four questions from the quiz
+    questions = list(quiz.question_set.all())
+    random.shuffle(questions)
+    questions = questions[:4]     # Selecting only 4 questions randomly
+
+    context = {
+        'quiz': quiz,
+        'quiz_point': quiz_point,
+        'questions': questions,
+        'question_count': len(questions),
+    }
+    return render(request, 'gameplay/quiz.html', context)
 # def quiz_view(request, quiz_id):
-#     quiz = Quiz.objects.get(pk=quiz_id)
+#     quiz = get_object_or_404(Quiz, pk=quiz_id)
+#     user = request.user
+#     level = quiz.level
+
+#     # Reset the quiz points to zero
+#     quiz_point, created = Point.objects.get_or_create(user=user, level=level)
+#     quiz_point.quiz_score = 0
+#     quiz_point.save()
+
 #     questions = Question.objects.filter(quiz=quiz)
-#     context = {'quiz': quiz, 'questions': questions}
+
+#     context = {
+#         'quiz': quiz,
+#         'quiz_point': quiz_point,
+#         'questions': questions,
+#     }
+#     return render(request, 'gameplay/quiz.html', context)
+
+
+
+# def quiz_view(request, subject_id):
+#     subject = get_object_or_404(Subject, pk=subject_id)
+#     user = request.user
+#     level = Level.objects.filter(subject=subject).first()
+#     quiz_point, created = Point.objects.get_or_create(user=user, level=level)
+#     quiz = Quiz.objects.filter(level=level).first()
+#     questions_count = quiz.questions_count
+
+#     context = {
+#         'subject': subject,
+#         'quiz': quiz,
+#         'quiz_point': quiz_point,
+#         'questions_count': questions_count,
+#     }
 #     return render(request, 'quiz.html', context)
+
+@login_required
+def question_view(request, quiz_id, question_index):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    print("Quiz ID:  ",request.session['result_quiz_id'])
+    user = request.user
+    level = quiz.level
+    quiz_point = get_object_or_404(Point, user=user, level=level)
+
+    # Reset the quiz score to zero if starting a new quiz
+    if question_index == 0:
+        quiz_point.quiz_score = 0
+        quiz_point.save()
+
+        # Clear the stored question IDs from the session
+        request.session.pop('question_ids', None)
+
+    # Retrieve the stored question IDs from the session
+    question_ids = request.session.get('question_ids')
+
+    # If no question IDs are stored, randomly select four questions and store their IDs in the session
+    if not question_ids:
+        all_questions = list(Question.objects.filter(quiz=quiz).values_list('id', flat=True))
+        random.shuffle(all_questions)
+        question_ids = all_questions[:4]
+        request.session['question_ids'] = question_ids
+
+    # Get the current question based on the stored IDs and question_index
+    current_question_id = question_ids[question_index]
+    current_question = get_object_or_404(Question, id=current_question_id)
+    choices = current_question.choice_set.all()
+
+    if request.method == 'POST':
+        selected_choice_id = request.POST.get('selected_choice')
+
+        if selected_choice_id:
+            selected_choice = get_object_or_404(Choice, pk=selected_choice_id)
+
+            if selected_choice.is_correct:
+                quiz_point.quiz_score += 1
+
+            quiz_point.save()
+
+        next_question_index = question_index + 1
+        if next_question_index < len(question_ids):
+            return redirect('question', quiz_id=quiz_id, question_index=next_question_index)
+        else:
+            return redirect('quiz_result', quiz_id=quiz.id, point_id=quiz_point.id)
+
+    # Adjust the question numbering for display
+    question_number = question_index + 1
+    total_questions = len(question_ids)
+
+    context = {
+        'quiz': quiz,
+        'quiz_point': quiz_point,
+        'question': current_question,
+        'choices': choices,
+        'selected_choice': None,
+        'question_number': question_number,
+        'total_questions': total_questions,
+    }
+    return render(request, 'gameplay/question.html', context)
+# def question_view(request, quiz_id, question_index):
+#     quiz = get_object_or_404(Quiz, pk=quiz_id)
+#     user = request.user
+#     level = quiz.level
+#     quiz_point = get_object_or_404(Point, user=user, level=level)
+#     questions = Question.objects.filter(quiz=quiz)
+
+#     if question_index >= questions.count():
+#         return redirect('quiz_result', point_id=quiz_point.id)
+
+#     current_question = questions[question_index]
+#     choices = current_question.choice_set.all()
+
+#     if request.method == 'POST':
+#         selected_choice_id = request.POST.get('selected_choice')
+
+#         if selected_choice_id:
+#             selected_choice = get_object_or_404(Choice, pk=selected_choice_id)
+
+#             if selected_choice.is_correct:
+#                 quiz_point.quiz_score += 1
+
+#             quiz_point.save()
+
+#         next_question_index = question_index + 1
+#         if next_question_index < questions.count():
+#             return redirect('question', quiz_id=quiz_id, question_index=next_question_index)
+#         else:
+#             return redirect('quiz_result', point_id=quiz_point.id)
+
+#     # Adjust the question numbering for display
+#     question_number = question_index + 1
+#     total_questions = questions.count()
+
+#     context = {
+#         'quiz': quiz,
+#         'quiz_point': quiz_point,
+#         'question': current_question,
+#         'choices': choices,
+#         'selected_choice': None,
+#         'question_number': question_number,
+#         'total_questions': total_questions,
+#     }
+#     return render(request, 'gameplay/question.html', context)
+
+
 
 @login_required
 def submit_quiz_view(request, quiz_id):
     if request.method == 'POST':
-        quiz = Quiz.objects.get(pk=quiz_id)
+        quiz = get_object_or_404(Quiz, pk=quiz_id)
         questions = Question.objects.filter(quiz=quiz)
         total_questions = questions.count()
         correct_answers = 0
@@ -70,20 +235,118 @@ def submit_quiz_view(request, quiz_id):
                 selected_choice = Choice.objects.get(pk=selected_choice_id)
                 if selected_choice.is_correct:
                     correct_answers += 1
-                    # You can implement further logic here to update scores, etc.
-                    # ...
 
-        # Calculate and update user's score for the level
         user = request.user
         level = quiz.level
-        point, created = Point.objects.get_or_create(user=user, level=level)
-        point.score = (correct_answers / total_questions) * 100
-        point.save()
 
-        return redirect('quiz_result', point_id=point.id)
+        # Update quiz-specific point count
+        quiz_point, created = Point.objects.get_or_create(user=user, level=level)
+
+        if total_questions >= 3:
+            if not created:
+                # Reset quiz-specific point count to zero if the point object already exists
+                quiz_point.quiz_score = 0
+            
+            quiz_point.quiz_score += correct_answers
+            quiz_point.save()
+
+            if quiz_point.quiz_score >= quiz.passing_score:
+                next_level = Level.objects.filter(subject=level.subject, number=level.number + 1).first()
+                if next_level:
+                    return redirect('level_selection', subject_id=level.subject.id)
+                else:
+                    return redirect('quiz_result', point_id=quiz_point.id)
+            else:
+                return redirect('level_selection', subject_id=level.subject.id)
+        else:
+            # Redirect to an error page if the quiz does not have at least three questions
+            return render(request, 'quiz_error.html')
+
 
 @login_required
-def quiz_result_view(request, point_id):
-    point = Point.objects.get(pk=point_id)
-    context = {'point': point}
-    return render(request, 'quiz_result.html', context)
+def quiz_result_view(request, quiz_id, point_id):
+    quiz_point = get_object_or_404(Point, id=point_id)
+    level = quiz_point.level
+    quiz = get_object_or_404(Quiz, id=quiz_id)
+    next_level = Level.objects.filter(subject=level.subject, number=level.number+1).first()
+
+    total_questions = 4
+    my_score = total_questions - quiz_point.quiz_score
+    can_proceed = my_score <= 3
+
+    # Update the total score if the current quiz score is higher
+    if can_proceed:
+        if my_score > quiz_point.total_score:
+            quiz_point.total_score = quiz_point.quiz_score
+            quiz_point.save()
+
+    context = {
+        'quiz': quiz,
+        'quiz_point': quiz_point,
+        'can_proceed': can_proceed,
+        'total_questions': total_questions,
+        'next_level': next_level,
+    }
+    return render(request, 'gameplay/quiz_result.html', context)
+
+# def quiz_result_view(request, quiz_id, point_id):
+#     quiz_point = get_object_or_404(Point, id=point_id)
+#     # my_id = request.session['result_quiz_id']
+#     # print("This is my Quiz ID:  ", my_id)
+#     level = quiz_point.level
+#     quiz = get_object_or_404(Quiz, id=quiz_id)
+#     next_level = Level.objects.filter(subject=level.subject, number=level.number+1).first()
+
+#     total_questions = 4
+#     can_proceed = (total_questions - quiz_point.quiz_score) <= 3
+
+#     print(can_proceed)
+
+#     context = {
+#         'quiz': quiz,
+#         'quiz_point': quiz_point,
+#         'can_proceed': can_proceed,
+#         'total_questions' : total_questions,
+#         'next_level': next_level,
+#     }
+#     return render(request, 'gameplay/quiz_result.html', context)
+
+
+
+@login_required
+def leaderboard_view(request):
+    # Calculate the leaderboard score by summing up all total scores
+    leaderboard_score = Point.objects.aggregate(Sum('total_score'))['total_score__sum'] or 0
+
+    # Fetch unique users associated with the points
+    users = User.objects.filter(point__total_score__gt=0).distinct()
+
+    leaderboard = []
+    rank = 1
+
+    for user in users:
+        user_points = Point.objects.filter(user=user)
+        total_score = user_points.aggregate(Sum('total_score'))['total_score__sum'] or 0
+
+        leaderboard.append({'user': user, 'total_score': total_score, 'rank': rank})
+        rank += 1
+
+    context = {
+        'leaderboard_score': leaderboard_score,
+        'leaderboard': leaderboard,
+    }
+
+    return render(request, 'gameplay/leaderboard.html', context)
+# def leaderboard_view(request):
+#     # Query all users and calculate their total scores using the Sum aggregation function
+#     leaderboard = Point.objects.values('user').annotate(total_score=Sum('total_score')).order_by('-total_score')
+
+#     context = {
+#         'leaderboard': leaderboard,
+#     }
+#     return render(request, 'gameplay/leaderboard.html', context)
+
+@login_required
+def custom_logout(request):
+    logout(request)
+    return redirect('home')  # Replace 'home' with the URL name of your home page view

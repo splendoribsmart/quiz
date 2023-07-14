@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Menu</h2>
+
+  <div class="menu">
+    <ul>
+      <!-- <li><a href="">Subject Selection</a></li>
+      <li><a href="">Levels</a></li> -->
+      <li><a href="{% url 'level_selection' subject_id=subject_id %}">Play</a></li>
+      <li><a href="{% url 'leaderboard' %}">Leaderboard</a></li>
+      <li><a href="#">Option</a></li>
+      <li><a href="#">Subscription</a></li>
+      <li><a href="{% url 'subject_selection' %}">Back</a></li>
+    </ul>
+  </div>
+{% endblock %}

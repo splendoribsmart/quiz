@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Leaderboard</h1>
+
+  <h2>Leaderboard Score: {{ leaderboard_score }}</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Total Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in leaderboard %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ entry.user.username }}</td>
+          <td>{{ entry.user.first_name }}</td>
+          <td>{{ entry.total_score }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <br>
+  <a href="{% url 'menu' %}">Back</a>
+{% endblock content %}
