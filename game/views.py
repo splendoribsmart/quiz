@@ -25,7 +25,7 @@ def subject_selection_view(request):
             return redirect('menu')
     else:
         form = SubjectSelectionForm()
-    
+
     context = {'form': form}
     return render(request, 'gameplay/subject_selection.html', context)
 
@@ -246,7 +246,7 @@ def submit_quiz_view(request, quiz_id):
             if not created:
                 # Reset quiz-specific point count to zero if the point object already exists
                 quiz_point.quiz_score = 0
-            
+
             quiz_point.quiz_score += correct_answers
             quiz_point.save()
 
@@ -318,18 +318,19 @@ def leaderboard_view(request):
     # Calculate the leaderboard score by summing up all total scores
     leaderboard_score = Point.objects.aggregate(Sum('total_score'))['total_score__sum'] or 0
 
-    # Fetch unique users associated with the points
-    users = User.objects.filter(point__total_score__gt=0).distinct()
+    # Fetch all points ordered by total score in descending order
+    all_points = Point.objects.order_by('-total_score')
 
     leaderboard = []
     rank = 1
 
-    for user in users:
-        user_points = Point.objects.filter(user=user)
-        total_score = user_points.aggregate(Sum('total_score'))['total_score__sum'] or 0
+    for point in all_points:
+        total_score = point.total_score
 
-        leaderboard.append({'user': user, 'total_score': total_score, 'rank': rank})
-        rank += 1
+        # Check if the user is already in the leaderboard
+        if point.user not in [entry['user'] for entry in leaderboard]:
+            leaderboard.append({'user': point.user, 'total_score': total_score, 'rank': rank})
+            rank += 1
 
     context = {
         'leaderboard_score': leaderboard_score,
@@ -337,6 +338,29 @@ def leaderboard_view(request):
     }
 
     return render(request, 'gameplay/leaderboard.html', context)
+# def leaderboard_view(request):
+#     # Calculate the leaderboard score by summing up all total scores
+#     leaderboard_score = Point.objects.aggregate(Sum('total_score'))['total_score__sum'] or 0
+
+#     # Fetch unique users associated with the points
+#     users = User.objects.filter(point__total_score__gt=0).distinct().order_by('-point__total_score')
+
+#     leaderboard = []
+#     rank = 1
+
+#     for user in users:
+#         user_points = Point.objects.filter(user=user)
+#         total_score = user_points.aggregate(Sum('total_score'))['total_score__sum'] or 0
+
+#         leaderboard.append({'user': user, 'total_score': total_score, 'rank': rank})
+#         rank += 1
+
+#     context = {
+#         'leaderboard_score': leaderboard_score,
+#         'leaderboard': leaderboard,
+#     }
+
+#     return render(request, 'gameplay/leaderboard.html', context)
 # def leaderboard_view(request):
 #     # Query all users and calculate their total scores using the Sum aggregation function
 #     leaderboard = Point.objects.values('user').annotate(total_score=Sum('total_score')).order_by('-total_score')
