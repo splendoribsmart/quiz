@@ -1,10 +1,52 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html class="wf-opensans-n4-active wf-opensans-n6-active wf-opensans-n7-active wf-opensans-n8-active wf-poppins-n4-active wf-poppins-n6-active wf-poppins-n8-active wf-active b-root">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+<div class="bubble-element Group baTaHaFx1 bubble-r-container flex column snipcss-hjYlI style-XIzjy" id="style-XIzjy">
+  <div class="bubble-element Group baTaHaGaB1 bubble-r-container fixed style-KZqtB" id="style-KZqtB">
+    <div class="bubble-element Shape baTaHaGaZ1 style-2y47S" id="style-2y47S">
+    </div>
+    <div class="bubble-element Group baTaHaGm1 bubble-r-container fixed style-zTDDd" id="style-zTDDd">
+      <div class="bubble-element Image baTaHaGs1 style-g9Qsm" id="style-g9Qsm">
+        <img src="https://cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1689957005861x853813665982446000/Group%2023.svg" id="style-41ENH" class="style-41ENH">
+      </div>
+      <input class="bubble-element Input baTaHaHaE1 a1689989058964x855 style-GwGPk" type="input" placeholder="    Password" id="style-GwGPk">
+      <input class="bubble-element Input baTaHaHaK1 a1689989058964x855 style-ab8Ha" type="input" placeholder="    Username" id="style-ab8Ha">
+      <div class="bubble-element Image baTaHaHaQ style-M4m9w" id="style-M4m9w">
+        <img src="https://cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1689986625762x444953469746993900/Group%2027.svg" id="style-WNWvv" class="style-WNWvv">
+      </div>
+      <div class="bubble-element Group baTaHaIaM bubble-r-container fixed style-tHvdS" id="style-tHvdS">
+        <div class="bubble-element Text baTaHaHaW style-YnGpF" id="style-YnGpF">
+          <div>
+            LOGO
+          </div>
+        </div>
+        <div class="bubble-element Text baTaHaHc style-3AZVt" id="style-3AZVt">
+          <div>
+            KNOWLEDGE IS POPWER
+          </div>
+        </div>
+        <div class="bubble-element Text baTaHaHi style-NgcPQ" id="style-NgcPQ">
+          <div>
+            Login or Register to play
+          </div>
+        </div>
+        <div class="bubble-element Text baTaHaIaA style-KrTqc" id="style-KrTqc">
+          <div>
+            Create new account
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-{% block content %}
-<h1>Login</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
-{% endblock content %}
+
+</body>
+</html>

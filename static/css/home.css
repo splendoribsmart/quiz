@@ -1,0 +1,326 @@
+body { 
+/* CSS Variables that may have been missed get put on body */ 
+    --font_default:  "Open Sans";  
+} 
+
+div { 
+    margin:  0; 
+    padding:  0; 
+    border:  0; 
+    font-size:  100%; 
+    font:  inherit; 
+    vertical-align:  baseline; 
+    box-sizing:  inherit;
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+.bubble-r-container { 
+    overflow: hidden;
+} 
+
+.bubble-element { 
+    position: relative; 
+    box-sizing: border-box;
+} 
+
+div.bubble-element { 
+    overflow: hidden;
+} 
+
+.bubble-element.Page { 
+    z-index: 1;
+} 
+
+div.bubble-element.main-page { 
+    overflow: visible;
+} 
+
+.b-root .bubble-element.baTaGaYf { 
+    background-color: rgba(215,215,215,1); 
+    min-width: 1080px; 
+    max-width: 1080px; 
+    min-height: max(1041px, 100%); 
+    max-height: 1041px; 
+    width: 1080px; 
+    margin-right: auto; 
+    margin-left: auto; 
+    position: relative; 
+    z-index: 2; 
+    opacity: 1;
+} 
+
+body { 
+    margin:     0; 
+    padding:     0; 
+    border:     0; 
+    font-size:     100%; 
+    font:     inherit; 
+    vertical-align:     baseline; 
+    box-sizing:     inherit;
+    -webkit-font-smoothing:    antialiased; 
+    -moz-osx-font-smoothing:    grayscale; 
+    -webkit-tap-highlight-color:    rgba(0, 0, 0, 0);
+    line-height:   1;
+    font-family:  Helvetica, Arial, sans-serif;
+} 
+
+.b-root body { 
+    height: 100%;
+} 
+
+html { 
+    margin:   0; 
+    padding:   0; 
+    border:   0; 
+    font-size:   100%; 
+    font:   inherit; 
+    vertical-align:   baseline; 
+    box-sizing:   inherit;
+    -webkit-font-smoothing:  antialiased; 
+    -moz-osx-font-smoothing:  grayscale; 
+    -webkit-tap-highlight-color:  rgba(0, 0, 0, 0);
+    -ms-text-size-adjust: 100%; 
+    -webkit-text-size-adjust: 100%;
+} 
+
+:root { 
+    --font_default: "Lato"; 
+} 
+
+.b-root { 
+    --font_default: "Open Sans"; 
+} 
+
+div.bubble-element.Group { 
+    overflow: visible;
+} 
+
+.bubble-r-container.fixed > .bubble-element  { 
+    position: absolute;
+} 
+
+.bubble-element.baTaHaEh1  { 
+    overflow: visible; 
+    border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    padding: 0px;
+    margin: auto;
+    opacity: 1; 
+    top: 0px; 
+    left: 0px; 
+    width: 1080px; 
+    height: 767px; 
+    z-index: 3;
+} 
+
+.bubble-element.baTaHaEn1  { 
+    overflow: visible; 
+    border-style: solid; 
+    border-width: 10px; 
+    border-color: rgba(255,255,255,1); 
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    padding: 0px; 
+    opacity: 1; 
+    top: 113px; 
+    left: 90px; 
+    width: 900px; 
+    height: 541px; 
+    z-index: 3;
+} 
+
+.bubble-element.Image { 
+    display: flex; 
+    flex-direction: row; 
+    align-items: stretch;
+} 
+
+.bubble-element.baTaHaEp1  { 
+    border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    opacity: 1; 
+    top: 128px; 
+    left: 450px; 
+    width: 223px; 
+    height: 347px; 
+    z-index: 2;
+} 
+
+.bubble-element.baTaHaEt1  { 
+    border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    opacity: 1; 
+    top: 0.399993896484375px; 
+    left: 0.4124755859375px; 
+    width: 470.6000061035156px; 
+    height: 458.6000061035156px; 
+    z-index: 3;
+} 
+
+.bubble-element.baTaHaFaA1  { 
+    overflow: visible; 
+    border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    padding: 0px; 
+    opacity: 1; 
+    top: 253px; 
+    left: 202px; 
+    width: 130px; 
+    height: 71px; 
+    z-index: 7;
+} 
+
+.bubble-element.baTaHaEu1  { 
+    overflow: visible; 
+    border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    padding: 0px; 
+    opacity: 1; 
+    top: 348px; 
+    left: 204px; 
+    width: 128px; 
+    height: 64px; 
+    z-index: 8;
+} 
+
+img { 
+    margin:  0; 
+    padding:  0; 
+    border:  0; 
+    font-size:  100%; 
+    font:  inherit; 
+    vertical-align:  baseline; 
+    box-sizing:  inherit;
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+.baTaHaEp1 img  { 
+    top: 0px; 
+    left: 0px; 
+    display: block; 
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    border-radius: 0px;
+} 
+
+.baTaHaEt1 img  { 
+    top: 0px; 
+    left: 0px; 
+    display: block; 
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    border-radius: 0px;
+} 
+
+.bubble-element.baTaHaFaB1  { 
+    overflow: visible; 
+    border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    padding: 0px; 
+    opacity: 1; 
+    top: -0.5999908447265625px; 
+    left: -0.600006103515625px; 
+    width: 130px; 
+    height: 71px; 
+    z-index: 7;
+} 
+
+.bubble-element.baTaHaEz1  { 
+    border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    opacity: 1; 
+    top: -0.5999908447265625px; 
+    left: -0.600006103515625px; 
+    width: 128px; 
+    height: 64px; 
+    z-index: 5;
+} 
+
+.bubble-element.Text { 
+    overflow-wrap: break-word;
+} 
+
+.bubble-element.baTaHaEv1  { 
+    white-space: pre-wrap; 
+    overflow: visible; 
+    font-family: var(--font_default); 
+    font-size: 14px; 
+    font-weight: bold; 
+    color: rgba(255,255,255,1); 
+    line-height: 1.4; 
+    border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    opacity: 1; 
+    top: 24.400009155273438px; 
+    left: 35.399993896484375px; 
+    width: 56px; 
+    height: 26px; 
+    z-index: 6;
+} 
+
+.bubble-element.baTaHaFaF1  { 
+    border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    opacity: 1; 
+    top: 0.587493896484375px; 
+    left: 0.60003662109375px; 
+    width: 130px; 
+    height: 71px; 
+    z-index: 4;
+} 
+
+.bubble-element.baTaHaFaG1  { 
+    white-space: pre-wrap; 
+    overflow: visible; 
+    font-family: var(--font_default); 
+    font-size: 14px; 
+    font-weight: bold; 
+    color: rgba(255,255,255,1); 
+    line-height: 1.4; 
+    border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    opacity: 1; 
+    top: 30.587493896484375px; 
+    left: 40.60003662109375px; 
+    width: 47px; 
+    height: 26px; 
+    z-index: 6;
+} 
+
+.baTaHaEz1 img  { 
+    top: 0px; 
+    left: 0px; 
+    display: block; 
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    border-radius: 0px;
+} 
+
+.baTaHaFaF1 img  { 
+    top: 0px; 
+    left: 0px; 
+    display: block; 
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    border-radius: 0px;
+} 
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-dLCg7.style-dLCg7 {  
+   background-color: rgb(51, 51, 51);  
+}  
+#style-eGlMQ.style-eGlMQ {  
+   background-color: rgba(255, 255, 255, 0);  
+    background-repeat: no-repeat;  
+    background-size: cover;  
+    background-image: url("https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1689824854919x785870007518954000%2Ffirstbg.jpg?w=1024&h=616&auto=compress&fit=crop&dpr=1");  
+}  
