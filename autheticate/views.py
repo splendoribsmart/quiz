@@ -9,7 +9,7 @@ from django.contrib.auth.tokens import default_token_generator
 
 
 
-def register(request):
+def register_desktop(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -18,7 +18,18 @@ def register(request):
             return redirect('login')  # Replace 'home' with your desired homepage URL
     else:
         form = RegistrationForm()
-    return render(request, 'registration.html', {'form': form})
+    return render(request, 'registration_desktop.html', {'form': form})
+
+def register_phone(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('login')  # Replace 'home' with your desired homepage URL
+    else:
+        form = RegistrationForm()
+    return render(request, 'registration_phone.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':

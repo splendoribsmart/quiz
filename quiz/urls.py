@@ -25,6 +25,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_view, name='home'),
+    path('main-phone/', views.main_phone_view, name='mainphone'),
+    path('main-desktop/', views.main_desktop_view, name='maindesktop'),
 
     # Authentication URLs
     path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),

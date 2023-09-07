@@ -12,6 +12,12 @@ from .models import Point, User
 def home_view(request):
     return render(request, 'home.html', {})
 
+def main_phone_view(request):
+    return render(request, 'main_phone.html', {})
+
+def main_desktop_view(request):
+    return render(request, 'main_desktop.html', {})
+
 @login_required
 def subject_selection_view(request):
     if request.method == 'POST':
