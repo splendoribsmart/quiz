@@ -6,8 +6,8 @@ from django.contrib.auth.forms import PasswordChangeForm as DjangoPasswordChange
 User = get_user_model()
 
 class RegistrationForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30)
-    region = forms.CharField(max_length=50)
+    first_name = forms.CharField(max_length=120)
+    region = forms.CharField(max_length=120)
 
     class Meta:
         model = User

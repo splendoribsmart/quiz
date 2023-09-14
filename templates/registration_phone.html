@@ -5,46 +5,563 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/reg_phone.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/regphone.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/reg_phone.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/regphone.css' %}"> -->
+    <style>
+        body {  
+    font-size:100%;
+    font:inherit;
+    line-height:1;
+    font-family:Helvetica, Arial, sans-serif;
+  }  
+div { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+div { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+.container-rg6 { 
+    overflow: hidden;
+} 
+
+.bubble-hl6 { 
+    position: relative; 
+    box-sizing: border-box;
+} 
+
+div.bubble-hl6 { 
+    overflow: hidden;
+} 
+
+.container-rg6.fle-vrw { 
+    display: flex; 
+    align-content: stretch;
+} 
+
+body { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+body { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+body { 
+    line-height: 1;
+} 
+
+body { 
+    font-family: Helvetica, Arial, sans-serif;
+} 
+
+html { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+html { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+html { 
+    -ms-text-size-adjust: 100%; 
+    -webkit-text-size-adjust: 100%;
+} 
+
+.container-rg6.rel-h26 { 
+    display: grid; 
+    grid-template-areas: "stack"; 
+    grid-template-rows: 100%; 
+    grid-template-columns: 100%;
+} 
+
+div.bubble-hl6.Gro-e1s { 
+    overflow: visible;
+} 
+
+.container-rg6.fle-vrw > .bubble-hl6  { 
+    position: relative;
+} 
+
+.container-rg6.rel-h26 > .bubble-hl6  { 
+    position: relative;
+} 
+
+.container-rg6.rel-h26 > .bubble-hl6  { 
+    grid-area: stack;
+} 
+
+.container-rg6.fix-arr > .bubble-hl6  { 
+    position: absolute;
+} 
+
+.container-rg6.fle-vrw.column-h4q { 
+    flex-direction: column; 
+    flex-wrap: nowrap;
+} 
+
+.container-2oo { 
+    display: flex; 
+    flex-direction: row; 
+    align-items: stretch;
+} 
+
+.bubble-hl6.Ima-n1g { 
+    display: flex; 
+    flex-direction: row; 
+    align-items: stretch;
+} 
+
+.container-2oo > .container-rg6  { 
+    position: relative; 
+    z-index: 0; 
+    max-width: 100%; 
+    flex-grow: 1; 
+    height: initial; 
+    overflow: inherit;
+} 
+
+img { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+img { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+input { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+input[type="input"] { 
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    appearance: none;
+} 
+
+.bubble-hl6.Inp-yks { 
+    border: none; 
+    background-color: transparent; 
+    padding: 0;
+} 
+
+input[type="password"] { 
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    appearance: none;
+} 
+
+button { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+.bubble-hl6.But-9g9 { 
+    padding: 0; 
+    border: none; 
+    cursor: inherit; 
+    background: none; 
+    text-align: left;
+} 
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-6T35w.style-6T35w {  
+   background-color: rgb(51, 51, 51);  
+    overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 100%;  
+    max-width: 100%;  
+    order: 1;  
+    min-height: 767px;  
+    width: 100%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-ss3di.style-ss3di {  
+   overflow: visible;  
+    border-radius: 5px;  
+    padding: 0px;  
+    opacity: 1;  
+    place-self: center;  
+    min-width: 320px;  
+    max-width: 320px;  
+    min-height: 650px;  
+    max-height: 650px;  
+    width: 320px;  
+    height: 650px;  
+    margin: 0px;  
+    z-index: 3;  
+    background-color: rgba(255, 255, 255, 0);  
+    background-repeat: no-repeat;  
+    background-size: cover;  
+    background-image: url("https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1689824854919x785870007518954000%2Ffirstbg.jpg?w=384&h=780&auto=compress&fit=crop&dpr=1.5");  
+}  
+#style-62GYL.style-62GYL {  
+   background-color: rgba(217, 217, 217, 0.6);  
+    overflow: visible;  
+    border-radius: 10px;  
+    opacity: 1;  
+    top: 0px;  
+    left: 0px;  
+    width: 320px;  
+    height: 650px;  
+    z-index: 2;  
+}  
+#style-YDh52.style-YDh52 {  
+   overflow: visible;  
+    justify-content: flex-start;  
+    border-radius: 5px;  
+    opacity: 1;  
+    place-self: center;  
+    min-width: 0px;  
+    min-height: 343px;  
+    width: calc(100% - 0px);  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-1wYA6.style-1wYA6 {  
+   overflow: visible;  
+    justify-content: flex-start;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 0%;  
+    order: 1;  
+    min-height: 0px;  
+    height: max-content;  
+    flex-grow: 0;  
+    flex-shrink: 0;  
+    width: auto;  
+    margin: 0px;  
+    z-index: 1;  
+}  
+#style-SDtHa.style-SDtHa {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 250px;  
+    max-width: 250px;  
+    order: 1;  
+    height: max-content;  
+    flex-grow: 0;  
+    flex-shrink: 0;  
+    width: 250px;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-J8wX3.style-J8wX3 {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 75%;  
+}  
+#style-krNYp.style-krNYp {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-MLBY3.style-MLBY3 {  
+   overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 0px;  
+    order: 2;  
+    min-height: 343px;  
+    height: max-content;  
+    flex-grow: 0;  
+    flex-shrink: 0;  
+    width: auto;  
+    margin: 30px 0px 0px;  
+    z-index: 0;  
+}  
+#style-o84GA.style-o84GA {  
+   border-radius: 0px;  
+    opacity: 1;  
+    place-self: center;  
+    min-width: 245px;  
+    max-width: 245px;  
+    width: 245px;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-D3WfR.style-D3WfR {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 144.068%;  
+}  
+#style-tVJJg.style-tVJJg {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-ArkWE.style-ArkWE {  
+   overflow: visible;  
+    justify-content: flex-start;  
+    row-gap: 10px;  
+    border-radius: 0px;  
+    padding: 20px 0px;  
+    opacity: 1;  
+    place-self: center;  
+    min-width: 180px;  
+    max-width: 180px;  
+    min-height: 100%;  
+    width: 180px;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-QvbY4.style-QvbY4 {  
+   background-color: rgb(255, 255, 255);  
+    border-style: solid;  
+    border-width: 2px;  
+    border-color: rgb(39, 107, 48);  
+    border-radius: 5px;  
+    font-family: var(--font_default);  
+    font-size: 14px;  
+    font-weight: 400;  
+    color: var(--color_text_default);  
+    padding: 6px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 100%;  
+    order: 1;  
+    min-height: 35px;  
+    max-height: 35px;  
+    height: 35px;  
+    flex-grow: 1;  
+    width: calc(100% - 0px);  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-B3AfH.style-B3AfH {  
+   background-color: rgb(255, 255, 255);  
+    border-style: solid;  
+    border-width: 2px;  
+    border-color: rgb(39, 107, 48);  
+    border-radius: 5px;  
+    font-family: var(--font_default);  
+    font-size: 14px;  
+    font-weight: 400;  
+    color: var(--color_text_default);  
+    padding: 6px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 100%;  
+    order: 2;  
+    min-height: 35px;  
+    max-height: 35px;  
+    height: 35px;  
+    flex-grow: 1;  
+    width: calc(100% - 0px);  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-TOFeK.style-TOFeK {  
+   background-color: rgb(255, 255, 255);  
+    border-style: solid;  
+    border-width: 2px;  
+    border-color: rgb(39, 107, 48);  
+    border-radius: 5px;  
+    font-family: var(--font_default);  
+    font-size: 14px;  
+    font-weight: 400;  
+    color: var(--color_text_default);  
+    padding: 6px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 100%;  
+    order: 3;  
+    min-height: 35px;  
+    max-height: 35px;  
+    height: 35px;  
+    flex-grow: 1;  
+    width: calc(100% - 0px);  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-MfyUI.style-MfyUI {  
+   background-color: rgb(255, 255, 255);  
+    border-style: solid;  
+    border-width: 2px;  
+    border-color: rgb(39, 107, 48);  
+    border-radius: 5px;  
+    font-family: var(--font_default);  
+    font-size: 14px;  
+    font-weight: 400;  
+    color: var(--color_text_default);  
+    padding: 6px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 100%;  
+    order: 4;  
+    min-height: 35px;  
+    max-height: 35px;  
+    height: 35px;  
+    flex-grow: 1;  
+    width: calc(100% - 0px);  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-YZGWr.style-YZGWr {  
+   background-color: rgb(255, 255, 255);  
+    border-style: solid;  
+    border-width: 2px;  
+    border-color: rgb(39, 107, 48);  
+    border-radius: 5px;  
+    font-family: var(--font_default);  
+    font-size: 14px;  
+    font-weight: 400;  
+    color: var(--color_text_default);  
+    padding: 6px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 100%;  
+    order: 5;  
+    min-height: 35px;  
+    max-height: 35px;  
+    height: 35px;  
+    flex-grow: 1;  
+    width: calc(100% - 0px);  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-9ai8W.style-9ai8W {  
+   background-color: rgb(255, 255, 255);  
+    border-style: solid;  
+    border-width: 2px;  
+    border-color: rgb(39, 107, 48);  
+    border-radius: 5px;  
+    font-family: var(--font_default);  
+    font-size: 14px;  
+    font-weight: 400;  
+    color: var(--color_text_default);  
+    padding: 6px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 100%;  
+    order: 6;  
+    min-height: 35px;  
+    max-height: 35px;  
+    height: 35px;  
+    flex-grow: 1;  
+    width: calc(100% - 0px);  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-2d88F.style-2d88F {  
+   background-color: rgb(39, 107, 48);  
+    font-family: var(--font_default);  
+    font-size: 12px;  
+    font-weight: 500;  
+    color: var(--color_primary_contrast_default);  
+    text-align: center;  
+    line-height: 1;  
+    border-radius: 5px;  
+    box-shadow: rgb(15, 66, 22) 0px -10px 15px -10px inset;  
+    padding: 12px 24px;  
+    opacity: 1;  
+    transition: background 200ms ease 0s;  
+    align-self: flex-start;  
+    min-width: 100%;  
+    max-width: 100%;  
+    order: 7;  
+    min-height: 35px;  
+    height: max-content;  
+    flex-grow: 0;  
+    flex-shrink: 0;  
+    width: 100%;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+    </style>
 </head>
 
 <body>
-    <div class="bubble-q4s Gro-bwy baT-ic5 container-m52 rel-hpv style-AstbF" id="style-AstbF">
-        <div class="bubble-q4s Gro-bwy baT-nr6 container-m52 fix-xlw style-JD5SC" id="style-JD5SC">
-          <div class="bubble-q4s Gro-bwy baT-no1 container-m52 rel-hpv style-RR96q" id="style-RR96q">
-            <div class="bubble-q4s Gro-bwy baT-hyl container-m52 fle-8vs column-3bk">
-              <div class="bubble-q4s Gro-bwy baT-ia8 container-m52 fle-8vs column-3bk">
-                <div class="bubble-q4s Ima-q5o baT-7ix">
-                  <div class="aspect-gis">
-                  </div>
-                  <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1693978041160x604457688652775300%2FGroup%2520128.png?w=384&amp;h=288&amp;auto=compress&amp;dpr=1.5&amp;fit=max">
-                </div>
+  <div class="bubble-hl6 Gro-e1s container-rg6 rel-h26 style-6T35w" id="style-6T35w">
+    <div class="bubble-hl6 Gro-e1s container-rg6 fix-arr style-ss3di" id="style-ss3di">
+      <div class="bubble-hl6 Gro-e1s container-rg6 rel-h26 style-62GYL" id="style-62GYL">
+        <div class="bubble-hl6 Gro-e1s container-rg6 fle-vrw column-h4q style-YDh52" id="style-YDh52">
+          <div class="bubble-hl6 Gro-e1s container-rg6 fle-vrw column-h4q style-1wYA6" id="style-1wYA6">
+            <div class="bubble-hl6 Ima-n1g style-SDtHa" id="style-SDtHa">
+              <div class="style-J8wX3" id="style-J8wX3">
               </div>
-              <div class="bubble-q4s Gro-bwy baT-mhr container-7ki style-58WJr" id="style-58WJr">
-                <div class="container-m52 rel-hpv">
-                  <div class="bubble-q4s Ima-q5o baT-699">
-                    <div class="aspect-gis">
-                    </div>
-                    <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1693973931954x406367111686379650%2FGroup%2520126.png?w=384&amp;h=553&amp;auto=compress&amp;dpr=1.5&amp;fit=max">
-                  </div>
-                  <form class="bubble-q4s Gro-bwy baT-9oc container-m52 fle-8vs column-3bk">
-                    <input class="bubble-q4s Inp-tzh baT-c1h style-3t1FO" type="input" placeholder="Full Name" id="style-3t1FO">
-                    <input class="bubble-q4s Inp-tzh baT-1ee style-QZEpo" type="input" placeholder="Email" id="style-QZEpo">
-                    <input class="bubble-q4s Inp-tzh baT-ziy style-aEoo5" type="input" placeholder="Phone Number" id="style-aEoo5">
-                    <input class="bubble-q4s Inp-tzh baT-xbj style-bhgIF" type="input" placeholder="School" id="style-bhgIF">
-                    <input class="bubble-q4s Inp-tzh baT-yvo style-MSVdt" type="input" placeholder="Password" id="style-MSVdt">
-                    <input class="bubble-q4s Inp-tzh baT-vx9 style-Xsk6J" type="input" placeholder="Confirm Password" id="style-Xsk6J">
-                    <button class="bubble-q4s But-528 baT-j2e style-IC992" id="style-IC992">
-                      Sign Up
-                    </form>
-                  </div>
+              <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1693978041160x604457688652775300%2FGroup%2520128.png?w=384&amp;h=288&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-krNYp" class="style-krNYp">
+            </div>
+          </div>
+          <div class="bubble-hl6 Gro-e1s container-2oo style-MLBY3" id="style-MLBY3">
+            <div class="container-rg6 rel-h26">
+              <div class="bubble-hl6 Ima-n1g style-o84GA" id="style-o84GA">
+                <div class="style-D3WfR" id="style-D3WfR">
                 </div>
+                <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1693973931954x406367111686379650%2FGroup%2520126.png?w=384&amp;h=553&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-tVJJg" class="style-tVJJg">
               </div>
+              <form method="POST" class="bubble-hl6 Gro-e1s container-rg6 fle-vrw column-h4q style-ArkWE" id="style-ArkWE"> {% csrf_token %}
+                <input class="bubble-hl6 Inp-yks style-QvbY4" type="input" placeholder="Full Name" id="style-QvbY4" name="{{ form.first_name.name }}">
+                <input class="bubble-hl6 Inp-yks style-B3AfH" type="email" placeholder="Email" id="style-B3AfH" name="{{ form.email.name }}">
+                <input class="bubble-hl6 Inp-yks style-TOFeK" type="input" placeholder="User Name" id="style-TOFeK" name="{{ form.username.name }}">
+                <input class="bubble-hl6 Inp-yks style-MfyUI" type="input" placeholder="School" id="style-MfyUI" name="{{ form.region.name }}">
+                <input class="bubble-hl6 Inp-yks style-YZGWr" type="password" placeholder="Password" id="style-YZGWr" name="{{ form.password1.name }}">
+                <input class="bubble-hl6 Inp-yks style-9ai8W" type="password" placeholder="Confirm Password" id="style-9ai8W" name="{{ form.password2.name }}">
+                <button class="bubble-hl6 But-9g9 style-2d88F" id="style-2d88F" style="color:white;" type="submit">
+                  Sign Up
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </div>
-             
+    </div>
+  </div>   
 </body>
 </html>

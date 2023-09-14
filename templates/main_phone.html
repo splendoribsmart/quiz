@@ -5,29 +5,339 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/main_phone.css' %}">
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/main_phone.css' %}"> -->
+  <style>
+      body {  
+    font-size:100%;
+    font:inherit;
+    line-height:1;
+    font-family:Helvetica, Arial, sans-serif;
+  }  
+div { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+div { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+.container-kvv { 
+    overflow: hidden;
+} 
+
+.bubble-eom { 
+    position: relative; 
+    box-sizing: border-box;
+} 
+
+div.bubble-eom { 
+    overflow: hidden;
+} 
+
+body { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+body { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+body { 
+    line-height: 1;
+} 
+
+body { 
+    font-family: Helvetica, Arial, sans-serif;
+} 
+
+html { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+html { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+html { 
+    -ms-text-size-adjust: 100%; 
+    -webkit-text-size-adjust: 100%;
+} 
+
+.container-kvv.rel-8tm { 
+    display: grid; 
+    grid-template-areas: "stack"; 
+    grid-template-rows: 100%; 
+    grid-template-columns: 100%;
+} 
+
+div.bubble-eom.Gro-bma { 
+    overflow: visible;
+} 
+
+.bubble-eom  { 
+    position: relative;
+} 
+
+.container-kvv.rel-8tm > .bubble-eom { 
+    position: relative;
+} 
+
+.container-kvv.rel-8tm > .bubble-eom { 
+    grid-area: stack;
+} 
+
+.container-kvv.rel-8tm > .bubble-eom, .container-kvv.flex > .bubble-eom { 
+    position: relative;
+} 
+
+.bubble-eom.Ima-kpe { 
+    display: flex; 
+    flex-direction: row; 
+    align-items: stretch;
+} 
+
+.container-kvv.fix-ogt > .bubble-eom  { 
+    position: absolute;
+} 
+
+img { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+img { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+button { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+.bubble-eom.But-o4k { 
+    padding: 0; 
+    border: none; 
+    cursor: inherit; 
+    background: none; 
+    text-align: left;
+} 
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-5X1l2.style-5X1l2 {  
+   background-color: rgb(51, 51, 51);  
+    overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-end;  
+    min-width: 100%;  
+    max-width: 100%;  
+    order: 1;  
+    min-height: 767px;  
+    width: 100%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-3HbAf.style-3HbAf {  
+   overflow: visible;  
+    border-radius: 5px;  
+    padding: 0px;  
+    opacity: 1;  
+    place-self: center;  
+    min-width: 320px;  
+    max-width: 320px;  
+    min-height: 650px;  
+    max-height: 650px;  
+    width: 320px;  
+    height: 650px;  
+    margin: 0px;  
+    z-index: 3;  
+    background-color: rgba(255, 255, 255, 0);  
+    background-repeat: no-repeat;  
+    background-size: cover;  
+    background-image: url("https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1689824854919x785870007518954000%2Ffirstbg.jpg?w=384&h=780&auto=compress&fit=crop&dpr=2");  
+}  
+#style-IiZFR.style-IiZFR {  
+   border-radius: 0px;  
+    opacity: 1;  
+    top: 0px;  
+    left: 0px;  
+    width: 280px;  
+    height: 361px;  
+    z-index: 0;  
+}  
+#style-sHeSt.style-sHeSt {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-vN4hP.style-vN4hP {  
+   border-radius: 0px;  
+    opacity: 1;  
+    top: 335px;  
+    left: 34px;  
+    width: 233px;  
+    height: 275px;  
+    z-index: 1;  
+}  
+#style-qtkIX.style-qtkIX {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-E8xqQ.style-E8xqQ {  
+   overflow: visible;  
+    border-radius: 5px;  
+    padding: 0px;  
+    opacity: 1;  
+    top: 208px;  
+    left: 130px;  
+    width: 64px;  
+    height: 23px;  
+    z-index: 2;  
+}  
+#style-mRZvg.style-mRZvg {  
+   background-color: rgb(0, 178, 0);  
+    font-family: var(--font_default);  
+    font-size: 14px;  
+    font-weight: bold;  
+    color: rgb(251, 251, 251);  
+    text-align: center;  
+    line-height: 1;  
+    border-radius: 5px;  
+    opacity: 1;  
+    top: 0px;  
+    left: 0px;  
+    width: 60px;  
+    height: 20px;  
+    z-index: 0;  
+}  
+#style-8vXvy.style-8vXvy {  
+   overflow: visible;  
+    border-radius: 5px;  
+    padding: 0px;  
+    opacity: 1;  
+    top: 259px;  
+    left: 130px;  
+    width: 64px;  
+    height: 23px;  
+    z-index: 3;  
+}  
+#style-UbqJN.style-UbqJN {  
+   background-color: rgb(55, 2, 64);  
+    font-family: var(--font_default);  
+    font-size: 14px;  
+    font-weight: bold;  
+    color: rgb(251, 251, 251);  
+    text-align: center;  
+    line-height: 1;  
+    border-radius: 5px;  
+    opacity: 1;  
+    top: 3px;  
+    left: 0px;  
+    width: 60px;  
+    height: 20px;  
+    z-index: 1;  
+}  
+#style-dopmy.style-dopmy {  
+   overflow: visible;  
+    border-radius: 10px;  
+    padding: 0px;  
+    opacity: 1;  
+    top: 142px;  
+    left: 122px;  
+    width: 68px;  
+    height: 25px;  
+    z-index: 5;  
+}  
+#style-WjrSD.style-WjrSD {  
+   background-color: rgb(39, 82, 224);  
+    font-family: var(--font_default);  
+    font-size: 14px;  
+    font-weight: bold;  
+    color: rgb(251, 251, 251);  
+    text-align: center;  
+    line-height: 1;  
+    border-radius: 5px;  
+    opacity: 1;  
+    top: 0px;  
+    left: 3px;  
+    width: 65px;  
+    height: 25px;  
+    z-index: 1;  
+}  
+
+  </style>
 </head>
 
 <body>
-    <div class="bubble-owj Gro-8t3 container-wko rel-pdx style-AGmyr" id="style-AGmyr">
-        <div class="bubble-owj Gro-8t3 container-wko fix-ydb style-ntfeI" id="style-ntfeI">
-          <div class="bubble-owj Ima-fm8 style-cTXoG" id="style-cTXoG">
-            <img src="https://cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1689912453493x477397344783685440/Group%2026.svg" id="style-8hE5c" class="style-8hE5c">
-          </div>
-          <div class="bubble-owj Ima-fm8 style-RBcD2" id="style-RBcD2">
-            <img src="https://cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1689825010319x415387872764442700/boy.svg" id="style-XG68M" class="style-XG68M">
-          </div>
-          <form action="{% url '' %}" class="bubble-owj Gro-8t3 container-wko fix-ydb style-wBqpT" id="style-wBqpT">
-            <button class="bubble-owj But-pks style-zWoQg" id="style-zWoQg">Login</button>
-          </div>
-          <form action="{% url 'registerphone' %}" class="bubble-owj Gro-8t3 container-wko fix-ydb style-zA3Sk" id="style-zA3Sk">
-            <button class="bubble-owj But-pks style-3qmT6" id="style-3qmT6">SignUp</button>
-          </form>
-          <div class="bubble-owj Gro-8t3 container-wko fix-ydb style-kU4BX" id="style-kU4BX">
-            <button class="bubble-owj But-pks style-pzpcm" id="style-pzpcm">LOGO</button>
-          </div>
-        </div>
-      </div>        
+  <div class="bubble-eom Gro-bma container-kvv rel-8tm style-5X1l2" id="style-5X1l2">
+    <div class="bubble-eom Gro-bma container-kvv fix-ogt style-3HbAf" id="style-3HbAf">
+      <div class="bubble-eom Ima-kpe style-IiZFR" id="style-IiZFR">
+        <img src="https://cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1689912453493x477397344783685440/Group%2026.svg" id="style-sHeSt" class="style-sHeSt">
+      </div>
+      <div class="bubble-eom Ima-kpe style-vN4hP" id="style-vN4hP">
+        <img src="https://cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1689825010319x415387872764442700/boy.svg" id="style-qtkIX" class="style-qtkIX">
+      </div>
+      <form action="{% url 'loginphone' %}"  class="bubble-eom Gro-bma container-kvv fix-ogt style-E8xqQ" id="style-E8xqQ">
+        <button class="bubble-eom But-o4k style-mRZvg" id="style-mRZvg">
+          Login
+        </button>
+      </form>
+      <form action="{% url 'registerphone' %}"  class="bubble-eom Gro-bma container-kvv fix-ogt style-8vXvy" id="style-8vXvy">
+        <button class="bubble-eom But-o4k style-UbqJN" id="style-UbqJN">
+          SignUp
+        </button>
+      </form>
+      <div class="bubble-eom Gro-bma container-kvv fix-ogt style-dopmy" id="style-dopmy">
+        <button class="bubble-eom But-o4k style-WjrSD" id="style-WjrSD">
+          LOGO
+        </button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
 

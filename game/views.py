@@ -35,11 +35,17 @@ def subject_selection_view(request):
     context = {'form': form}
     return render(request, 'gameplay/subject_selection.html', context)
 
-def menu_view(request):
-    subject_id = request.session['sid']
-    print(subject_id)
-    context = {'subject_id' : subject_id}
-    return render(request, 'gameplay/menu.html', context)
+def phone_menu_view(request):
+    # subject_id = request.session['sid']
+    # print(subject_id)
+    # context = {'subject_id' : subject_id}
+    return render(request, 'gameplay/menu_phone.html', {})
+
+def desktop_menu_view(request):
+    # subject_id = request.session['sid']
+    # print(subject_id)
+    # context = {'subject_id' : subject_id}
+    return render(request, 'gameplay/menu_desktop.html', {})
 
 @login_required
 def level_selection_view(request, subject_id):

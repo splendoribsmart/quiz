@@ -1,12 +1,13 @@
 from django.urls import path
-from .views import register_desktop, register_phone, user_login
+from .views import register_desktop, register_phone, user_login_desktop, user_login_phone
 from .views import password_reset, password_reset_done, password_reset_confirm, password_reset_complete, password_change, password_change_done
 
 
 urlpatterns = [
     path('register-desktop/', register_desktop, name='registerdesktop'),
     path('register-phone/', register_phone, name='registerphone'),
-    path('login/', user_login, name='login'),
+    path('login-desktop/', user_login_desktop, name='logindesktop'),
+    path('login-phone/', user_login_phone, name='loginphone'),
     # Other URL patterns
 
     # Password Management

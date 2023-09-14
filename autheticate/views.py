@@ -15,7 +15,7 @@ def register_desktop(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('login')  # Replace 'home' with your desired homepage URL
+            return redirect('desktopmenu')  # Replace 'home' with your desired homepage URL
     else:
         form = RegistrationForm()
     return render(request, 'registration_desktop.html', {'form': form})
@@ -26,12 +26,12 @@ def register_phone(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('login')  # Replace 'home' with your desired homepage URL
+            return redirect('phonemenu')  # Replace 'home' with your desired homepage URL
     else:
         form = RegistrationForm()
     return render(request, 'registration_phone.html', {'form': form})
 
-def user_login(request):
+def user_login_desktop(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -40,12 +40,28 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('subject_selection')  # Replace 'home' with your desired homepage URL
+                return redirect('desktopmenu')  # Replace 'home' with your desired homepage URL
             else:
                 form.add_error(None, 'Invalid username or password.')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login_desktop.html', {'form': form})
+
+def user_login_phone(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('phonemenu')  # Replace 'home' with your desired homepage URL
+            else:
+                form.add_error(None, 'Invalid username or password.')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login_phone.html', {'form': form})
 
 
 def password_reset(request):

@@ -8,7 +8,8 @@ from .views import (
     submit_quiz_view,
     quiz_result_view,
     question_view,
-    menu_view,
+    # menu_view, 
+    phone_menu_view, desktop_menu_view,
     leaderboard_view
 )
 
@@ -23,7 +24,9 @@ urlpatterns = [
 
     # path('quiz-result/<int:point_id>/', quiz_result_view, name='quiz_result'),
     path('quiz/<int:quiz_id>/question/<int:question_index>/', question_view, name='question'),
-    path('menu/', menu_view, name='menu'),
+    # path('menu/', menu_view, name='menu'),
+    path('phone-menu/', phone_menu_view, name='phonemenu'),
+    path('desktop-menu/', desktop_menu_view, name='desktopmenu'),
     path('leaderboard/', leaderboard_view, name='leaderboard'),
 
 ]
