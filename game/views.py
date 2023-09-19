@@ -19,7 +19,7 @@ def main_desktop_view(request):
     return render(request, 'main_desktop.html', {})
 
 @login_required
-def subject_selection_view(request):
+def subject_selection_phone_view(request):
     if request.method == 'POST':
         form = SubjectSelectionForm(request.POST)
         if form.is_valid():
@@ -33,26 +33,84 @@ def subject_selection_view(request):
         form = SubjectSelectionForm()
 
     context = {'form': form}
-    return render(request, 'gameplay/subject_selection.html', context)
+    return render(request, 'gameplay/subject_selection_phone.html', context)
 
+@login_required
+def subject_selection_desktop_view(request):
+    # if request.method == 'POST':
+    #     selection = request.POST.get('selectedImage')
+
+    #     if selection == "Mathematics":
+    #         subject_id = 1
+    #     elif selection == "English":
+    #         subject_id = 2
+    #     elif selection == "Computer":
+    #         subject_id = 3
+    #     elif selection == "Science":
+    #         subject_id = 4
+    #     elif selection == "French":
+    #         subject_id = 5
+    #     elif selection == "Social Studies":
+    #         subject_id = 6
+        
+    #     context = {'subject_id' : subject_id}
+
+    #     selected_subject = Subject.objects.get(name=selection)
+    #     sub_id = selected_subject.id
+    #     request.session['sid'] = sub_id
+    #     levels = Level.objects.filter(subject=selected_subject)
+    #     context = {'levels' : levels}
+    #     return redirect('menu')
+    #     form = SubjectSelectionForm(request.POST)
+    #     if form.is_valid():
+    #         selected_subject = form.cleaned_data['subject']
+    #         sub_id = selected_subject.id
+    #         request.session['sid'] = sub_id
+    #         # levels = Level.objects.filter(subject=selected_subject)
+    #         context = {}    # {'levels': levels}
+    #         return redirect('menu')
+    # else:
+    #     form = SubjectSelectionForm()
+
+    context = {}
+    return render(request, 'gameplay/subject_selection_desktop.html', context)
+
+
+@login_required
+def menu_view(request):
+    subject_id = request.session['sid']
+    print(subject_id)
+    context = {'subject_id' : subject_id}
+    return render(request, 'gameplay/menu.html', context)
+
+@login_required
 def phone_menu_view(request):
     # subject_id = request.session['sid']
     # print(subject_id)
     # context = {'subject_id' : subject_id}
     return render(request, 'gameplay/menu_phone.html', {})
-
+@login_required
 def desktop_menu_view(request):
     # subject_id = request.session['sid']
     # print(subject_id)
     # context = {'subject_id' : subject_id}
     return render(request, 'gameplay/menu_desktop.html', {})
 
+# @login_required
+# def level_selection_view(request, subject_id):
+#     subject = get_object_or_404(Subject, pk=subject_id)
+#     levels = Level.objects.filter(subject=subject)
+#     context = {'subject': subject, 'levels': levels}
+#     return render(request, 'gameplay/level_selection.html', context)
+
 @login_required
 def level_selection_view(request, subject_id):
+    # subject_id = request.session['sid']
     subject = get_object_or_404(Subject, pk=subject_id)
     levels = Level.objects.filter(subject=subject)
     context = {'subject': subject, 'levels': levels}
     return render(request, 'gameplay/level_selection.html', context)
+
 
 
 @login_required
@@ -386,3 +444,13 @@ def leaderboard_view(request):
 def custom_logout(request):
     logout(request)
     return redirect('home')  # Replace 'home' with the URL name of your home page view
+
+@login_required
+def custom_logout_phone(request):
+    logout(request)
+    return redirect('mainphone')  # Replace 'home' with the URL name of your home page view
+
+@login_required
+def custom_logout_desktop(request):
+    logout(request)
+    return redirect('maindesktop')  # Replace 'home' with the URL name of your home page view

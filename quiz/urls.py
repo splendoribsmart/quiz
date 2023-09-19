@@ -33,6 +33,8 @@ urlpatterns = [
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     path('logout/', views.custom_logout, name='custom_logout'),
+    path('logout-phone/', views.custom_logout, name='logoutphone'),
+    path('logout-desktop/', views.custom_logout, name='logoutdesktop'),
     # path('accounts/register/', RegisterView.as_view(), name='register'),  # Replace 'RegisterView' with your actual registration view
 
     path('game/', include("game.urls")),

@@ -10,7 +10,7 @@
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'subject_selection' %}">Select a Subject</a></li>
+                <li><a href="#">Select a Subject</a></li>
                 <!-- Add other common links here -->
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'custom_logout' %}">Logout</a></li>
