@@ -9,13 +9,13 @@
 
 {% if can_proceed %}
 	<p>Congratulations! You can proceed to the next level.</p>
-    <a href="{% url 'quiz' quiz_id=next_level.id %}">Next Level</a>
+    <a href="{% url 'htpdesktop' quiz_id=next_level.id %}">Next Level</a>
 {% else %}
     <p>Sorry, you need to improve your score to proceed to the next level.</p>
 {% endif %}
 
 
-<a href="{% url 'quiz' quiz_id=quiz.id %}">Restart</a>
-<a href="{% url 'menu' %}">Menu</a>
+<a href="{% url 'htpdesktop' quiz_id=quiz.id %}">Restart</a>
+<a href="{% url 'desktopmenu' %}">Menu</a>
 {% endblock content %}
 

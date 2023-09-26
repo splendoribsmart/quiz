@@ -111,17 +111,32 @@ def level_selection_view(request, subject_id):
     context = {'subject': subject, 'levels': levels}
     return render(request, 'gameplay/level_selection.html', context)
 
-
+@login_required
+def level_selection_phone(request, subject_id):
+    # subject_id = request.session['sid']
+    subject = get_object_or_404(Subject, pk=subject_id)
+    levels = Level.objects.filter(subject=subject)
+    context = {'subject': subject, 'levels': levels}
+    return render(request, 'gameplay/level_selection_phone.html', context)
 
 @login_required
-def level_detail_view(request, level_id):
-    level = get_object_or_404(Level, pk=level_id)
-    quizzes = Quiz.objects.filter(level=level)
-    context = {'level': level, 'quizzes': quizzes}
-    return render(request, 'gameplay/level_detail.html', context)
+def level_selection_desktop(request, subject_id):
+    # subject_id = request.session['sid']
+    subject = get_object_or_404(Subject, pk=subject_id)
+    levels = Level.objects.filter(subject=subject)
+    context = {'subject': subject, 'levels': levels}
+    return render(request, 'gameplay/level_selection_desktop.html', context)
+
+
+# @login_required
+# def level_detail_view(request, level_id):
+#     level = get_object_or_404(Level, pk=level_id)
+#     quizzes = Quiz.objects.filter(level=level)
+#     context = {'level': level, 'quizzes': quizzes}
+#     return render(request, 'gameplay/level_detail.html', context)
 
 @login_required
-def quiz_view(request, quiz_id):
+def quiz_view_phone(request, quiz_id):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     request.session['result_quiz_id'] = quiz_id
     print("Quiz ID:  ",request.session['result_quiz_id'])
@@ -144,7 +159,33 @@ def quiz_view(request, quiz_id):
         'questions': questions,
         'question_count': len(questions),
     }
-    return render(request, 'gameplay/quiz.html', context)
+    return render(request, 'gameplay/htp_phone.html', context)
+
+@login_required
+def quiz_view_desktop(request, quiz_id):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    request.session['result_quiz_id'] = quiz_id
+    print("Quiz ID:  ",request.session['result_quiz_id'])
+    user = request.user
+    level = quiz.level
+
+    # Reset the quiz points to zero
+    quiz_point, created = Point.objects.get_or_create(user=user, level=level)
+    quiz_point.quiz_score = 0
+    quiz_point.save()
+
+    # Randomly select four questions from the quiz
+    questions = list(quiz.question_set.all())
+    random.shuffle(questions)
+    questions = questions[:4]     # Selecting only 4 questions randomly
+
+    context = {
+        'quiz': quiz,
+        'quiz_point': quiz_point,
+        'questions': questions,
+        'question_count': len(questions),
+    }
+    return render(request, 'gameplay/htp_desktop.html', context)
 # def quiz_view(request, quiz_id):
 #     quiz = get_object_or_404(Quiz, pk=quiz_id)
 #     user = request.user
@@ -244,6 +285,156 @@ def question_view(request, quiz_id, question_index):
         'total_questions': total_questions,
     }
     return render(request, 'gameplay/question.html', context)
+
+@login_required
+def question_view_phone(request, quiz_id, question_index):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    print("Quiz ID:  ",request.session['result_quiz_id'])
+    user = request.user
+    level = quiz.level
+    quiz_point = get_object_or_404(Point, user=user, level=level)
+
+    # Reset the quiz score to zero if starting a new quiz
+    if question_index == 0:
+        quiz_point.quiz_score = 0
+        quiz_point.save()
+
+        # Clear the stored question IDs from the session
+        request.session.pop('question_ids', None)
+
+    # Retrieve the stored question IDs from the session
+    question_ids = request.session.get('question_ids')
+
+    # If no question IDs are stored, randomly select four questions and store their IDs in the session
+    if not question_ids:
+        all_questions = list(Question.objects.filter(quiz=quiz).values_list('id', flat=True))
+        random.shuffle(all_questions)
+        question_ids = all_questions[:4]
+        request.session['question_ids'] = question_ids
+
+    # Get the current question based on the stored IDs and question_index
+    current_question_id = question_ids[question_index]
+    current_question = get_object_or_404(Question, id=current_question_id)
+    choices = current_question.choice_set.all()
+
+    first_choice = choices[0]
+    second_choice = choices[1]
+    third_choice = choices[2]
+    fourth_choice = choices[3]
+    print('first_choice: ', first_choice)
+    print('first_choice ID: ', first_choice.id)
+
+    if request.method == 'POST':
+        selected_choice_id = request.POST.get('selected_choice')
+
+        if selected_choice_id:
+            selected_choice = get_object_or_404(Choice, pk=selected_choice_id)
+
+            if selected_choice.is_correct:
+                quiz_point.quiz_score += 1
+
+            quiz_point.save()
+
+        next_question_index = question_index + 1
+        if next_question_index < len(question_ids):
+            return redirect('questionphone', quiz_id=quiz_id, question_index=next_question_index)
+        else:
+            return redirect('quiz_result_phone', quiz_id=quiz.id, point_id=quiz_point.id)
+
+    # Adjust the question numbering for display
+    question_number = question_index + 1
+    total_questions = len(question_ids)
+
+    context = {
+        'quiz': quiz,
+        'quiz_point': quiz_point,
+        'question': current_question,
+        'choices': choices,
+        'first_choice' : first_choice,
+        'second_choice' : second_choice,
+        'third_choice' : third_choice,
+        'fourth_choice' : fourth_choice,
+        'selected_choice': None,
+        'question_number': question_number,
+        'total_questions': total_questions,
+    }
+    return render(request, 'gameplay/question_phone.html', context)
+
+@login_required
+def question_view_desktop(request, quiz_id, question_index):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    print("Quiz ID:  ",request.session['result_quiz_id'])
+    user = request.user
+    level = quiz.level
+    quiz_point = get_object_or_404(Point, user=user, level=level)
+
+    # Reset the quiz score to zero if starting a new quiz
+    if question_index == 0:
+        quiz_point.quiz_score = 0
+        quiz_point.save()
+
+        # Clear the stored question IDs from the session
+        request.session.pop('question_ids', None)
+
+    # Retrieve the stored question IDs from the session
+    question_ids = request.session.get('question_ids')
+
+    # If no question IDs are stored, randomly select four questions and store their IDs in the session
+    if not question_ids:
+        all_questions = list(Question.objects.filter(quiz=quiz).values_list('id', flat=True))
+        random.shuffle(all_questions)
+        question_ids = all_questions[:4]
+        request.session['question_ids'] = question_ids
+
+    # Get the current question based on the stored IDs and question_index
+    current_question_id = question_ids[question_index]
+    current_question = get_object_or_404(Question, id=current_question_id)
+    choices = current_question.choice_set.all()
+    print('Choices: ', choices )
+
+    first_choice = choices[0]
+    second_choice = choices[1]
+    third_choice = choices[2]
+    fourth_choice = choices[3]
+    print('first_choice: ', first_choice)
+    print('first_choice ID: ', first_choice.id)
+
+    if request.method == 'POST':
+        selected_choice_id = request.POST.get('selected_choice')
+        print('Selected Choice: ', request.POST.get('selected_choice'))
+
+        if selected_choice_id:
+            selected_choice = get_object_or_404(Choice, pk=selected_choice_id)
+
+            if selected_choice.is_correct:
+                quiz_point.quiz_score += 1
+
+            quiz_point.save()
+
+        next_question_index = question_index + 1
+        if next_question_index < len(question_ids):
+            return redirect('questiondesktop', quiz_id=quiz_id, question_index=next_question_index)
+        else:
+            return redirect('quiz_result_desktop', quiz_id=quiz.id, point_id=quiz_point.id)
+
+    # Adjust the question numbering for display
+    question_number = question_index + 1
+    total_questions = len(question_ids)
+
+    context = {
+        'quiz': quiz,
+        'quiz_point': quiz_point,
+        'question': current_question,
+        'choices': choices,
+        'first_choice' : first_choice,
+        'second_choice' : second_choice,
+        'third_choice' : third_choice,
+        'fourth_choice' : fourth_choice,
+        'selected_choice': None,
+        'question_number': question_number,
+        'total_questions': total_questions,
+    }
+    return render(request, 'gameplay/question_desktop.html', context)
 # def question_view(request, quiz_id, question_index):
 #     quiz = get_object_or_404(Quiz, pk=quiz_id)
 #     user = request.user
@@ -337,6 +528,7 @@ def submit_quiz_view(request, quiz_id):
 def quiz_result_view(request, quiz_id, point_id):
     quiz_point = get_object_or_404(Point, id=point_id)
     level = quiz_point.level
+    print("Current Level: ", level)
     quiz = get_object_or_404(Quiz, id=quiz_id)
     next_level = Level.objects.filter(subject=level.subject, number=level.number+1).first()
 
@@ -359,6 +551,59 @@ def quiz_result_view(request, quiz_id, point_id):
     }
     return render(request, 'gameplay/quiz_result.html', context)
 
+@login_required
+def quiz_result_phone(request, quiz_id, point_id):
+    quiz_point = get_object_or_404(Point, id=point_id)
+    level = quiz_point.level
+    quiz = get_object_or_404(Quiz, id=quiz_id)
+    next_level = Level.objects.filter(subject=level.subject, number=level.number+1).first()
+
+    total_questions = 4
+    my_score = total_questions - quiz_point.quiz_score
+    can_proceed = my_score <= 3
+
+    # Update the total score if the current quiz score is higher
+    if can_proceed:
+        if my_score > quiz_point.total_score:
+            quiz_point.total_score = quiz_point.quiz_score
+            quiz_point.save()
+
+    context = {
+        'quiz': quiz,
+        'quiz_point': quiz_point,
+        'can_proceed': can_proceed,
+        'total_questions': total_questions,
+        'next_level': next_level,
+        'level' : level,
+    }
+    return render(request, 'gameplay/quiz_result_phone.html', context)
+
+@login_required
+def quiz_result_desktop(request, quiz_id, point_id):
+    quiz_point = get_object_or_404(Point, id=point_id)
+    level = quiz_point.level
+    quiz = get_object_or_404(Quiz, id=quiz_id)
+    next_level = Level.objects.filter(subject=level.subject, number=level.number+1).first()
+
+    total_questions = 4
+    my_score = total_questions - quiz_point.quiz_score
+    can_proceed = my_score <= 3
+
+    # Update the total score if the current quiz score is higher
+    if can_proceed:
+        if my_score > quiz_point.total_score:
+            quiz_point.total_score = quiz_point.quiz_score
+            quiz_point.save()
+
+    context = {
+        'quiz': quiz,
+        'quiz_point': quiz_point,
+        'can_proceed': can_proceed,
+        'total_questions': total_questions,
+        'next_level': next_level,
+        'level' : level.number,
+    }
+    return render(request, 'gameplay/quiz_result_desktop.html', context)
 # def quiz_result_view(request, quiz_id, point_id):
 #     quiz_point = get_object_or_404(Point, id=point_id)
 #     # my_id = request.session['result_quiz_id']
@@ -402,9 +647,22 @@ def leaderboard_view(request):
             leaderboard.append({'user': point.user, 'total_score': total_score, 'rank': rank})
             rank += 1
 
+    first_position = leaderboard[0]
+    second_position = leaderboard[1]
+    third_position = leaderboard[2]
+    fourth_position = leaderboard[3]
+    fifth_position = leaderboard[4]
+    
+    print(first_position)
+
     context = {
         'leaderboard_score': leaderboard_score,
         'leaderboard': leaderboard,
+        'first_position' : first_position,
+        'second_position' : second_position,
+        'third_position' : third_position,
+        'fourth_position' : fourth_position,
+        'fifth_position' : fifth_position,
     }
 
     return render(request, 'gameplay/leaderboard.html', context)
@@ -454,3 +712,23 @@ def custom_logout_phone(request):
 def custom_logout_desktop(request):
     logout(request)
     return redirect('maindesktop')  # Replace 'home' with the URL name of your home page view
+
+
+
+
+# Welcome and How to play
+@login_required
+def wlc_desktop_view(request):
+    return render(request, 'gameplay/wlc_desktop.html', {})
+
+@login_required
+def wlc_phone_view(request):
+    return render(request, 'gameplay/wlc_phone.html', {})
+
+@login_required
+def htp_desktop_view(request):
+    return render(request, 'gameplay/htp_desktop.html', {})
+
+@login_required
+def htp_phone_view(request):
+    return render(request, 'gameplay/htp_phone.html', {})

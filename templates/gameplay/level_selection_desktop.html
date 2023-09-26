@@ -5,7 +5,7 @@
   <h2>Subject: {{ subject.name }}</h2>
   <ul>
     {% for level in levels %}
-      <li><a href="{% url 'htpphone' level.id %}">Level {{ level.number }}</a></li>
+      <li><a href="{% url 'htpdesktop' level.id %}">Level {{ level.number }}</a></li>
     {% empty %}
       <li>No levels available for this subject.</li>
     {% endfor %}
