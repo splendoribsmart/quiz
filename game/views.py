@@ -666,6 +666,85 @@ def leaderboard_view(request):
     }
 
     return render(request, 'gameplay/leaderboard.html', context)
+
+
+@login_required
+def leaderboard_desktop_view(request):
+    # Calculate the leaderboard score by summing up all total scores
+    leaderboard_score = Point.objects.aggregate(Sum('total_score'))['total_score__sum'] or 0
+
+    # Fetch all points ordered by total score in descending order
+    all_points = Point.objects.order_by('-total_score')
+
+    leaderboard = []
+    rank = 1
+
+    for point in all_points:
+        total_score = point.total_score
+
+        # Check if the user is already in the leaderboard
+        if point.user not in [entry['user'] for entry in leaderboard]:
+            leaderboard.append({'user': point.user, 'total_score': total_score, 'rank': rank})
+            rank += 1
+
+    first_position = leaderboard[0]
+    second_position = leaderboard[1]
+    third_position = leaderboard[2]
+    fourth_position = leaderboard[3]
+    fifth_position = leaderboard[4]
+    
+    print(first_position)
+
+    context = {
+        'leaderboard_score': leaderboard_score,
+        'leaderboard': leaderboard,
+        'first_position' : first_position,
+        'second_position' : second_position,
+        'third_position' : third_position,
+        'fourth_position' : fourth_position,
+        'fifth_position' : fifth_position,
+    }
+
+    return render(request, 'gameplay/leaderboard_desktop.html', context)
+
+@login_required
+def leaderboard_phone_view(request):
+    # Calculate the leaderboard score by summing up all total scores
+    leaderboard_score = Point.objects.aggregate(Sum('total_score'))['total_score__sum'] or 0
+
+    # Fetch all points ordered by total score in descending order
+    all_points = Point.objects.order_by('-total_score')
+
+    leaderboard = []
+    rank = 1
+
+    for point in all_points:
+        total_score = point.total_score
+
+        # Check if the user is already in the leaderboard
+        if point.user not in [entry['user'] for entry in leaderboard]:
+            leaderboard.append({'user': point.user, 'total_score': total_score, 'rank': rank})
+            rank += 1
+
+    first_position = leaderboard[0]
+    second_position = leaderboard[1]
+    third_position = leaderboard[2]
+    fourth_position = leaderboard[3]
+    fifth_position = leaderboard[4]
+    
+    print(first_position)
+
+    context = {
+        'leaderboard_score': leaderboard_score,
+        'leaderboard': leaderboard,
+        'first_position' : first_position,
+        'second_position' : second_position,
+        'third_position' : third_position,
+        'fourth_position' : fourth_position,
+        'fifth_position' : fifth_position,
+    }
+
+    return render(request, 'gameplay/leaderboard_phone.html', context)
 # def leaderboard_view(request):
 #     # Calculate the leaderboard score by summing up all total scores
 #     leaderboard_score = Point.objects.aggregate(Sum('total_score'))['total_score__sum'] or 0
