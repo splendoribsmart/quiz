@@ -601,9 +601,10 @@ def quiz_result_desktop(request, quiz_id, point_id):
         'can_proceed': can_proceed,
         'total_questions': total_questions,
         'next_level': next_level,
-        'level' : level.number,
+        'level' : level,
     }
     return render(request, 'gameplay/quiz_result_desktop.html', context)
+
 # def quiz_result_view(request, quiz_id, point_id):
 #     quiz_point = get_object_or_404(Point, id=point_id)
 #     # my_id = request.session['result_quiz_id']

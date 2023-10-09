@@ -294,7 +294,7 @@ img {
     min-height: 0px;  
     width: max-content;  
     height: max-content;  
-    margin: 19px 28px 0px 0px;  
+    margin: 22px 28px 0px 0px;  
     z-index: 3;  
 }  
 #style-jZkeo.style-jZkeo {  
@@ -428,7 +428,53 @@ img {
 
 <body>
     {% if can_proceed %}
-	<p>Congratulations! You can proceed to the next level.</p>
+	<div class="bubble-vs9 Gro-hcf container-xb4 rel-abw style-yjxDG" id="style-yjxDG">
+        <div class="bubble-vs9 Gro-hcf container-xb4 fix-g7x style-fRi84" id="style-fRi84">
+          <div class="bubble-vs9 Gro-hcf container-xb4 fle-vlh column-19z style-qVkjj" id="style-qVkjj">
+            <div class="bubble-vs9 Gro-hcf container-xb4 rel-abw style-CdxU5" id="style-CdxU5">
+              <div class="bubble-vs9 Gro-hcf container-xb4 rel-abw style-PgtpF" id="style-PgtpF">
+                <div class="bubble-vs9 Ima-9dw style-sRzHx" id="style-sRzHx">
+                  <div class="style-QLSdr" id="style-QLSdr">
+                  </div>
+                  <a href="{% url 'phonemenu' %}">
+                    <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694959079400x144972414897330600%2Fclose-exit-button-11703915-removebg-preview%25202%2520%25281%2529.png?w=48&amp;h=50&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-poRNK" class="style-poRNK">
+                  </a>
+                  
+                </div>
+                <div class="bubble-vs9 Ima-9dw style-PGroT" id="style-PGroT">
+                  <div class="style-mqBws" id="style-mqBws">
+                  </div>
+                  <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694959157483x767984842172531100%2Fred-glass-3d-button-with-metal-frame-oval-shape-vector-20607034-removebg-preview%25202%2520%25281%2529.png?w=96&amp;h=35&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-BRCaJ" class="style-BRCaJ">
+                </div>
+                <div class="bubble-vs9 Tex-8gk style-U6eEE" id="style-U6eEE">10:00</div>
+              </div>
+              <div class="bubble-vs9 Gro-hcf container-xb4 rel-abw style-jZkeo" id="style-jZkeo">
+                <div class="bubble-vs9 Ima-9dw style-1GnqV" id="style-1GnqV">
+                  <div class="style-VJF4n" id="style-VJF4n">
+                  </div>
+                  <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696776438138x585803500279674400%2FGroup%2520180.png?w=384&h=475&auto=compress&dpr=1&fit=max" id="style-VyZRg" class="style-VyZRg">
+                </div>
+                <div class="bubble-vs9 Gro-hcf container-xb4 fle-vlh column-19z style-yH3oz" id="style-yH3oz">
+                  <div class="bubble-vs9 Ima-9dw style-b4bxL" id="style-b4bxL">
+                    <div class="style-lqkAh" id="style-lqkAh">
+                    </div>
+                    <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696776074630x962592632914494000%2FGroup%2520177.png?w=192&h=53&auto=compress&dpr=1&fit=max" id="style-ICsJi" class="style-ICsJi">
+                  </div>
+                  <div class="bubble-vs9 Ima-9dw style-UydcF" id="style-UydcF">
+                    <div class="style-7dZ5R" id="style-7dZ5R">
+                    </div>
+                    <a href="{% url 'htpphone' quiz_id=next_level.id %}">
+                        <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696776092196x124601957495605650%2FGroup%2520179.png?w=192&h=53&auto=compress&dpr=1&fit=max" id="style-kXShO" class="style-kXShO">
+                    </a>
+                    
+                  </div>
+                </div>
+                <div class="bubble-vs9 Tex-8gk style-tM91E" id="style-tM91E">Level {{ level.number }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <a href="{% url 'htpdesktop' quiz_id=next_level.id %}">Next Level</a>
     {% else %}
     <div class="bubble-vs9 Gro-hcf container-xb4 rel-abw style-yjxDG" id="style-yjxDG">
@@ -472,7 +518,7 @@ img {
                     
                   </div>
                 </div>
-                <div class="bubble-vs9 Tex-8gk style-tM91E" id="style-tM91E">LEVEL 5</div>
+                <div class="bubble-vs9 Tex-8gk style-tM91E" id="style-tM91E">Level {{ level.number }}</div>
               </div>
             </div>
           </div>

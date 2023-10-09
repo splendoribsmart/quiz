@@ -451,7 +451,55 @@ img {
 
 <body>
     {% if can_proceed %}
-	<p>Congratulations! You can proceed to the next level.</p>
+	<div class="bubble-gaq Gro-gog container-1dr rel-crb style-9DkVj" id="style-9DkVj">
+        <div class="bubble-gaq Gro-gog container-1dr fix-gee style-Log83" id="style-Log83">
+          <div class="bubble-gaq Gro-gog container-1dr rel-crb style-hoQcA" id="style-hoQcA">
+            <div class="bubble-gaq Gro-gog container-1dr fle-9lh column-ldl style-fcZhp" id="style-fcZhp">
+              <div class="bubble-gaq Gro-gog container-1dr rel-crb style-dz24K" id="style-dz24K">
+                <div class="bubble-gaq Gro-gog container-1dr rel-crb style-oiv4o" id="style-oiv4o">
+                  <div class="bubble-gaq Ima-von style-nYklq" id="style-nYklq">
+                    <div class="style-FzpEj" id="style-FzpEj">
+                    </div>
+                    <a href="{% url 'desktopmenu' %}">
+                      <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694941574890x118839119303932210%2Fclose-exit-button-11703915-removebg-preview%25202%2520%25281%2529.png?w=64&amp;h=67&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-tUQUh" class="style-tUQUh">
+                    </a>
+                  </div>
+                </div>
+                <div class="bubble-gaq Gro-gog container-1dr rel-crb style-L6Hgj" id="style-L6Hgj">
+                  <div class="bubble-gaq Ima-von style-mGIRg" id="style-mGIRg">
+                    <div class="style-e2Ntl" id="style-e2Ntl">
+                    </div>
+                    <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694941716933x449854451061316900%2Fred-glass-3d-button-with-metal-frame-oval-shape-vector-20607034-removebg-preview%25202%2520%25281%2529.png?w=128&amp;h=46&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-RreXw" class="style-RreXw">
+                  </div>
+                  <div class="bubble-gaq Tex-hr6 style-oeRBW" id="style-oeRBW">10:00</div>
+                </div>
+                <div class="bubble-gaq Gro-gog container-1dr rel-crb style-NoKC8" id="style-NoKC8">
+                  <div class="bubble-gaq Ima-von style-SKmae" id="style-SKmae">
+                    <div class="style-4dLnJ" id="style-4dLnJ">
+                    </div>
+                    <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696776438138x585803500279674400%2FGroup%2520180.png?w=384&h=475&auto=compress&dpr=1&fit=max" id="style-cJ7GR" class="style-cJ7GR">
+                  </div>
+                </div>
+                <div class="bubble-gaq Gro-gog container-1dr fle-9lh column-ldl style-bdT9b" id="style-bdT9b">
+                  <div class="bubble-gaq Ima-von style-XK4kU" id="style-XK4kU">
+                    <div class="style-jsbKZ" id="style-jsbKZ">
+                    </div>
+                    <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696776074630x962592632914494000%2FGroup%2520177.png?w=192&h=53&auto=compress&dpr=1&fit=max" id="style-6scW6" class="style-6scW6">
+                  </div>
+                  <div class="bubble-gaq Ima-von style-5pbiW" id="style-5pbiW">
+                    <div class="style-GJxVy" id="style-GJxVy">
+                    </div>
+                    <a href="{% url 'htpdesktop' quiz_id=next_level.id %}">
+                      <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696776092196x124601957495605650%2FGroup%2520179.png?w=192&h=53&auto=compress&dpr=1&fit=max" id="style-TL328" class="style-TL328">
+                    </a>
+                  </div>
+                </div>
+                <div class="bubble-gaq Tex-hr6 style-19iz6" id="style-19iz6">Level {{ level.number }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <a href="{% url 'htpdesktop' quiz_id=next_level.id %}">Next Level</a>
     {% else %}
     <div class="bubble-gaq Gro-gog container-1dr rel-crb style-9DkVj" id="style-9DkVj">
@@ -497,7 +545,7 @@ img {
                     </a>
                   </div>
                 </div>
-                <div class="bubble-gaq Tex-hr6 style-19iz6" id="style-19iz6">Level {{ level }}</div>
+                <div class="bubble-gaq Tex-hr6 style-19iz6" id="style-19iz6">Level {{ level.number }}</div>
               </div>
             </div>
           </div>
