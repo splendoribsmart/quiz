@@ -471,7 +471,7 @@ img {
                     </div>
                     <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694941716933x449854451061316900%2Fred-glass-3d-button-with-metal-frame-oval-shape-vector-20607034-removebg-preview%25202%2520%25281%2529.png?w=128&amp;h=46&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-RreXw" class="style-RreXw">
                   </div>
-                  <div class="bubble-gaq Tex-hr6 style-oeRBW" id="style-oeRBW">10:00</div>
+                  <div class="bubble-gaq Tex-hr6 style-oeRBW" id="style-oeRBW">{{ request.remaining_time }}</div>
                 </div>
                 <div class="bubble-gaq Gro-gog container-1dr rel-crb style-NoKC8" id="style-NoKC8">
                   <div class="bubble-gaq Ima-von style-SKmae" id="style-SKmae">
@@ -522,8 +522,33 @@ img {
                     </div>
                     <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694941716933x449854451061316900%2Fred-glass-3d-button-with-metal-frame-oval-shape-vector-20607034-removebg-preview%25202%2520%25281%2529.png?w=128&amp;h=46&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-RreXw" class="style-RreXw">
                   </div>
-                  <div class="bubble-gaq Tex-hr6 style-oeRBW" id="style-oeRBW">10:00</div>
+                  <div class="bubble-gaq Tex-hr6 style-oeRBW" id="countdown">{{ request.remaining_time }}</div>
                 </div>
+                <script>
+                  // Set the target end time (10 minutes from now)
+                  var targetTime = new Date().getTime() + 600000; // 10 minutes in milliseconds
+          
+                  function updateCountdown() {
+                      var currentTime = new Date().getTime();
+                      var remainingTime = targetTime - currentTime;
+          
+                      if (remainingTime <= 0) {
+                          document.getElementById("countdown").innerHTML = "Time's up!";
+                      } else {
+                          var minutes = Math.floor((remainingTime / 1000) / 60);
+                          var seconds = Math.floor((remainingTime / 1000) % 60);
+          
+                          document.getElementById("countdown").innerHTML =
+                              "Time remaining: " + minutes + " minutes " + seconds + " seconds";
+                      }
+                  }
+          
+                  // Update the countdown every second (1000 milliseconds)
+                  setInterval(updateCountdown, 1000);
+          
+                  // Call the function to initially update the countdown
+                  updateCountdown();
+              </script>
                 <div class="bubble-gaq Gro-gog container-1dr rel-crb style-NoKC8" id="style-NoKC8">
                   <div class="bubble-gaq Ima-von style-SKmae" id="style-SKmae">
                     <div class="style-4dLnJ" id="style-4dLnJ">

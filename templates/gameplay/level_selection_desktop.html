@@ -1,13 +1,426 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html clss="wf-opensans-n4-active wf-opensans-n6-active wf-opensans-n7-active wf-active b-root">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/main_phone.css' %}"> -->
+  <style>
+  body {  
+    font-size:100%;
+    font:inherit;
+    line-height:1;
+    font-family:Helvetica, Arial, sans-serif;
+  }  
+div { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
 
-{% block content %}
-  <h1>Level Selection</h1>
-  <h2>Subject: {{ subject.name }}</h2>
-  <ul>
-    {% for level in levels %}
-      <li><a href="{% url 'htpdesktop' level.id %}">Level {{ level.number }}</a></li>
-    {% empty %}
-      <li>No levels available for this subject.</li>
-    {% endfor %}
-  </ul>
-{% endblock %}
+div { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+.bubble-r-container { 
+    overflow: hidden;
+} 
+
+.bubble-element { 
+    position: relative; 
+    box-sizing: border-box;
+} 
+
+div.bubble-element { 
+    overflow: hidden;
+} 
+
+.bubble-r-container.flex { 
+    display: flex; 
+    align-content: stretch;
+} 
+
+.bubble-r-container.flex.row { 
+    flex-direction: row; 
+    flex-wrap: wrap;
+} 
+
+body { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+body { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+body { 
+    line-height: 1;
+} 
+
+body { 
+    font-family: Helvetica, Arial, sans-serif;
+} 
+
+html { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+html { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+html { 
+    -ms-text-size-adjust: 100%; 
+    -webkit-text-size-adjust: 100%;
+} 
+
+.bubble-r-container.relative { 
+    display: grid; 
+    grid-template-areas: "stack"; 
+    grid-template-rows: 100%; 
+    grid-template-columns: 100%;
+} 
+
+div.bubble-element.Group { 
+    overflow: visible;
+} 
+
+.bubble-r-container.flex > .bubble-element  { 
+    position: relative;
+} 
+
+.bubble-r-container.relative > .bubble-element  { 
+    position: relative;
+} 
+
+.bubble-r-container.relative > .bubble-element  { 
+    grid-area: stack;
+} 
+
+.bubble-r-container.fixed > .bubble-element  { 
+    position: absolute;
+} 
+
+.bubble-r-container.flex.column { 
+    flex-direction: column; 
+    flex-wrap: nowrap;
+} 
+
+.bubble-element.Image { 
+    display: flex; 
+    flex-direction: row; 
+    align-items: stretch;
+} 
+
+.bubble-element.Text { 
+    overflow-wrap: break-word;
+} 
+
+img { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+img { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-iKOdZ.style-iKOdZ {  
+   background-color: rgb(51, 51, 51);  
+    overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 100%;  
+    max-width: 100%;  
+    order: 1;  
+    min-height: 767px;  
+    width: 100%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-EELhd.style-EELhd {  
+   overflow: visible;  
+    border-radius: 5px;  
+    padding: 0px;  
+    opacity: 1;  
+    place-self: start center;  
+    min-width: 832px;  
+    max-width: 832px;  
+    min-height: 468px;  
+    max-height: 468px;  
+    width: 832px;  
+    height: 468px;  
+    margin: 40px 0px 0px;  
+    z-index: 3;  
+    background-color: rgba(255, 255, 255, 0);  
+    background-repeat: no-repeat;  
+    background-size: cover;  
+    background-image: url("https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1689824854919x785870007518954000%2Ffirstbg.jpg?w=1024&h=576&auto=compress&fit=crop&dpr=1");  
+}  
+#style-xKmYR.style-xKmYR {  
+   background-color: rgba(112, 112, 112, 0.6);  
+    overflow: visible;  
+    justify-content: center;  
+    border-radius: 5px;  
+    opacity: 1;  
+    top: 0px;  
+    left: 0px;  
+    width: 832px;  
+    height: 468px;  
+    z-index: 2;  
+}  
+#style-EsUy9.style-EsUy9 {  
+   overflow: visible;  
+    justify-content: center;  
+    gap: 0px 50px;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 700px;  
+    max-width: 700px;  
+    order: 4;  
+    min-height: 300px;  
+    max-height: 300px;  
+    height: 300px;  
+    flex-grow: 1;  
+    width: 700px;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-xtGMP.style-xtGMP {  
+   overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 90px;  
+    max-width: 90px;  
+    order: 1;  
+    min-height: 100px;  
+    max-height: 100px;  
+    width: 90px;  
+    flex-grow: 1;  
+    height: 100px;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-326zo.style-326zo {  
+   border-radius: 0px;  
+    opacity: 1;  
+    place-self: start center;  
+    min-width: 75px;  
+    max-width: 75px;  
+    width: 75px;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-D94Is.style-D94Is {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 100.909%;  
+}  
+#style-fPbDk.style-fPbDk {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-J43KJ.style-J43KJ {  
+   overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: end start;  
+    min-width: 0%;  
+    min-height: 20px;  
+    max-height: 20px;  
+    width: calc(100% - 0px);  
+    height: 20px;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-W9lay.style-W9lay {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 20px;  
+    max-width: 20px;  
+    order: 1;  
+    width: 20px;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-hOkaM.style-hOkaM {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 103.409%;  
+}  
+#style-7CXNX.style-7CXNX {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-rihHi.style-rihHi {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 20px;  
+    max-width: 20px;  
+    order: 2;  
+    width: 20px;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-bUfvF.style-bUfvF {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 103.409%;  
+}  
+#style-dwPAp.style-dwPAp {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-BIXLw.style-BIXLw {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 20px;  
+    max-width: 20px;  
+    order: 3;  
+    width: 20px;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-E1zvz.style-E1zvz {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 103.409%;  
+}  
+#style-i2ifL.style-i2ifL {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-vfZ3c.style-vfZ3c {  
+   white-space: pre-wrap;  
+    overflow: visible;  
+    font-family: Lora;  
+    font-size: 36px;  
+    font-weight: bold;  
+    color: rgb(255, 255, 255);  
+    line-height: 1.4;  
+    padding: 10px 0px 0px;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: start center;  
+    min-width: 0px;  
+    min-height: 45px;  
+    width: max-content;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 4;  
+}  
+
+  </style>
+</head>
+
+<body>
+  <div class="bubble-element Group baTaHvaM bubble-r-container relative snipcss-JQPzx style-iKOdZ" id="style-iKOdZ">
+    <div class="bubble-element Group baTaHvaN bubble-r-container fixed style-EELhd" id="style-EELhd">
+      <div class="bubble-element Group baTaHvaR bubble-r-container flex column style-xKmYR" id="style-xKmYR">
+        <div class="bubble-element Group baTaIaFaB bubble-r-container flex row style-EsUy9" id="style-EsUy9">
+          {% for level in levels %}
+          <div class="bubble-element Group baTaIcaX bubble-r-container relative style-xtGMP" id="style-xtGMP">
+            <div class="bubble-element Image baTaIeaD style-326zo" id="style-326zo">
+              <div class="aspect-ratio style-D94Is" id="style-D94Is">
+              </div>
+              <a href="{% url 'htpphone' level.id %}">
+              <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696826877462x820703913117429600%2Fgame-ui-square-buttons-metal-steel-wooden-and-diamond-button-frame-cartoon-glossy-buttons-for-kids-games-vector-illustration-set-2BX1DY3-transformed-removebg-preview%252019.png?w=96&amp;h=97&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-fPbDk" class="style-fPbDk">
+              </a>
+            </div>
+            <div class="bubble-element Group baTaIeaJ bubble-r-container flex row style-J43KJ" id="style-J43KJ">
+              <div class="bubble-element Image baTaIeaP style-W9lay" id="style-W9lay">
+                <div class="aspect-ratio style-hOkaM" id="style-hOkaM">
+                </div>
+                <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696827106165x934944263420608300%2FStar%252056.png?w=24&amp;h=25&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-7CXNX" class="style-7CXNX">
+              </div>
+              <div class="bubble-element Image baTaIeaV style-rihHi" id="style-rihHi">
+                <div class="aspect-ratio style-bUfvF" id="style-bUfvF">
+                </div>
+                <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696827106165x934944263420608300%2FStar%252056.png?w=24&amp;h=25&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-dwPAp" class="style-dwPAp">
+              </div>
+              <div class="bubble-element Image baTaIeb style-BIXLw" id="style-BIXLw">
+                <div class="aspect-ratio style-E1zvz" id="style-E1zvz">
+                </div>
+                <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696827106165x934944263420608300%2FStar%252056.png?w=24&amp;h=25&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-i2ifL" class="style-i2ifL">
+              </div>
+            </div>
+            <div class="bubble-element Text baTaIeh style-vfZ3c" id="style-vfZ3c">{{ level.number }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
+
+<!-- bubble-owj Gro-8t3 container-wko fix-ydb style-zA3Sk -->

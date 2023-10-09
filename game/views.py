@@ -516,6 +516,7 @@ def submit_quiz_view(request, quiz_id):
                 if next_level:
                     return redirect('level_selection', subject_id=level.subject.id)
                 else:
+                    request.session['start_countdown'] = True
                     return redirect('quiz_result', point_id=quiz_point.id)
             else:
                 return redirect('level_selection', subject_id=level.subject.id)
