@@ -7,11 +7,11 @@ User = get_user_model()
 
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(max_length=120)
-    region = forms.CharField(max_length=120)
+    last_name = forms.CharField(max_length=120)
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'email', 'password1', 'password2', 'region']
+        fields = ['username', 'first_name', 'email', 'password1', 'password2', 'last_name']
 
 
 class PasswordChangeForm(DjangoPasswordChangeForm):

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -6,6 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 # from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm, PasswordChangeForm
 from django.contrib.auth.tokens import default_token_generator
+from game.models import Point
 
 
 
@@ -13,7 +14,25 @@ def register_desktop(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            # user = form.save(commit=False)
+            # user.region = form.cleaned_data['region']
+
+            # first_name = form.cleaned_data['first_name']
+            # region = form.cleaned_data['region']
+
+
+
             user = form.save()
+
+            # user_id = user.id
+
+            # point = get_object_or_404(Point, user=user)
+
+            # point.school = form.cleaned_data['region']
+
+            # point.save()
+
+            
             login(request, user)
             return redirect('desktopmenu')  # Replace 'home' with your desired homepage URL
     else:
@@ -24,6 +43,8 @@ def register_phone(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            # first_name = form.cleaned_data['first_name']
+            # region = form.cleaned_data['region']
             user = form.save()
             login(request, user)
             return redirect('phonemenu')  # Replace 'home' with your desired homepage URL

@@ -124,6 +124,7 @@ def level_selection_desktop(request, subject_id):
     # subject_id = request.session['sid']
     subject = get_object_or_404(Subject, pk=subject_id)
     levels = Level.objects.filter(subject=subject)
+    print(levels)
     context = {'subject': subject, 'levels': levels}
     return render(request, 'gameplay/level_selection_desktop.html', context)
 
@@ -692,10 +693,10 @@ def leaderboard_desktop_view(request):
     first_position = leaderboard[0]
     second_position = leaderboard[1]
     third_position = leaderboard[2]
-    fourth_position = leaderboard[3]
-    fifth_position = leaderboard[4]
+    # fourth_position = leaderboard[3]
+    # fifth_position = leaderboard[4]
     
-    print(first_position)
+    # print(first_position)
 
     context = {
         'leaderboard_score': leaderboard_score,
@@ -703,8 +704,8 @@ def leaderboard_desktop_view(request):
         'first_position' : first_position,
         'second_position' : second_position,
         'third_position' : third_position,
-        'fourth_position' : fourth_position,
-        'fifth_position' : fifth_position,
+    #     'fourth_position' : fourth_position,
+    #     'fifth_position' : fifth_position,
     }
 
     return render(request, 'gameplay/leaderboard_desktop.html', context)
@@ -732,9 +733,10 @@ def leaderboard_phone_view(request):
     second_position = leaderboard[1]
     third_position = leaderboard[2]
     fourth_position = leaderboard[3]
-    fifth_position = leaderboard[4]
+    # fifth_position = leaderboard[4]
     
-    print(first_position)
+    # print(first_position)
+    # print(first_position['user']['first_name'])
 
     context = {
         'leaderboard_score': leaderboard_score,
@@ -743,7 +745,7 @@ def leaderboard_phone_view(request):
         'second_position' : second_position,
         'third_position' : third_position,
         'fourth_position' : fourth_position,
-        'fifth_position' : fifth_position,
+        # 'fifth_position' : fifth_position,
     }
 
     return render(request, 'gameplay/leaderboard_phone.html', context)

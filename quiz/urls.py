@@ -40,6 +40,7 @@ urlpatterns = [
     path('game/', include("game.urls")),
     path('', include("autheticate.urls")),
     path('accounts/', include('allauth.urls')),
+    path('countdown/', include('countdown_timer.urls')),
 
 ]
 

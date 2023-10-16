@@ -1,0 +1,32 @@
+<!-- countdown_timer/templates/countdown_timer/countdown.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <p id="countdown"></p>
+
+    <script>
+        var targetTime = new Date();
+        targetTime.setMinutes(targetTime.getMinutes() + 10);
+
+        function updateCountdown() {
+            var now = new Date().getTime();
+            var timeDiff = targetTime - now;
+
+            if (timeDiff <= 0) {
+                document.getElementById("countdown").innerHTML = "Time's up!";
+            } else {
+                var minutes = Math.floor((timeDiff / 1000 / 60) % 60);
+                var seconds = Math.floor((timeDiff / 1000) % 60);
+                document.getElementById("countdown").innerHTML = minutes + ":" + seconds;
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);  // Update the countdown every second
+    </script>
+</body>
+</html>

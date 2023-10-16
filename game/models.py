@@ -14,7 +14,7 @@ class Level(models.Model):
     number = models.IntegerField()
 
     def __str__(self):
-        return f"Level {self.number} ({self.subject.name})"
+        return f"Level {self.number} ({self.subject.name}) (id:{self.id})"
 
 
 from django.db import models
@@ -24,7 +24,7 @@ class Quiz(models.Model):
     questions_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f"Quiz level {self.level.number} {self.level.subject.name}"
+        return f"Quiz level {self.level.number} {self.level.subject.name} (id:{self.id})"
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -76,6 +76,7 @@ class Point(models.Model):
     general_score = models.PositiveIntegerField(default=0)
     quiz_score = models.PositiveIntegerField(default=0)
     total_score = models.PositiveIntegerField(default=0)
+    school = models.CharField(max_length=120, default="")
 
     def update_total_score(self):
         # Check if the total score exists for the user

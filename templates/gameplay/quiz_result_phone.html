@@ -446,7 +446,7 @@ img {
                   </div>
                   <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694959157483x767984842172531100%2Fred-glass-3d-button-with-metal-frame-oval-shape-vector-20607034-removebg-preview%25202%2520%25281%2529.png?w=96&amp;h=35&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-BRCaJ" class="style-BRCaJ">
                 </div>
-                <div class="bubble-vs9 Tex-8gk style-U6eEE" id="style-U6eEE">10:00</div>
+                <div class="bubble-vs9 Tex-8gk style-U6eEE" id="style-U6eEE">{% include 'countdown_timer/countdown.html' %}</div>
               </div>
               <div class="bubble-vs9 Gro-hcf container-xb4 rel-abw style-jZkeo" id="style-jZkeo">
                 <div class="bubble-vs9 Ima-9dw style-1GnqV" id="style-1GnqV">
@@ -463,10 +463,15 @@ img {
                   <div class="bubble-vs9 Ima-9dw style-UydcF" id="style-UydcF">
                     <div class="style-7dZ5R" id="style-7dZ5R">
                     </div>
+                    {% if next_level.id %}
                     <a href="{% url 'htpphone' quiz_id=next_level.id %}">
                         <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696776092196x124601957495605650%2FGroup%2520179.png?w=192&h=53&auto=compress&dpr=1&fit=max" id="style-kXShO" class="style-kXShO">
                     </a>
-                    
+                    {% else %}
+                      <a href="">
+                        <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1696776092196x124601957495605650%2FGroup%2520179.png?w=192&h=53&auto=compress&dpr=1&fit=max" id="style-kXShO" class="style-kXShO">
+                      </a>
+                    {% endif %}
                   </div>
                 </div>
                 <div class="bubble-vs9 Tex-8gk style-tM91E" id="style-tM91E">Level {{ level.number }}</div>
@@ -475,7 +480,7 @@ img {
           </div>
         </div>
       </div>
-    <a href="{% url 'htpdesktop' quiz_id=next_level.id %}">Next Level</a>
+    
     {% else %}
     <div class="bubble-vs9 Gro-hcf container-xb4 rel-abw style-yjxDG" id="style-yjxDG">
         <div class="bubble-vs9 Gro-hcf container-xb4 fix-g7x style-fRi84" id="style-fRi84">
