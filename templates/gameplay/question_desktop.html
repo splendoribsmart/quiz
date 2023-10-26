@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
 	<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/main_phone.css' %}"> -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
 
 body {  
@@ -355,7 +356,7 @@ img {
 }  
 #style-Klh3M.style-Klh3M {  
    white-space: pre-wrap;  
-    overflow: visible;  
+    overflow: auto;  
     font-family: var(--font_default);  
     font-size: 16px;  
     font-weight: bold;  
@@ -366,11 +367,12 @@ img {
     opacity: 1;  
     place-self: center;  
     min-width: 200px;  
-    max-width: 200px;  
+    max-width: 220px;  
     min-height: 0px;  
     width: 200px;  
-    height: max-content;  
-    margin: 20px 0px 0px 70px;  
+    /* height: max-content;   */
+    max-height: 80px;
+    margin: 50px 0px 0px 70px;  
     z-index: 2;  
 }  
 #style-Wmclk.style-Wmclk {  
@@ -810,7 +812,7 @@ img {
                     </div>
                     <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694941658428x853732689462809900%2FGroup%2520163.png?w=512&amp;h=288&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-kAtrI" class="style-kAtrI">
                   </div>
-                  <div class="bubble-5cr Tex-j7y style-Klh3M" id="style-Klh3M">{{ question }}</div>
+                  <div class="bubble-5cr Tex-j7y style-Klh3M" id="style-Klh3M">{{ question|safe }}</div>
                 </div>
                 <div class="bubble-5cr Gro-ftq container-jyy rel-qpf style-Wmclk" id="style-Wmclk">
                   <div class="bubble-5cr Ima-21t style-yq64K" id="style-yq64K">
@@ -868,7 +870,10 @@ img {
                   <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694955865711x459471406021499100%2Fwooden-ui-wood-textured-plate-600w-1773645632-transformed__1_-removebg-preview%25204%2520%25281%2529.png?w=384&amp;h=46&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-qe3zV" class="style-qe3zV">
                 </div>
                 <div class="bubble-5cr style-fYftE" id="style-fYftE">
-                    <progress id="file" value="{{ question_number }}" max="{{ total_questions }}"> 32% </progress>
+                    <div class="w3-light-grey">
+                      {{ progress|safe }}
+                    </div>
+                    <!-- <progress id="file" value="{{ question_number }}" max="{{ total_questions }}"> 32% </progress> -->
                   <!-- <div class="progress-s49 style-nRNB6" id="style-nRNB6">
                     <div class="progress-5zo style-kIktI" id="style-kIktI">
                       0%
