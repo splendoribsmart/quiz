@@ -89,6 +89,7 @@ def phone_menu_view(request):
     # print(subject_id)
     # context = {'subject_id' : subject_id}
     return render(request, 'gameplay/menu_phone.html', {})
+
 @login_required
 def desktop_menu_view(request):
     # subject_id = request.session['sid']
@@ -310,7 +311,7 @@ def question_view_phone(request, quiz_id, question_index):
     if not question_ids:
         all_questions = list(Question.objects.filter(quiz=quiz).values_list('id', flat=True))
         random.shuffle(all_questions)
-        question_ids = all_questions[:4]
+        question_ids = all_questions[:20]
         request.session['question_ids'] = question_ids
 
     # Get the current question based on the stored IDs and question_index
@@ -346,6 +347,10 @@ def question_view_phone(request, quiz_id, question_index):
     question_number = question_index + 1
     total_questions = len(question_ids)
 
+    percent_question = ((question_number - 1) / 20) * 100
+
+    progress = f'<div class="w3-green" style="height:24px;width:{percent_question}%"></div>'
+
     context = {
         'quiz': quiz,
         'quiz_point': quiz_point,
@@ -358,6 +363,8 @@ def question_view_phone(request, quiz_id, question_index):
         'selected_choice': None,
         'question_number': question_number,
         'total_questions': total_questions,
+        'percent_quetion' : percent_question,
+        'progress' : progress,
     }
     return render(request, 'gameplay/question_phone.html', context)
 
@@ -384,7 +391,7 @@ def question_view_desktop(request, quiz_id, question_index):
     if not question_ids:
         all_questions = list(Question.objects.filter(quiz=quiz).values_list('id', flat=True))
         random.shuffle(all_questions)
-        question_ids = all_questions[:4]
+        question_ids = all_questions[:20]
         request.session['question_ids'] = question_ids
 
     # Get the current question based on the stored IDs and question_index
@@ -422,6 +429,11 @@ def question_view_desktop(request, quiz_id, question_index):
     question_number = question_index + 1
     total_questions = len(question_ids)
 
+    percent_question = ((question_number - 1) / 20) * 100
+
+    progress = f'<div class="w3-green" style="height:24px;width:{percent_question}%"></div>'
+
+
     context = {
         'quiz': quiz,
         'quiz_point': quiz_point,
@@ -434,6 +446,7 @@ def question_view_desktop(request, quiz_id, question_index):
         'selected_choice': None,
         'question_number': question_number,
         'total_questions': total_questions,
+        'progress' : progress
     }
     return render(request, 'gameplay/question_desktop.html', context)
 # def question_view(request, quiz_id, question_index):
@@ -534,7 +547,7 @@ def quiz_result_view(request, quiz_id, point_id):
     quiz = get_object_or_404(Quiz, id=quiz_id)
     next_level = Level.objects.filter(subject=level.subject, number=level.number+1).first()
 
-    total_questions = 4
+    total_questions = 20
     my_score = total_questions - quiz_point.quiz_score
     can_proceed = my_score <= 3
 
@@ -560,7 +573,7 @@ def quiz_result_phone(request, quiz_id, point_id):
     quiz = get_object_or_404(Quiz, id=quiz_id)
     next_level = Level.objects.filter(subject=level.subject, number=level.number+1).first()
 
-    total_questions = 4
+    total_questions = 20
     my_score = total_questions - quiz_point.quiz_score
     can_proceed = my_score <= 3
 
@@ -587,7 +600,7 @@ def quiz_result_desktop(request, quiz_id, point_id):
     quiz = get_object_or_404(Quiz, id=quiz_id)
     next_level = Level.objects.filter(subject=level.subject, number=level.number+1).first()
 
-    total_questions = 4
+    total_questions = 20
     my_score = total_questions - quiz_point.quiz_score
     can_proceed = my_score <= 3
 
@@ -693,8 +706,8 @@ def leaderboard_desktop_view(request):
     first_position = leaderboard[0]
     second_position = leaderboard[1]
     third_position = leaderboard[2]
-    # fourth_position = leaderboard[3]
-    # fifth_position = leaderboard[4]
+    fourth_position = leaderboard[3]
+    fifth_position = leaderboard[4]
     
     # print(first_position)
 
@@ -704,8 +717,8 @@ def leaderboard_desktop_view(request):
         'first_position' : first_position,
         'second_position' : second_position,
         'third_position' : third_position,
-    #     'fourth_position' : fourth_position,
-    #     'fifth_position' : fifth_position,
+        'fourth_position' : fourth_position,
+        'fifth_position' : fifth_position,
     }
 
     return render(request, 'gameplay/leaderboard_desktop.html', context)
@@ -733,7 +746,7 @@ def leaderboard_phone_view(request):
     second_position = leaderboard[1]
     third_position = leaderboard[2]
     fourth_position = leaderboard[3]
-    # fifth_position = leaderboard[4]
+    fifth_position = leaderboard[4]
     
     # print(first_position)
     # print(first_position['user']['first_name'])

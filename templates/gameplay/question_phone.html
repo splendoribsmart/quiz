@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
 	<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/main_phone.css' %}"> -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 
 body {  
@@ -366,28 +367,29 @@ img {
 }  
 #style-3Ctw9.style-3Ctw9 {  
    white-space: pre-wrap;  
-    overflow: visible;  
+    overflow: auto;  
     font-family: var(--font_default);  
     font-size: 14px;  
     font-weight: bold;  
     color: var(--color_text_default);  
-    text-align: center;  
+    text-align: center;
     line-height: 1.4;  
     border-radius: 0px;  
     opacity: 1;  
     place-self: center;  
     min-width: 200px;  
-    max-width: 200px;  
-    min-height: 0px;  
-    width: 200px;  
-    height: max-content;  
-    margin: 0px;  
+    max-width: 210px;  
+    min-height: 0px;
+    width: 300px;  
+    /* height: max-content; */
+    max-height: 80px;
+    margin: 20px 0px 0px 0px;  
     z-index: 2;  
 }  
 #style-lKw6w.style-lKw6w {  
    overflow: visible;  
     justify-content: center;  
-    row-gap: 20px;  
+    row-gap: 20px; 
     border-radius: 0px;  
     opacity: 1;  
     align-self: center;  
@@ -823,7 +825,10 @@ img {
 				<img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694961100829x904183225460583300%2Fwooden-ui-wood-textured-plate-600w-1773645632-transformed__1_-removebg-preview%25204%2520%25281%2529.png?w=384&amp;h=46&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-gyQne" class="style-gyQne">
 			  </div>
 			  <div class="bubble-ttm style-WQrMX" id="style-WQrMX">
-				<progress id="file" value="{{ question_number }}" max="{{ total_questions }}"> 32% </progress>
+                <div class="w3-light-grey">
+                    {{ progress|safe }}
+                </div>
+				<!-- <progress id="file" value="{{ question_number }}" max="{{ total_questions }}"> 32% </progress> -->
 				<!-- <div class="progress-cog style-GDCfv" id="style-GDCfv">
 				  <div class="progress-jp5 style-5yVM1" id="style-5yVM1">
 					0%
