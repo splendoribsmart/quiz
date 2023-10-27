@@ -471,7 +471,7 @@ img {
                     </div>
                     <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694941716933x449854451061316900%2Fred-glass-3d-button-with-metal-frame-oval-shape-vector-20607034-removebg-preview%25202%2520%25281%2529.png?w=128&amp;h=46&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-RreXw" class="style-RreXw">
                   </div>
-                  <div class="bubble-gaq Tex-hr6 style-oeRBW" id="style-oeRBW">{{ request.remaining_time }}</div>
+                  <div class="bubble-gaq Tex-hr6 style-oeRBW" id="style-oeRBW">0:00</div>
                 </div>
                 <div class="bubble-gaq Gro-gog container-1dr rel-crb style-NoKC8" id="style-NoKC8">
                   <div class="bubble-gaq Ima-von style-SKmae" id="style-SKmae">
@@ -522,7 +522,7 @@ img {
                     </div>
                     <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694941716933x449854451061316900%2Fred-glass-3d-button-with-metal-frame-oval-shape-vector-20607034-removebg-preview%25202%2520%25281%2529.png?w=128&amp;h=46&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-RreXw" class="style-RreXw">
                   </div>
-                  <div class="bubble-gaq Tex-hr6 style-oeRBW" id="countdown">{% include "countdown_timer/countdown.html" %}</div>
+                  <div class="bubble-gaq Tex-hr6 style-oeRBW" id="style-oeRBW"><div id="countdown-timer"><span id="timer-display">Timer Feature</span></div></div>
                 </div>
                 <div class="bubble-gaq Gro-gog container-1dr rel-crb style-NoKC8" id="style-NoKC8">
                   <div class="bubble-gaq Ima-von style-SKmae" id="style-SKmae">
@@ -552,6 +552,48 @@ img {
         </div>
       </div>      
     {% endif %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function updateTimerDisplay(remainingTime) {
+                var minutes = Math.floor(remainingTime / 60);
+                var seconds = Math.floor(remainingTime % 60);
+                var timeDisplay = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;  // Format as "mm:ss"
+                $('#timer-display').text(timeDisplay);
+
+                if (remainingTime > 0) {
+                    // Hide the element when the countdown is running
+                    $('#style-TL328').hide();
+                } else {
+                    // Show the element when the countdown is over
+                    $('#style-TL328').show();
+                }
+            }
+
+            function fetchRemainingTime() {
+                $.ajax({
+                    url: '/get_remaining_time/',  // URL to the view that fetches remaining time
+                    success: function (data) {
+                        updateTimerDisplay(data.remaining_time);
+                        
+                        // Check if the countdown has ended
+                        if (data.remaining_time <= 0) {
+                            // Perform actions when the countdown ends
+                            // For example, you can redirect the user to a new page
+                            // window.location.href = '/countdown_completed/';
+                        }
+                    },
+                });
+            }
+
+            // Fetch and update the remaining time
+            fetchRemainingTime();
+
+            // Update the countdown display every second (adjust the interval as needed)
+            setInterval(fetchRemainingTime, 1000);
+        });
+    </script>
 </body>
 </html>
 

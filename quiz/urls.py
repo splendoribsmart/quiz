@@ -41,6 +41,8 @@ urlpatterns = [
     path('', include("autheticate.urls")),
     path('accounts/', include('allauth.urls')),
     path('countdown/', include('countdown_timer.urls')),
+    
+    path('get_remaining_time/', views.get_remaining_time, name='get_remaining_time'),
 
 ]
 

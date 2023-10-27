@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
 from django.contrib.auth.decorators import login_required
 from .models import Level, Subject, Quiz, Question, Choice, Answer, Point
 from .forms import SubjectSelectionForm
@@ -6,8 +7,104 @@ from django.db.models import Sum
 import random
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
-from .models import Point, User
+from .models import Point, User, CountdownTimer
 
+
+
+# Countdowm Timer
+from django.http import JsonResponse
+from django.utils import timezone
+
+def start_countdown(request):
+    user = request.user  # Assuming you're using Django's authentication system
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+        current_time = timezone.now()
+
+        if timer.end_time is None or timer.end_time > current_time:
+            # An ongoing timer already exists and is not expired, so do not start a new one
+            return JsonResponse({'message': 'Ongoing timer already exists.'})
+        else:
+            # Start a new countdown
+            start_time = current_time
+            end_time = start_time + timezone.timedelta(minutes=10)
+            timer.start_time = start_time
+            timer.end_time = end_time
+            timer.save()
+            return JsonResponse({'message': 'Countdown timer started successfully'})
+    except CountdownTimer.DoesNotExist:
+        # If the timer doesn't exist, start a new countdown
+        start_time = timezone.now()
+        end_time = start_time + timezone.timedelta(minutes=10)
+        timer = CountdownTimer(user=user, start_time=start_time, end_time=end_time)
+        timer.save()
+        return JsonResponse({'message': 'Countdown timer started successfully'})
+
+def get_remaining_time(request):
+    user = request.user  # Assuming you're using Django's authentication system
+
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+    except CountdownTimer.DoesNotExist:
+        return JsonResponse({'remaining_time': 0, 'status': 'default'})  # Timer not found
+
+    # Calculate the remaining time in seconds
+    remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+
+    return JsonResponse({'remaining_time': remaining_time})
+
+def redirect_if_countdown_active_desktop(request):
+    user = request.user  # Assuming you're using Django's authentication system
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+        current_time = timezone.now()
+
+        if timer.end_time and timer.end_time > current_time:
+            # An active countdown exists, so redirect the user to a specific page
+            return redirect('quiz_result_desktop', quiz_id=1, point_id=9)  # Replace 'countdown_active_page' with the name of the page to redirect to
+    except CountdownTimer.DoesNotExist:
+        pass
+
+def redirect_if_countdown_active_phone(request):
+    user = request.user  # Assuming you're using Django's authentication system
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+        current_time = timezone.now()
+
+        if timer.end_time and timer.end_time > current_time:
+            # An active countdown exists, so redirect the user to a specific page
+            return redirect('quiz_result_phone', quiz_id=1, point_id=9)  # Replace 'countdown_active_page' with the name of the page to redirect to
+    except CountdownTimer.DoesNotExist:
+        pass
+
+def get_remaining_time(request):
+    user = request.user  # Assuming you're using Django's authentication system
+
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+    except CountdownTimer.DoesNotExist:
+        return JsonResponse({'remaining_time': 0, 'status': 'default'})  # Timer not found
+
+    # Calculate the remaining time in seconds
+    remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+
+    return JsonResponse({'remaining_time': remaining_time})
+
+def check_countdown_status(request):
+    user = request.user  # Assuming you're using Django's authentication system
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+        current_time = timezone.now()
+
+        if timer.end_time and timer.end_time > current_time:
+            # An active countdown exists
+            return True  # Countdown is running
+    except CountdownTimer.DoesNotExist:
+        pass  # No active countdown found
+
+    return False  # Countdown is not running
+
+# Pages Views
 
 def home_view(request):
     return render(request, 'home.html', {})
@@ -97,13 +194,6 @@ def desktop_menu_view(request):
     # context = {'subject_id' : subject_id}
     return render(request, 'gameplay/menu_desktop.html', {})
 
-# @login_required
-# def level_selection_view(request, subject_id):
-#     subject = get_object_or_404(Subject, pk=subject_id)
-#     levels = Level.objects.filter(subject=subject)
-#     context = {'subject': subject, 'levels': levels}
-#     return render(request, 'gameplay/level_selection.html', context)
-
 @login_required
 def level_selection_view(request, subject_id):
     # subject_id = request.session['sid']
@@ -128,14 +218,6 @@ def level_selection_desktop(request, subject_id):
     print(levels)
     context = {'subject': subject, 'levels': levels}
     return render(request, 'gameplay/level_selection_desktop.html', context)
-
-
-# @login_required
-# def level_detail_view(request, level_id):
-#     level = get_object_or_404(Level, pk=level_id)
-#     quizzes = Quiz.objects.filter(level=level)
-#     context = {'level': level, 'quizzes': quizzes}
-#     return render(request, 'gameplay/level_detail.html', context)
 
 @login_required
 def quiz_view_phone(request, quiz_id):
@@ -188,42 +270,6 @@ def quiz_view_desktop(request, quiz_id):
         'question_count': len(questions),
     }
     return render(request, 'gameplay/htp_desktop.html', context)
-# def quiz_view(request, quiz_id):
-#     quiz = get_object_or_404(Quiz, pk=quiz_id)
-#     user = request.user
-#     level = quiz.level
-
-#     # Reset the quiz points to zero
-#     quiz_point, created = Point.objects.get_or_create(user=user, level=level)
-#     quiz_point.quiz_score = 0
-#     quiz_point.save()
-
-#     questions = Question.objects.filter(quiz=quiz)
-
-#     context = {
-#         'quiz': quiz,
-#         'quiz_point': quiz_point,
-#         'questions': questions,
-#     }
-#     return render(request, 'gameplay/quiz.html', context)
-
-
-
-# def quiz_view(request, subject_id):
-#     subject = get_object_or_404(Subject, pk=subject_id)
-#     user = request.user
-#     level = Level.objects.filter(subject=subject).first()
-#     quiz_point, created = Point.objects.get_or_create(user=user, level=level)
-#     quiz = Quiz.objects.filter(level=level).first()
-#     questions_count = quiz.questions_count
-
-#     context = {
-#         'subject': subject,
-#         'quiz': quiz,
-#         'quiz_point': quiz_point,
-#         'questions_count': questions_count,
-#     }
-#     return render(request, 'quiz.html', context)
 
 @login_required
 def question_view(request, quiz_id, question_index):
@@ -449,94 +495,50 @@ def question_view_desktop(request, quiz_id, question_index):
         'progress' : progress
     }
     return render(request, 'gameplay/question_desktop.html', context)
-# def question_view(request, quiz_id, question_index):
-#     quiz = get_object_or_404(Quiz, pk=quiz_id)
-#     user = request.user
-#     level = quiz.level
-#     quiz_point = get_object_or_404(Point, user=user, level=level)
-#     questions = Question.objects.filter(quiz=quiz)
-
-#     if question_index >= questions.count():
-#         return redirect('quiz_result', point_id=quiz_point.id)
-
-#     current_question = questions[question_index]
-#     choices = current_question.choice_set.all()
-
-#     if request.method == 'POST':
-#         selected_choice_id = request.POST.get('selected_choice')
-
-#         if selected_choice_id:
-#             selected_choice = get_object_or_404(Choice, pk=selected_choice_id)
-
-#             if selected_choice.is_correct:
-#                 quiz_point.quiz_score += 1
-
-#             quiz_point.save()
-
-#         next_question_index = question_index + 1
-#         if next_question_index < questions.count():
-#             return redirect('question', quiz_id=quiz_id, question_index=next_question_index)
-#         else:
-#             return redirect('quiz_result', point_id=quiz_point.id)
-
-#     # Adjust the question numbering for display
-#     question_number = question_index + 1
-#     total_questions = questions.count()
-
-#     context = {
-#         'quiz': quiz,
-#         'quiz_point': quiz_point,
-#         'question': current_question,
-#         'choices': choices,
-#         'selected_choice': None,
-#         'question_number': question_number,
-#         'total_questions': total_questions,
-#     }
-#     return render(request, 'gameplay/question.html', context)
-
-
 
 @login_required
 def submit_quiz_view(request, quiz_id):
-    if request.method == 'POST':
-        quiz = get_object_or_404(Quiz, pk=quiz_id)
-        questions = Question.objects.filter(quiz=quiz)
-        total_questions = questions.count()
-        correct_answers = 0
+    pass
+    # if request.method == 'POST':
+    #     quiz = get_object_or_404(Quiz, pk=quiz_id)
+    #     questions = Question.objects.filter(quiz=quiz)
+    #     total_questions = questions.count()
+    #     correct_answers = 0
 
-        for question in questions:
-            selected_choice_id = request.POST.get(f'question_{question.id}')
-            if selected_choice_id:
-                selected_choice = Choice.objects.get(pk=selected_choice_id)
-                if selected_choice.is_correct:
-                    correct_answers += 1
+    #     for question in questions:
+    #         selected_choice_id = request.POST.get(f'question_{question.id}')
+    #         if selected_choice_id:
+    #             selected_choice = Choice.objects.get(pk=selected_choice_id)
+    #             if selected_choice.is_correct:
+    #                 correct_answers += 1
 
-        user = request.user
-        level = quiz.level
+    #     user = request.user
+    #     level = quiz.level
 
-        # Update quiz-specific point count
-        quiz_point, created = Point.objects.get_or_create(user=user, level=level)
+    #     # Update quiz-specific point count
+    #     quiz_point, created = Point.objects.get_or_create(user=user, level=level)
 
-        if total_questions >= 3:
-            if not created:
-                # Reset quiz-specific point count to zero if the point object already exists
-                quiz_point.quiz_score = 0
+    #     if total_questions >= 3:
+    #         if not created:
+    #             # Reset quiz-specific point count to zero if the point object already exists
+    #             quiz_point.quiz_score = 0
 
-            quiz_point.quiz_score += correct_answers
-            quiz_point.save()
+    #         quiz_point.quiz_score += correct_answers
+    #         quiz_point.save()# start_countdown(request)
 
-            if quiz_point.quiz_score >= quiz.passing_score:
-                next_level = Level.objects.filter(subject=level.subject, number=level.number + 1).first()
-                if next_level:
-                    return redirect('level_selection', subject_id=level.subject.id)
-                else:
-                    request.session['start_countdown'] = True
-                    return redirect('quiz_result', point_id=quiz_point.id)
-            else:
-                return redirect('level_selection', subject_id=level.subject.id)
-        else:
-            # Redirect to an error page if the quiz does not have at least three questions
-            return render(request, 'quiz_error.html')
+    #         if quiz_point.quiz_score >= quiz.passing_score:
+    #             next_level = Level.objects.filter(subject=level.subject, number=level.number + 1).first()
+    #             if next_level:
+    #                 return redirect('level_selection', subject_id=level.subject.id)
+    #             else:
+    #                 # request.session['start_countdown'] = True
+    #                 start_countdown(request)
+    #                 return redirect('quiz_result', point_id=quiz_point.id)
+    #         else:
+    #             return redirect('level_selection', subject_id=level.subject.id)
+    #     else:
+    #         # Redirect to an error page if the quiz does not have at least three questions
+    #         return render(request, 'quiz_error.html')
 
 
 @login_required
@@ -582,6 +584,24 @@ def quiz_result_phone(request, quiz_id, point_id):
         if my_score > quiz_point.total_score:
             quiz_point.total_score = quiz_point.quiz_score
             quiz_point.save()
+    else:
+        start_countdown(request)
+        remaining_time = None
+        
+        user = request.user  # Assuming you're using Django's authentication system
+        try:
+            timer = CountdownTimer.objects.get(user=user)
+        except CountdownTimer.DoesNotExist:
+            remaining_time = 0  # Default remaining time when the timer is not found
+        else:
+            # Calculate the remaining time in seconds
+            remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+
+        # Calculate the remaining time in seconds
+        # remaining_time = 0
+        print("Time Left: ", remaining_time)
+
+    countdown_running = check_countdown_status(request)
 
     context = {
         'quiz': quiz,
@@ -590,6 +610,8 @@ def quiz_result_phone(request, quiz_id, point_id):
         'total_questions': total_questions,
         'next_level': next_level,
         'level' : level,
+        'remaining_time': remaining_time,
+        'countdown_running' : countdown_running,
     }
     return render(request, 'gameplay/quiz_result_phone.html', context)
 
@@ -609,6 +631,24 @@ def quiz_result_desktop(request, quiz_id, point_id):
         if my_score > quiz_point.total_score:
             quiz_point.total_score = quiz_point.quiz_score
             quiz_point.save()
+    else:
+        start_countdown(request)
+        remaining_time = None
+        
+        user = request.user  # Assuming you're using Django's authentication system
+        try:
+            timer = CountdownTimer.objects.get(user=user)
+        except CountdownTimer.DoesNotExist:
+            remaining_time = 0  # Default remaining time when the timer is not found
+        else:
+            # Calculate the remaining time in seconds
+            remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+
+        # Calculate the remaining time in seconds
+        # remaining_time = 0
+        print("Time Left: ", remaining_time)
+
+    countdown_running = check_countdown_status(request)
 
     context = {
         'quiz': quiz,
@@ -617,32 +657,10 @@ def quiz_result_desktop(request, quiz_id, point_id):
         'total_questions': total_questions,
         'next_level': next_level,
         'level' : level,
+        'remaining_time': remaining_time,
+        'countdown_running' : countdown_running,
     }
     return render(request, 'gameplay/quiz_result_desktop.html', context)
-
-# def quiz_result_view(request, quiz_id, point_id):
-#     quiz_point = get_object_or_404(Point, id=point_id)
-#     # my_id = request.session['result_quiz_id']
-#     # print("This is my Quiz ID:  ", my_id)
-#     level = quiz_point.level
-#     quiz = get_object_or_404(Quiz, id=quiz_id)
-#     next_level = Level.objects.filter(subject=level.subject, number=level.number+1).first()
-
-#     total_questions = 4
-#     can_proceed = (total_questions - quiz_point.quiz_score) <= 3
-
-#     print(can_proceed)
-
-#     context = {
-#         'quiz': quiz,
-#         'quiz_point': quiz_point,
-#         'can_proceed': can_proceed,
-#         'total_questions' : total_questions,
-#         'next_level': next_level,
-#     }
-#     return render(request, 'gameplay/quiz_result.html', context)
-
-
 
 @login_required
 def leaderboard_view(request):
@@ -762,37 +780,6 @@ def leaderboard_phone_view(request):
     }
 
     return render(request, 'gameplay/leaderboard_phone.html', context)
-# def leaderboard_view(request):
-#     # Calculate the leaderboard score by summing up all total scores
-#     leaderboard_score = Point.objects.aggregate(Sum('total_score'))['total_score__sum'] or 0
-
-#     # Fetch unique users associated with the points
-#     users = User.objects.filter(point__total_score__gt=0).distinct().order_by('-point__total_score')
-
-#     leaderboard = []
-#     rank = 1
-
-#     for user in users:
-#         user_points = Point.objects.filter(user=user)
-#         total_score = user_points.aggregate(Sum('total_score'))['total_score__sum'] or 0
-
-#         leaderboard.append({'user': user, 'total_score': total_score, 'rank': rank})
-#         rank += 1
-
-#     context = {
-#         'leaderboard_score': leaderboard_score,
-#         'leaderboard': leaderboard,
-#     }
-
-#     return render(request, 'gameplay/leaderboard.html', context)
-# def leaderboard_view(request):
-#     # Query all users and calculate their total scores using the Sum aggregation function
-#     leaderboard = Point.objects.values('user').annotate(total_score=Sum('total_score')).order_by('-total_score')
-
-#     context = {
-#         'leaderboard': leaderboard,
-#     }
-#     return render(request, 'gameplay/leaderboard.html', context)
 
 @login_required
 def custom_logout(request):
@@ -815,10 +802,20 @@ def custom_logout_desktop(request):
 # Welcome and How to play
 @login_required
 def wlc_desktop_view(request):
+    redirect_response = redirect_if_countdown_active_desktop(request)
+    if redirect_response:
+        # If the redirect_if_countdown_active function returns a response,
+        # it means the countdown is active, and you've been redirected.
+        return redirect_response
     return render(request, 'gameplay/wlc_desktop.html', {})
 
 @login_required
 def wlc_phone_view(request):
+    redirect_response = redirect_if_countdown_active_phone(request)
+    if redirect_response:
+        # If the redirect_if_countdown_active function returns a response,
+        # it means the countdown is active, and you've been redirected.
+        return redirect_response
     return render(request, 'gameplay/wlc_phone.html', {})
 
 @login_required

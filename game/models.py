@@ -93,3 +93,10 @@ class Point(models.Model):
         # Calculate the new total score by summing the quiz scores for all levels
         total_score.total_score = sum(total_score.level_scores.values())
         total_score.save()
+
+
+# Countdown Timer
+class CountdownTimer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    start_time = models.DateTimeField(null=True)
+    end_time = models.DateTimeField(null=True)

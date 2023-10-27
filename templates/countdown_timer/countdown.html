@@ -1,5 +1,5 @@
 <!-- countdown_timer/templates/countdown_timer/countdown.html -->
-
+<!-- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +27,51 @@
 
         updateCountdown();
         setInterval(updateCountdown, 1000);  // Update the countdown every second
+    </script>
+</body>
+</html> -->
+
+
+<!-- countdown_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <div id="countdown-timer">
+        Time Remaining: <span id="timer-display">Loading...</span>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function updateTimerDisplay(remainingTime) {
+                $('#timer-display').text(Math.floor(remainingTime) + ' seconds');
+            }
+
+            function fetchRemainingTime() {
+                $.ajax({
+                    url: '/get_remaining_time/',  // URL to the view that fetches remaining time
+                    success: function (data) {
+                        updateTimerDisplay(data.remaining_time);
+                        
+                        // Check if the countdown has ended
+                        if (data.remaining_time <= 0) {
+                            // Perform actions when the countdown ends
+                            // For example, you can redirect the user to a new page
+                            window.location.href = '/countdown_completed/';
+                        }
+                    },
+                });
+            }
+
+            // Fetch and update the remaining time
+            fetchRemainingTime();
+
+            // Update the countdown display every second (adjust the interval as needed)
+            setInterval(fetchRemainingTime, 1000);
+        });
     </script>
 </body>
 </html>
