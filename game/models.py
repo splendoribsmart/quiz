@@ -40,7 +40,7 @@ class Question(models.Model):
     text = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.text
+        return  f"(id:{self.id}), question: {self.text}"
 
 
 class Choice(models.Model):
@@ -49,7 +49,7 @@ class Choice(models.Model):
     is_correct = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.text
+        return f"(id:{self.id}), choice: {self.text}, question: {self.question.id}"
 
 
 class Answer(models.Model):
