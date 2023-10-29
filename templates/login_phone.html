@@ -7,6 +7,10 @@
 	<title></title>
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/reg_phone.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/regphone.css' %}"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
   body {  
     font-size:100%;
@@ -490,10 +494,21 @@ img {
 </head>
 
 <body>
+    
     <div class="bubble-k5b Gro-tbo container-zt5 rel-hmj style-oGsRr" id="style-oGsRr">
         <div class="bubble-k5b Gro-tbo container-zt5 fix-y3t style-iVxK3" id="style-iVxK3">
-          <div class="bubble-k5b Gro-tbo container-zt5 rel-hmj style-VpR7U" id="style-VpR7U">
+          <div class="bubble-k5b Gro-tbo container-zt5 rel-hmj style-VpR7U" id="style-VpR7U"> 
             <div class="bubble-k5b Gro-tbo container-zt5 fle-bk6 column-ofb style-9Xs7H" id="style-9Xs7H">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong>
+                        <ul>
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
               <div class="bubble-k5b Gro-tbo container-zt5 fle-bk6 column-ofb style-SlRwl" id="style-SlRwl">
                 <div class="bubble-k5b Ima-rqk style-DYSHa" id="style-DYSHa">
                   <div class="style-cQmyv" id="style-cQmyv">

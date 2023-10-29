@@ -553,10 +553,23 @@ button {
                 <input class="bubble-hl6 Inp-yks style-MfyUI" type="input" placeholder="School" id="style-MfyUI" name="{{ form.last_name.name }}">
                 <input class="bubble-hl6 Inp-yks style-YZGWr" type="password" placeholder="Password" id="style-YZGWr" name="{{ form.password1.name }}">
                 <input class="bubble-hl6 Inp-yks style-9ai8W" type="password" placeholder="Confirm Password" id="style-9ai8W" name="{{ form.password2.name }}">
+                <span id="password-mismatch" style="color: red; background: white; display: none;">Passwords do not match.</span>
                 <button class="bubble-hl6 But-9g9 style-2d88F" id="style-2d88F" style="color:white;" type="submit">
                   Sign Up
                 </button>
               </form>
+
+              <script>
+                // Check password matching on form submit
+                document.querySelector('form').addEventListener('submit', function (e) {
+                    const password = document.getElementById('style-YZGWr').value;
+                    const confirmPassword = document.getElementById('style-9ai8W').value;
+                    if (password !== confirmPassword) {
+                        e.preventDefault(); // Prevent form submission
+                        document.getElementById('password-mismatch').style.display = 'block'; // Display alert
+                    }
+                });
+              </script>  
             </div>
           </div>
         </div>

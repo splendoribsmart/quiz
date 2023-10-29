@@ -556,19 +556,32 @@ button {
                 <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1693973931954x406367111686379650%2FGroup%2520126.png?w=384&amp;h=553&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-tZ63h" class="style-tZ63h">
               </div>
               <form method="POST" class="bubble-849 Gro-vvo container-kkx fle-y33 column-wej style-AOiPx" id="style-AOiPx"> {% csrf_token %}
-                <input class="bubble-849 Inp-1yy style-jdAj8" type="input" placeholder="Full Name" id="style-jdAj8" name="{{ form.first_name.name }}">
+                <input class="bubble-849 Inp-1yy style-jdAj8 " type="input" placeholder="Full Name" id="style-jdAj8" name="{{ form.first_name.name }}">
                 <input class="bubble-849 Inp-1yy style-FoCsn" type="email" placeholder="Email" id="style-FoCsn" name="{{ form.email.name }}">
                 <input class="bubble-849 Inp-1yy style-APHeZ" type="input" placeholder="User Name" id="style-APHeZ" name="{{ form.username.name }}">
                 <input class="bubble-849 Inp-1yy style-73ON8" type="input" placeholder="School" id="style-73ON8" name="{{ form.region.name }}">
                 <input class="bubble-849 Inp-1yy style-CiMk2" type="password" placeholder="Password" id="style-CiMk2" name="{{ form.password1.name }}">
                 <input class="bubble-849 Inp-1yy style-DUwr5" type="password" placeholder="Confirm Password" id="style-DUwr5" name="{{ form.password2.name }}">
+                <span id="password-mismatch" style="color: red; background: white; display: none;">Passwords do not match.</span>
                 <button class="bubble-849 But-ooi style-XYB5L" id="style-XYB5L" type="submit" style="color: white;">Sign Up</button>
               </form>
+
+              <script>
+                // Check password matching on form submit
+                document.querySelector('form').addEventListener('submit', function (e) {
+                    const password = document.getElementById('style-CiMk2').value;
+                    const confirmPassword = document.getElementById('style-DUwr5').value;
+                    if (password !== confirmPassword) {
+                        e.preventDefault(); // Prevent form submission
+                        document.getElementById('password-mismatch').style.display = 'block'; // Display alert
+                    }
+                });
+              </script>  
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>          
+  </div>       
 </body>
 </html>

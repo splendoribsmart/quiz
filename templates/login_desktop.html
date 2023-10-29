@@ -7,6 +7,10 @@
 	<title></title>
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/reg_phone.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/regphone.css' %}"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
   body {  
     font-size:100%;
@@ -418,6 +422,16 @@ img {
     <div class="bubble-jdj Gro-a3s container-e78 rel-zvv style-LKRLT" id="style-LKRLT">
         <div class="bubble-jdj Gro-a3s container-e78 rel-zvv style-gArIo" id="style-gArIo">
           <div class="bubble-jdj Gro-a3s container-e78 rel-zvv style-9Lfgs" id="style-9Lfgs">
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <strong>Error:</strong>
+                    <ul>
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
             <div class="bubble-jdj Gro-a3s container-e78 rel-zvv style-2mhYQ" id="style-2mhYQ">
               <div class="bubble-jdj Ima-5nm style-bs9MW" id="style-bs9MW">
                 <div class="style-xSaqK" id="style-xSaqK">
@@ -446,7 +460,10 @@ img {
               <div class="bubble-jdj Ima-5nm style-gA6Uo" id="style-gA6Uo">
                 <div class="style-tFVGC" id="style-tFVGC">
                 </div>
-                <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694916950586x775103374161322000%2FGroup%2520156.png?w=128&amp;h=58&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-ZZe58" class="style-ZZe58">
+                <a href="{% url 'registerdesktop' %}">
+                    <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694916950586x775103374161322000%2FGroup%2520156.png?w=128&amp;h=58&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-ZZe58" class="style-ZZe58">
+                </a>
+                
               </div>
             </div>
           </div>
