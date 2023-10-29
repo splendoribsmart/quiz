@@ -356,16 +356,17 @@ def question_view_phone(request, quiz_id, question_index):
     # If no question IDs are stored, randomly select four questions and store their IDs in the session
     if not question_ids:
         all_questions = list(Question.objects.filter(quiz=quiz).values_list('id', flat=True))
-        # print("All Questions: ", all_questions)
+        print("All Questions: ", all_questions)
         random.shuffle(all_questions)
         question_ids = all_questions[:19]
-        # print("Question IDs: ", question_ids)
+        print("Question IDs: ", question_ids)
         request.session['question_ids'] = question_ids
 
     # Get the current question based on the stored IDs and question_index
     current_question_id = question_ids[question_index]
     current_question = get_object_or_404(Question, id=current_question_id)
     choices = current_question.choice_set.all()
+    print(choices)
 
     first_choice = choices[0]
     second_choice = choices[1]
