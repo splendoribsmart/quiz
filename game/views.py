@@ -729,6 +729,9 @@ def leaderboard_desktop_view(request):
     third_position = leaderboard[2]
     fourth_position = leaderboard[3]
     fifth_position = leaderboard[4]
+    sixth_position = leaderboard[5]
+    seventh_position = leaderboard[6]
+    # eight_position = leaderboard[7]
     
     # print(first_position)
 
@@ -740,6 +743,9 @@ def leaderboard_desktop_view(request):
         'third_position' : third_position,
         'fourth_position' : fourth_position,
         'fifth_position' : fifth_position,
+        'sixth_position' : sixth_position,
+        'seventh_position' : seventh_position,
+        # 'eight_position' : eight_position,
     }
 
     return render(request, 'gameplay/leaderboard_desktop.html', context)
@@ -768,6 +774,9 @@ def leaderboard_phone_view(request):
     third_position = leaderboard[2]
     fourth_position = leaderboard[3]
     fifth_position = leaderboard[4]
+    sixth_position = leaderboard[5]
+    seventh_position = leaderboard[6]
+    # eight_position = leaderboard[7]
     
     # print(first_position)
     # print(first_position['user']['first_name'])
@@ -779,7 +788,10 @@ def leaderboard_phone_view(request):
         'second_position' : second_position,
         'third_position' : third_position,
         'fourth_position' : fourth_position,
-        # 'fifth_position' : fifth_position,
+        'fifth_position' : fifth_position,
+        'sixth_position' : sixth_position,
+        'seventh_position' : seventh_position,
+        # 'eight_position' : eight_position,
     }
 
     return render(request, 'gameplay/leaderboard_phone.html', context)
