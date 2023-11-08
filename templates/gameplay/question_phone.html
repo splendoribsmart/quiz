@@ -770,7 +770,23 @@ img {
 				</div>
 				<div class="bubble-ttm Ima-jk2 style-L7bJ3" id="style-L7bJ3">
 				  <div class="style-X9Hdg" id="style-X9Hdg">
-				  </div>````
+                </div>
+                <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694959157483x767984842172531100%2Fred-glass-3d-button-with-metal-frame-oval-shape-vector-20607034-removebg-preview%25202%2520%25281%2529.png?w=96&amp;h=35&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-emL8V" class="style-emL8V">
+                </div>
+                <div class="bubble-ttm Tex-ni9 style-23W9p" id="style-23W9p">
+                <span id="timer-display">0:00</span> </div>
+            </div>
+            <div class="bubble-ttm Ima-jk2 style-ihonH" id="style-ihonH">
+              <div class="style-bLMGP" id="style-bLMGP">
+              </div>
+              <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694959419930x769372065333613800%2FGroup%2520163.png?w=512&amp;h=288&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-aklnW" class="style-aklnW">
+            </div>
+            <div class="bubble-ttm Tex-ni9 style-3Ctw9" id="style-3Ctw9">{{ question.text|safe }}</div>
+          </div>
+          <div class="bubble-ttm Gro-dhd container-zar fle-255 column-awo style-lKw6w" id="style-lKw6w">
+            <div class="bubble-ttm Gro-dhd container-zar rel-chv style-I6eiY" id="style-I6eiY">
+              <div class="bubble-ttm Ima-jk2 style-Zk68y" id="style-Zk68y">
+				
 				  <div class="style-exl4M" id="style-exl4M">
 				  </div>
 				  <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694960333618x370919576747425340%2FGroup%2520164.png?w=384&amp;h=99&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-Pi1SQ" class="style-Pi1SQ">
@@ -827,6 +843,44 @@ img {
 		  </form>
 		</div>
 	  </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+          $(document).ready(function () {
+              function updateTimerDisplay(elapsedTime) {
+                  var minutes = Math.floor(elapsedTime / 60);
+                  var seconds = Math.floor(elapsedTime % 60);
+                  var timeDisplay = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;  // Format as "mm:ss"
+                  $('#timer-display').text(timeDisplay);
+
+                  if (elapsedTime > 0) {
+                      // Hide the element when the timer is running
+                      $('#style-TL328').hide();
+                  } else {
+                      // Show the element when the timer reaches 0:00 (timer is over)
+                      $('#style-TL328').show();
+                  }
+              }
+
+              function fetchElapsedTime() {
+                  $.ajax({
+                      url: '/get_elapsed_time/',  // URL to the view that fetches elapsed time
+                      success: function (data) {
+                          updateTimerDisplay(data.elapsed_time);
+                      },
+                  });
+              }
+
+              // Fetch and update the elapsed time
+              fetchElapsedTime();
+
+              // Update the timer display every second (adjust the interval as needed)
+              setInterval(fetchElapsedTime, 1000);
+          });
+      </script>
+
+
 </body>
 </html>
 

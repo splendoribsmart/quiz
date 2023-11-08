@@ -43,7 +43,7 @@ urlpatterns = [
     path('countdown/', include('countdown_timer.urls')),
     
     path('get_remaining_time/', views.get_remaining_time, name='get_remaining_time'),
-
+    path('get_elapsed_time/', views.get_elapsed_time, name='get_elapsed_time'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

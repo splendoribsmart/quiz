@@ -821,7 +821,7 @@ img {
                     <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694941716933x449854451061316900%2Fred-glass-3d-button-with-metal-frame-oval-shape-vector-20607034-removebg-preview%25202%2520%25281%2529.png?w=128&amp;h=46&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-baqkm" class="style-baqkm">
                   </div>
                   <div class="bubble-5cr Tex-j7y style-6SlJt" id="style-6SlJt">
-                    Q{{ question_number }}   
+                    <span id="timer-display">0:00</span> 
                   </div>
                 </div>
               </div>
@@ -889,6 +889,43 @@ img {
           </div>
         </div>
       </div>
+      
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+          $(document).ready(function () {
+              function updateTimerDisplay(elapsedTime) {
+                  var minutes = Math.floor(elapsedTime / 60);
+                  var seconds = Math.floor(elapsedTime % 60);
+                  var timeDisplay = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;  // Format as "mm:ss"
+                  $('#timer-display').text(timeDisplay);
+
+                  if (elapsedTime > 0) {
+                      // Hide the element when the timer is running
+                      $('#style-TL328').hide();
+                  } else {
+                      // Show the element when the timer reaches 0:00 (timer is over)
+                      $('#style-TL328').show();
+                  }
+              }
+
+              function fetchElapsedTime() {
+                  $.ajax({
+                      url: '/get_elapsed_time/',  // URL to the view that fetches elapsed time
+                      success: function (data) {
+                          updateTimerDisplay(data.elapsed_time);
+                      },
+                  });
+              }
+
+              // Fetch and update the elapsed time
+              fetchElapsedTime();
+
+              // Update the timer display every second (adjust the interval as needed)
+              setInterval(fetchElapsedTime, 1000);
+          });
+      </script>
+
+      
 </body>
 </html>
 

@@ -104,6 +104,69 @@ def check_countdown_status(request):
 
     return False  # Countdown is not running
 
+
+# Count-Up Timer
+def start_countup(request):
+    user = request.user  # Assuming you're using Django's authentication system
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+        current_time = timezone.now()
+
+        if timer.start_time is None:
+            # Start a new count-up timer
+            start_time = current_time
+            timer.start_time = start_time
+            timer.save()
+            return JsonResponse({'message': 'Count-up timer started successfully'})
+        else:
+            return JsonResponse({'message': 'Count-up timer already in progress.'})
+    except CountdownTimer.DoesNotExist:
+        # If the timer doesn't exist, start a new count-up timer
+        start_time = timezone.now()
+        timer = CountdownTimer(user=user, start_time=start_time)
+        timer.save()
+        return JsonResponse({'message': 'Count-up timer started successfully'})
+
+def get_elapsed_time(request):
+    user = request.user  # Assuming you're using Django's authentication system
+
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+    except CountdownTimer.DoesNotExist:
+        return JsonResponse({'elapsed_time': 0, 'status': 'default'})  # Timer not found
+
+    # Calculate the elapsed time in seconds
+    elapsed_time = (timezone.now() - timer.start_time).total_seconds()
+
+    return JsonResponse({'elapsed_time': elapsed_time})
+
+def check_countup_status(request):
+    user = request.user  # Assuming you're using Django's authentication system
+
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+        if timer.start_time:
+            return True  # Count-up timer is running
+        else:
+            return False  # Count-up timer is not running
+    except CountdownTimer.DoesNotExist:
+        return False  # Count-up timer is not running
+
+def reset_countup_timer(request):
+    user = request.user  # Assuming you're using Django's authentication system
+
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+        timer.start_time = None  # Set the start time to None to reset the timer
+        timer.save()
+        return JsonResponse({'message': 'Count-up timer reset successfully'})
+    except CountdownTimer.DoesNotExist:
+        return JsonResponse({'message': 'No count-up timer found'})
+
+
+
+
+
 # Pages Views
 
 def home_view(request):
@@ -279,6 +342,8 @@ def question_view(request, quiz_id, question_index):
     level = quiz.level
     quiz_point = get_object_or_404(Point, user=user, level=level)
 
+    start_countup_timer(request)
+    
     # Reset the quiz score to zero if starting a new quiz
     if question_index == 0:
         quiz_point.quiz_score = 0
@@ -356,17 +421,15 @@ def question_view_phone(request, quiz_id, question_index):
     # If no question IDs are stored, randomly select four questions and store their IDs in the session
     if not question_ids:
         all_questions = list(Question.objects.filter(quiz=quiz).values_list('id', flat=True))
-        print("All Questions: ", all_questions)
         random.shuffle(all_questions)
-        question_ids = all_questions[:19]
-        print("Question IDs: ", question_ids)
+        question_ids = all_questions[:20]
         request.session['question_ids'] = question_ids
 
     # Get the current question based on the stored IDs and question_index
     current_question_id = question_ids[question_index]
     current_question = get_object_or_404(Question, id=current_question_id)
     choices = current_question.choice_set.all()
-    print(choices)
+    print('Choices: ', choices )
 
     first_choice = choices[0]
     second_choice = choices[1]
@@ -377,6 +440,7 @@ def question_view_phone(request, quiz_id, question_index):
 
     if request.method == 'POST':
         selected_choice_id = request.POST.get('selected_choice')
+        print('Selected Choice: ', request.POST.get('selected_choice'))
 
         if selected_choice_id:
             selected_choice = get_object_or_404(Choice, pk=selected_choice_id)
@@ -388,9 +452,9 @@ def question_view_phone(request, quiz_id, question_index):
 
         next_question_index = question_index + 1
         if next_question_index < len(question_ids):
-            return redirect('questionphone', quiz_id=quiz_id, question_index=next_question_index)
+            return redirect('questiondesktop', quiz_id=quiz_id, question_index=next_question_index)
         else:
-            return redirect('quiz_result_phone', quiz_id=quiz.id, point_id=quiz_point.id)
+            return redirect('quiz_result_desktop', quiz_id=quiz.id, point_id=quiz_point.id)
 
     # Adjust the question numbering for display
     question_number = question_index + 1
@@ -399,6 +463,22 @@ def question_view_phone(request, quiz_id, question_index):
     percent_question = ((question_number - 1) / 20) * 100
 
     progress = f'<div class="w3-green" style="height:24px;width:{percent_question}%"></div>'
+
+
+    start_countup(request)
+
+    # Fetch the elapsed time from the count-up timer
+    user = request.user  # Assuming you're using Django's authentication system
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+    except CountdownTimer.DoesNotExist:
+        elapsed_time = 0  # Default elapsed time when the timer is not found
+    else:
+        # Calculate the elapsed time in seconds
+        elapsed_time = (timezone.now() - timer.start_time).total_seconds()
+
+
+    countdown_running = check_countup_status(request)
 
     context = {
         'quiz': quiz,
@@ -412,8 +492,9 @@ def question_view_phone(request, quiz_id, question_index):
         'selected_choice': None,
         'question_number': question_number,
         'total_questions': total_questions,
-        'percent_quetion' : percent_question,
         'progress' : progress,
+        'elapsed_time': elapsed_time,  # Add elapsed_time to the context
+        'countdown_running': countdown_running,
     }
     return render(request, 'gameplay/question_phone.html', context)
 
@@ -483,6 +564,21 @@ def question_view_desktop(request, quiz_id, question_index):
     progress = f'<div class="w3-green" style="height:24px;width:{percent_question}%"></div>'
 
 
+    start_countup(request)
+
+    # Fetch the elapsed time from the count-up timer
+    user = request.user  # Assuming you're using Django's authentication system
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+    except CountdownTimer.DoesNotExist:
+        elapsed_time = 0  # Default elapsed time when the timer is not found
+    else:
+        # Calculate the elapsed time in seconds
+        elapsed_time = (timezone.now() - timer.start_time).total_seconds()
+
+
+    countdown_running = check_countup_status(request)
+
     context = {
         'quiz': quiz,
         'quiz_point': quiz_point,
@@ -495,7 +591,9 @@ def question_view_desktop(request, quiz_id, question_index):
         'selected_choice': None,
         'question_number': question_number,
         'total_questions': total_questions,
-        'progress' : progress
+        'progress' : progress,
+        'elapsed_time': elapsed_time,  # Add elapsed_time to the context
+        'countdown_running': countdown_running,
     }
     return render(request, 'gameplay/question_desktop.html', context)
 
@@ -573,6 +671,9 @@ def quiz_result_view(request, quiz_id, point_id):
 
 @login_required
 def quiz_result_phone(request, quiz_id, point_id):
+
+    reset_countup_timer(request)
+
     quiz_point = get_object_or_404(Point, id=point_id)
     level = quiz_point.level
     quiz = get_object_or_404(Quiz, id=quiz_id)
@@ -835,8 +936,10 @@ def wlc_phone_view(request):
 
 @login_required
 def htp_desktop_view(request):
+    reset_countup_timer(request)
     return render(request, 'gameplay/htp_desktop.html', {})
 
 @login_required
 def htp_phone_view(request):
+    reset_countup_timer(request)
     return render(request, 'gameplay/htp_phone.html', {})
