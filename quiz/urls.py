@@ -43,6 +43,7 @@ urlpatterns = [
     path('countdown/', include('countdown_timer.urls')),
     
     path('get_remaining_time/', views.get_remaining_time, name='get_remaining_time'),
+    path('get_remaining_time_1/', views.get_remaining_time_1, name='get_remaining_time_1'),
     path('get_elapsed_time/', views.get_elapsed_time, name='get_elapsed_time'),
 ]
 

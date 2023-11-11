@@ -692,14 +692,14 @@ img {
     border-radius: 0px;
     opacity: 1;
     align-self: center;
-    min-width: 550px;
+    min-width: 535px;
     order: 3;
     min-height: 40px;
     height: max-content;
     flex-grow: 0;
     flex-shrink: 0;
     width: auto;
-    margin: 10px 0px 0px;
+    margin: 10px 0px 0px -50px;
     z-index: 1;
 }
 #style-XEzAl.style-XEzAl {
@@ -869,19 +869,7 @@ img {
                   </div>
                   <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694955865711x459471406021499100%2Fwooden-ui-wood-textured-plate-600w-1773645632-transformed__1_-removebg-preview%25204%2520%25281%2529.png?w=384&amp;h=46&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-qe3zV" class="style-qe3zV">
                 </div>
-                <div class="bubble-5cr style-fYftE" id="style-fYftE">
-                    <div class="w3-light-grey">
-                      {{ progress|safe }}
-                    </div>
-                    <!-- <progress id="file" value="{{ question_number }}" max="{{ total_questions }}"> 32% </progress> -->
-                  <!-- <div class="progress-s49 style-nRNB6" id="style-nRNB6">
-                    <div class="progress-5zo style-kIktI" id="style-kIktI">
-                      0%
-                    </div>
-                    <div class="progress-tvi style-7F5Pq" id="style-7F5Pq">
-                      0%
-                    </div>
-                  </div> -->
+                <div class="bubble-5cr style-fYftE" id="style-fYftE"><div class="w3-light-grey">{{ progress|safe }}</div>
                 </div>
                 <button class="bubble-5cr But-t9l style-Kr3Ax" id="style-Kr3Ax" style="color: white;" type="submit" value="submit">Submit</button>
               </div>
@@ -891,6 +879,48 @@ img {
       </div>
       
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function updateTimerDisplay(remainingTime) {
+                var minutes = Math.floor(remainingTime / 60);
+                var seconds = Math.floor(remainingTime % 60);
+                var timeDisplay = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;  // Format as "mm:ss"
+                $('#timer-display').text(timeDisplay);
+
+                if (remainingTime > 0) {
+                    // Hide the element when the countdown is running
+                    $('#style-TL328').hide();
+                } else {
+                    // Show the element when the countdown is over
+                    $('#style-TL328').show();
+                }
+            }
+
+            function fetchRemainingTime() {
+                $.ajax({
+                    url: '/get_remaining_time/',  // URL to the view that fetches remaining time
+                    success: function (data) {
+                        updateTimerDisplay(data.remaining_time);
+                        
+                        // Check if the countdown has ended
+                        if (data.remaining_time <= 0) {
+                            // Perform actions when the countdown ends
+                            // For example, you can redirect the user to a new page
+                            // window.location.href = '/countdown_completed/';
+                        }
+                    },
+                });
+            }
+
+            // Fetch and update the remaining time
+            fetchRemainingTime();
+
+            // Update the countdown display every second (adjust the interval as needed)
+            setInterval(fetchRemainingTime, 1000);
+        });
+    </script>
+
+      <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
           $(document).ready(function () {
               function updateTimerDisplay(elapsedTime) {
@@ -923,7 +953,7 @@ img {
               // Update the timer display every second (adjust the interval as needed)
               setInterval(fetchElapsedTime, 1000);
           });
-      </script>
+      </script> -->
 
       
 </body>

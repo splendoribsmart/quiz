@@ -100,3 +100,6 @@ class CountdownTimer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     start_time = models.DateTimeField(null=True)
     end_time = models.DateTimeField(null=True)
+
+    q_start_time = models.DateTimeField(null=True)
+    q_end_time = models.DateTimeField(null=True)
