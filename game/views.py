@@ -112,22 +112,22 @@ def start_countdown_1(request):
         timer = CountdownTimer.objects.get(user=user)
         current_time = timezone.now()
 
-        if timer.end_time is None or timer.end_time > current_time:
+        if timer.q_end_time is None or timer.q_end_time > current_time:
             # An ongoing timer already exists and is not expired, so do not start a new one
             return JsonResponse({'message': 'Ongoing timer already exists.'})
         else:
             # Start a new countdown
-            start_time = current_time
-            end_time = start_time + timezone.timedelta(minutes=1)
-            timer.start_time = start_time
-            timer.end_time = end_time
+            q_start_time = current_time
+            q_end_time = q_start_time + timezone.timedelta(minutes=20)
+            timer.q_start_time = q_start_time
+            timer.q_end_time = q_end_time
             timer.save()
             return JsonResponse({'message': 'Countdown timer started successfully'})
     except CountdownTimer.DoesNotExist:
         # If the timer doesn't exist, start a new countdown
-        start_time = timezone.now()
-        end_time = start_time + timezone.timedelta(minutes=1)
-        timer = CountdownTimer(user=user, start_time=start_time, end_time=end_time)
+        q_start_time = timezone.now()
+        q_end_time = q_start_time + timezone.timedelta(minutes=20)
+        timer = CountdownTimer(user=user, q_start_time=q_start_time, q_end_time=q_end_time)
         timer.save()
         return JsonResponse({'message': 'Countdown timer started successfully'})
 
@@ -140,7 +140,7 @@ def get_remaining_time_1(request):
         return JsonResponse({'remaining_time': 0, 'status': 'default'})  # Timer not found
 
     # Calculate the remaining time in seconds
-    remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+    remaining_time = max(0, (timer.q_end_time - timezone.now()).total_seconds())
 
     return JsonResponse({'remaining_time': remaining_time})
 
@@ -262,41 +262,6 @@ def subject_selection_phone_view(request):
 
 @login_required
 def subject_selection_desktop_view(request):
-    # if request.method == 'POST':
-    #     selection = request.POST.get('selectedImage')
-
-    #     if selection == "Mathematics":
-    #         subject_id = 1
-    #     elif selection == "English":
-    #         subject_id = 2
-    #     elif selection == "Computer":
-    #         subject_id = 3
-    #     elif selection == "Science":
-    #         subject_id = 4
-    #     elif selection == "French":
-    #         subject_id = 5
-    #     elif selection == "Social Studies":
-    #         subject_id = 6
-        
-    #     context = {'subject_id' : subject_id}
-
-    #     selected_subject = Subject.objects.get(name=selection)
-    #     sub_id = selected_subject.id
-    #     request.session['sid'] = sub_id
-    #     levels = Level.objects.filter(subject=selected_subject)
-    #     context = {'levels' : levels}
-    #     return redirect('menu')
-    #     form = SubjectSelectionForm(request.POST)
-    #     if form.is_valid():
-    #         selected_subject = form.cleaned_data['subject']
-    #         sub_id = selected_subject.id
-    #         request.session['sid'] = sub_id
-    #         # levels = Level.objects.filter(subject=selected_subject)
-    #         context = {}    # {'levels': levels}
-    #         return redirect('menu')
-    # else:
-    #     form = SubjectSelectionForm()
-
     context = {}
     return render(request, 'gameplay/subject_selection_desktop.html', context)
 
@@ -310,21 +275,14 @@ def menu_view(request):
 
 @login_required
 def phone_menu_view(request):
-    # subject_id = request.session['sid']
-    # print(subject_id)
-    # context = {'subject_id' : subject_id}
     return render(request, 'gameplay/menu_phone.html', {})
 
 @login_required
 def desktop_menu_view(request):
-    # subject_id = request.session['sid']
-    # print(subject_id)
-    # context = {'subject_id' : subject_id}
     return render(request, 'gameplay/menu_desktop.html', {})
 
 @login_required
 def level_selection_view(request, subject_id):
-    # subject_id = request.session['sid']
     subject = get_object_or_404(Subject, pk=subject_id)
     levels = Level.objects.filter(subject=subject)
     context = {'subject': subject, 'levels': levels}
@@ -332,7 +290,6 @@ def level_selection_view(request, subject_id):
 
 @login_required
 def level_selection_phone(request, subject_id):
-    # subject_id = request.session['sid']
     subject = get_object_or_404(Subject, pk=subject_id)
     levels = Level.objects.filter(subject=subject)
     context = {'subject': subject, 'levels': levels}
@@ -340,7 +297,6 @@ def level_selection_phone(request, subject_id):
 
 @login_required
 def level_selection_desktop(request, subject_id):
-    # subject_id = request.session['sid']
     subject = get_object_or_404(Subject, pk=subject_id)
     levels = Level.objects.filter(subject=subject)
     print(levels)
@@ -517,9 +473,9 @@ def question_view_phone(request, quiz_id, question_index):
 
         next_question_index = question_index + 1
         if next_question_index < len(question_ids):
-            return redirect('questiondesktop', quiz_id=quiz_id, question_index=next_question_index)
+            return redirect('questionphone', quiz_id=quiz_id, question_index=next_question_index)
         else:
-            return redirect('quiz_result_desktop', quiz_id=quiz.id, point_id=quiz_point.id)
+            return redirect('quiz_result_phone', quiz_id=quiz.id, point_id=quiz_point.id)
 
     # Adjust the question numbering for display
     question_number = question_index + 1
@@ -529,21 +485,20 @@ def question_view_phone(request, quiz_id, question_index):
 
     progress = f'<div class="w3-green" style="height:24px;width:{percent_question}%"></div>'
 
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+    except CountdownTimer.DoesNotExist:
+        pass
 
-    # start_countup(request)
+    if timer.q_start_time != None:
+        countdown_running = check_countdown_status_1(request)
+        print(countdown_running)
 
-    # # Fetch the elapsed time from the count-up timer
-    # user = request.user  # Assuming you're using Django's authentication system
-    # try:
-    #     timer = CountdownTimer.objects.get(user=user)
-    # except CountdownTimer.DoesNotExist:
-    #     elapsed_time = 0  # Default elapsed time when the timer is not found
-    # else:
-    #     # Calculate the elapsed time in seconds
-    #     elapsed_time = (timezone.now() - timer.start_time).total_seconds()
-
-
-    # countdown_running = check_countup_status(request)
+        if countdown_running:
+            pass
+        else:
+            get_reset_count(request)
+            return redirect('quiz_result_phone', quiz_id=1, point_id=9)
 
     start_countdown_1(request)
     remaining_time = None
@@ -555,18 +510,11 @@ def question_view_phone(request, quiz_id, question_index):
         remaining_time = 0  # Default remaining time when the timer is not found
     else:
         # Calculate the remaining time in seconds
-        remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+        remaining_time = max(0, (timer.q_end_time - timezone.now()).total_seconds())
 
     # Calculate the remaining time in secondsss
     # remaining_time = 0
     print("Time Left: ", remaining_time)
-
-    countdown_running = check_countdown_status_1(request)
-
-    if not countdown_running:
-        reset_countup_timer(request)
-        return redirect('quiz_result_phone', quiz_id=1, point_id=9) 
-
 
     context = {
         'quiz': quiz,
@@ -581,9 +529,8 @@ def question_view_phone(request, quiz_id, question_index):
         'question_number': question_number,
         'total_questions': total_questions,
         'progress' : progress,
-        # 'elapsed_time': elapsed_time,  
-        'remaining_time' : remaining_time,
-        'countdown_running': countdown_running,
+        # 'remaining_time' : remaining_time,
+        # 'countdown_running': countdown_running,
     }
     return render(request, 'gameplay/question_phone.html', context)
 
@@ -668,6 +615,21 @@ def question_view_desktop(request, quiz_id, question_index):
 
     # countdown_running = check_countup_status(request)
 
+    try:
+        timer = CountdownTimer.objects.get(user=user)
+    except CountdownTimer.DoesNotExist:
+        pass
+
+    if timer.q_start_time != None:
+        countdown_running = check_countdown_status_1(request)
+        print(countdown_running)
+
+        if countdown_running:
+            pass
+        else:
+            get_reset_count(request)
+            return redirect('quiz_result_phone', quiz_id=1, point_id=9)
+
     start_countdown_1(request)
     remaining_time = None
     
@@ -678,13 +640,12 @@ def question_view_desktop(request, quiz_id, question_index):
         remaining_time = 0  # Default remaining time when the timer is not found
     else:
         # Calculate the remaining time in seconds
-        remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+        remaining_time = max(0, (timer.q_end_time - timezone.now()).total_seconds())
 
     # Calculate the remaining time in secondsss
     # remaining_time = 0
     print("Time Left: ", remaining_time)
-
-    countdown_running = check_countdown_status(request)
+  
 
     context = {
         'quiz': quiz,
