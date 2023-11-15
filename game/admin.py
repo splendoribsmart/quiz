@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Subject, Level, Quiz, Question, Choice, Answer, Point, CountdownTimer
+from .models import Subject, Level, Quiz, Question, Choice, Answer, Point, CountdownTimer, CountdownTimer1
 
 admin.site.register(Subject)
 admin.site.register(Level)
@@ -9,3 +9,4 @@ admin.site.register(Choice)
 admin.site.register(Answer)
 admin.site.register(Point)
 admin.site.register(CountdownTimer)
+admin.site.register(CountdownTimer1)

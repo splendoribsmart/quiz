@@ -7,7 +7,7 @@ from django.db.models import Sum
 import random
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
-from .models import Point, User, CountdownTimer
+from .models import Point, User, CountdownTimer,CountdownTimer1
 
 
 
@@ -109,7 +109,7 @@ def check_countdown_status(request):
 def start_countdown_1(request):
     user = request.user  # Assuming you're using Django's authentication system
     try:
-        timer = CountdownTimer.objects.get(user=user)
+        timer = CountdownTimer1.objects.get(user=user)
         current_time = timezone.now()
 
         if timer.q_end_time is None or timer.q_end_time > current_time:
@@ -123,11 +123,11 @@ def start_countdown_1(request):
             timer.q_end_time = q_end_time
             timer.save()
             return JsonResponse({'message': 'Countdown timer started successfully'})
-    except CountdownTimer.DoesNotExist:
+    except CountdownTimer1.DoesNotExist:
         # If the timer doesn't exist, start a new countdown
         q_start_time = timezone.now()
         q_end_time = q_start_time + timezone.timedelta(minutes=20)
-        timer = CountdownTimer(user=user, q_start_time=q_start_time, q_end_time=q_end_time)
+        timer = CountdownTimer1(user=user, q_start_time=q_start_time, q_end_time=q_end_time)
         timer.save()
         return JsonResponse({'message': 'Countdown timer started successfully'})
 
@@ -135,8 +135,8 @@ def get_remaining_time_1(request):
     user = request.user  # Assuming you're using Django's authentication system
 
     try:
-        timer = CountdownTimer.objects.get(user=user)
-    except CountdownTimer.DoesNotExist:
+        timer = CountdownTimer1.objects.get(user=user)
+    except CountdownTimer1.DoesNotExist:
         return JsonResponse({'remaining_time': 0, 'status': 'default'})  # Timer not found
 
     # Calculate the remaining time in seconds
@@ -148,23 +148,23 @@ def get_reset_count(request):
     user = request.user  # Assuming you're using Django's authentication system
 
     try:
-        timer = CountdownTimer.objects.get(user=user)
+        timer = CountdownTimer1.objects.get(user=user)
         timer.q_start_time = None  # Set the start time to None to reset the timer
         timer.save()
         return JsonResponse({'message': 'Count-up timer reset successfully'})
-    except CountdownTimer.DoesNotExist:
+    except CountdownTimer1.DoesNotExist:
         return JsonResponse({'message': 'No count-up timer found'})
 
 def check_countdown_status_1(request):
     user = request.user  # Assuming you're using Django's authentication system
     try:
-        timer = CountdownTimer.objects.get(user=user)
+        timer = CountdownTimer1.objects.get(user=user)
         current_time = timezone.now()
 
         if timer.q_end_time and timer.q_end_time > current_time:
             # An active countdown exists
             return True  # Countdown is running
-    except CountdownTimer.DoesNotExist:
+    except CountdownTimer1.DoesNotExist:
         pass  # No active countdown found
 
     return False  # Countdown is not running
@@ -485,36 +485,46 @@ def question_view_phone(request, quiz_id, question_index):
 
     progress = f'<div class="w3-green" style="height:24px;width:{percent_question}%"></div>'
 
-    try:
-        timer = CountdownTimer.objects.get(user=user)
-    except CountdownTimer.DoesNotExist:
-        pass
+    # try:
+    #     timer = CountdownTimer1.objects.get(user=user)
+    #     print("Timer Error", timer)
+    # except CountdownTimer1.DoesNotExist:
+    #     q_start_time = timezone.now()
+    #     q_end_time = q_start_time + timezone.timedelta(minutes=20)
+    #     timer = CountdownTimer1(user=user, q_start_time=q_start_time, q_end_time=q_end_time)
+    #     timer.save()
 
-    if timer.q_start_time != None:
-        countdown_running = check_countdown_status_1(request)
-        print(countdown_running)
+    # if timer.q_start_time != None:
+    #     countdown_running = check_countdown_status_1(request)
+    #     print(countdown_running)
 
-        if countdown_running:
-            pass
-        else:
-            get_reset_count(request)
-            return redirect('quiz_result_phone', quiz_id=1, point_id=9)
+    #     if countdown_running:
+    #         pass
+    #     else:
+    #         get_reset_count(request)
+    #         return redirect('quiz_result_phone', quiz_id=1, point_id=9)
 
     start_countdown_1(request)
-    remaining_time = None
+    # remaining_time = 0
     
     user = request.user  # Assuming you're using Django's authentication system
-    try:
-        timer = CountdownTimer.objects.get(user=user)
-    except CountdownTimer.DoesNotExist:
-        remaining_time = 0  # Default remaining time when the timer is not found
-    else:
-        # Calculate the remaining time in seconds
-        remaining_time = max(0, (timer.q_end_time - timezone.now()).total_seconds())
+    timer = CountdownTimer1.objects.get(user=user)
+    remaining_time = max(0, (timer.q_end_time - timezone.now()).total_seconds())
+
+
+    # try:
+    #     timer = CountdownTimer1.objects.get(user=user)
+    # except CountdownTimer1.DoesNotExist:
+    #     remaining_time = 0  # Default remaining time when the timer is not found
+    # else:
+    #     # Calculate the remaining time in seconds
+    #     remaining_time = max(0, (timer.q_end_time - timezone.now()).total_seconds())
 
     # Calculate the remaining time in secondsss
     # remaining_time = 0
     print("Time Left: ", remaining_time)
+
+    countdown_running = check_countdown_status_1(request)
 
     context = {
         'quiz': quiz,
@@ -529,8 +539,8 @@ def question_view_phone(request, quiz_id, question_index):
         'question_number': question_number,
         'total_questions': total_questions,
         'progress' : progress,
-        # 'remaining_time' : remaining_time,
-        # 'countdown_running': countdown_running,
+        'remaining_time' : remaining_time,
+        'countdown_running': countdown_running,
     }
     return render(request, 'gameplay/question_phone.html', context)
 
@@ -599,53 +609,46 @@ def question_view_desktop(request, quiz_id, question_index):
 
     progress = f'<div class="w3-green" style="height:24px;width:{percent_question}%"></div>'
 
-
-    # start_countup(request)
-
-    # # Fetch the elapsed time from the count-up timer
-    # user = request.user  # Assuming you're using Django's authentication system
     # try:
-    #     timer = CountdownTimer.objects.get(user=user)
-    # except CountdownTimer.DoesNotExist:
-    #     elapsed_time = 0  # Default elapsed time when the timer is not found
-    # else:
-    #     # Calculate the elapsed time in seconds
-    #     elapsed_time = (timezone.now() - timer.start_time).total_seconds()
+    #     timer = CountdownTimer1.objects.get(user=user)
+    #     print("Timer Error", timer)
+    # except CountdownTimer1.DoesNotExist:
+    #     q_start_time = timezone.now()
+    #     q_end_time = q_start_time + timezone.timedelta(minutes=20)
+    #     timer = CountdownTimer1(user=user, q_start_time=q_start_time, q_end_time=q_end_time)
+    #     timer.save()
 
+    # if timer.q_start_time != None:
+    #     countdown_running = check_countdown_status_1(request)
+    #     print(countdown_running)
 
-    # countdown_running = check_countup_status(request)
-
-    try:
-        timer = CountdownTimer.objects.get(user=user)
-    except CountdownTimer.DoesNotExist:
-        pass
-
-    if timer.q_start_time != None:
-        countdown_running = check_countdown_status_1(request)
-        print(countdown_running)
-
-        if countdown_running:
-            pass
-        else:
-            get_reset_count(request)
-            return redirect('quiz_result_phone', quiz_id=1, point_id=9)
+    #     if countdown_running:
+    #         pass
+    #     else:
+    #         get_reset_count(request)
+    #         return redirect('quiz_result_phone', quiz_id=1, point_id=9)
 
     start_countdown_1(request)
-    remaining_time = None
+    # remaining_time = 0
     
     user = request.user  # Assuming you're using Django's authentication system
-    try:
-        timer = CountdownTimer.objects.get(user=user)
-    except CountdownTimer.DoesNotExist:
-        remaining_time = 0  # Default remaining time when the timer is not found
-    else:
-        # Calculate the remaining time in seconds
-        remaining_time = max(0, (timer.q_end_time - timezone.now()).total_seconds())
+    timer = CountdownTimer1.objects.get(user=user)
+    remaining_time = max(0, (timer.q_end_time - timezone.now()).total_seconds())
+
+
+    # try:
+    #     timer = CountdownTimer1.objects.get(user=user)
+    # except CountdownTimer1.DoesNotExist:
+    #     remaining_time = 0  # Default remaining time when the timer is not found
+    # else:
+    #     # Calculate the remaining time in seconds
+    #     remaining_time = max(0, (timer.q_end_time - timezone.now()).total_seconds())
 
     # Calculate the remaining time in secondsss
     # remaining_time = 0
     print("Time Left: ", remaining_time)
-  
+
+    countdown_running = check_countdown_status_1(request)
 
     context = {
         'quiz': quiz,
@@ -753,22 +756,27 @@ def quiz_result_phone(request, quiz_id, point_id):
     can_proceed = my_score <= 3
 
     # Update the total score if the current quiz score is higher
+    remaining_time = 0
+
     if can_proceed:
         if my_score > quiz_point.total_score:
             quiz_point.total_score = quiz_point.quiz_score
             quiz_point.save()
     else:
         start_countdown(request)
-        remaining_time = None
         
         user = request.user  # Assuming you're using Django's authentication system
-        try:
-            timer = CountdownTimer.objects.get(user=user)
-        except CountdownTimer.DoesNotExist:
-            remaining_time = 0  # Default remaining time when the timer is not found
-        else:
-            # Calculate the remaining time in seconds
-            remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+
+        timer = CountdownTimer.objects.get(user=user)
+        remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+
+        # try:
+        #     timer = CountdownTimer.objects.get(user=user)
+        # except CountdownTimer.DoesNotExist:
+        #     remaining_time = 0  # Default remaining time when the timer is not found
+        # else:
+        #     # Calculate the remaining time in seconds
+        #     remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
 
         # Calculate the remaining time in seconds
         # remaining_time = 0
@@ -800,22 +808,27 @@ def quiz_result_desktop(request, quiz_id, point_id):
     can_proceed = my_score <= 3
 
     # Update the total score if the current quiz score is higher
+    remaining_time = 0
+
     if can_proceed:
         if my_score > quiz_point.total_score:
             quiz_point.total_score = quiz_point.quiz_score
             quiz_point.save()
     else:
         start_countdown(request)
-        remaining_time = None
         
         user = request.user  # Assuming you're using Django's authentication system
-        try:
-            timer = CountdownTimer.objects.get(user=user)
-        except CountdownTimer.DoesNotExist:
-            remaining_time = 0  # Default remaining time when the timer is not found
-        else:
-            # Calculate the remaining time in seconds
-            remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+
+        timer = CountdownTimer.objects.get(user=user)
+        remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
+
+        # try:
+        #     timer = CountdownTimer.objects.get(user=user)
+        # except CountdownTimer.DoesNotExist:
+        #     remaining_time = 0  # Default remaining time when the timer is not found
+        # else:
+        #     # Calculate the remaining time in seconds
+        #     remaining_time = max(0, (timer.end_time - timezone.now()).total_seconds())
 
         # Calculate the remaining time in seconds
         # remaining_time = 0
