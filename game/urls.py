@@ -16,6 +16,8 @@ from .views import (
     htp_phone_view, htp_desktop_view, 
     quiz_view_phone, quiz_view_desktop,
     level_selection_desktop, level_selection_phone,
+    game_level_phone_view, game_level_desktop_view,
+    complete_desktop_view, complete_phone_view,
 )
 
 urlpatterns = [
@@ -46,4 +48,10 @@ urlpatterns = [
     path('wlc-desktop/', wlc_desktop_view, name='wlcdesktop'),
     path('htp-phone/<int:quiz_id>/', quiz_view_phone, name='htpphone'),
     path('htp-desktop/<int:quiz_id>/', quiz_view_desktop, name='htpdesktop'),
+    path('game-level-phone/<int:subject_id>/', game_level_phone_view, name='game_level_phone'),
+    path('game-level-desktop/<int:subject_id>/', game_level_desktop_view, name='game_level_desktop'),
+    path('complete-desktop/', complete_desktop_view, name='completedesktop'),
+    path('complete-phone/', complete_phone_view, name='completephone'),
 ]
+
+

@@ -848,6 +848,28 @@ def quiz_result_desktop(request, quiz_id, point_id):
     }
     return render(request, 'gameplay/quiz_result_desktop.html', context)
 
+def game_level_phone_view(request, subject_id):
+    subject = get_object_or_404(Subject, pk=subject_id)
+    levels = Level.objects.filter(subject=subject)
+    print(levels)
+    context = {'subject': subject, 'levels': levels}
+    return render(request, "gameplay/game_level_phone.html", context)
+
+def game_level_desktop_view(request, subject_id):
+    subject = get_object_or_404(Subject, pk=subject_id)
+    levels = Level.objects.filter(subject=subject)
+    print(levels)
+    context = {'subject': subject, 'levels': levels}
+    return render(request, "gameplay/game_level_desktop.html", context)
+
+def complete_desktop_view(request):
+    context = {}
+    return render(request, "gameplay/complete_desktop.html", context)
+
+def complete_phone_view(request):
+    context = {}
+    return render(request, "gameplay/complete_phone.html", context)
+
 @login_required
 def leaderboard_view(request):
     # Calculate the leaderboard score by summing up all total scores

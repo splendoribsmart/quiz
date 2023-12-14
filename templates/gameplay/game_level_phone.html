@@ -1,0 +1,1354 @@
+{% load static %}
+<!DOCTYPE html>
+<html clss="wf-opensans-n4-active wf-opensans-n6-active wf-opensans-n7-active wf-active b-root">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <style>
+          body {  
+    font-size:100%;
+    font:inherit;
+    line-height:1;
+    font-family:Helvetica, Arial, sans-serif;
+  }  
+div { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+div { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+.bubble-r-container { 
+    overflow: hidden;
+} 
+
+.bubble-element { 
+    position: relative; 
+    box-sizing: border-box;
+} 
+
+div.bubble-element { 
+    overflow: hidden;
+} 
+
+.bubble-r-container.flex { 
+    display: flex; 
+    align-content: stretch;
+} 
+
+.bubble-r-container.flex.column { 
+    flex-direction: column; 
+    flex-wrap: nowrap;
+} 
+
+body { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+body { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+body { 
+    line-height: 1;
+} 
+
+body { 
+    font-family: Helvetica, Arial, sans-serif;
+} 
+
+html { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+html { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+html { 
+    -ms-text-size-adjust: 100%; 
+    -webkit-text-size-adjust: 100%;
+} 
+
+.bubble-r-container.relative { 
+    display: grid; 
+    grid-template-areas: "stack"; 
+    grid-template-rows: 100%; 
+    grid-template-columns: 100%;
+} 
+
+div.bubble-element.Group { 
+    overflow: visible;
+} 
+
+.bubble-r-container.flex > .bubble-element  { 
+    position: relative;
+} 
+
+.bubble-r-container.relative > .bubble-element  { 
+    position: relative;
+} 
+
+.bubble-r-container.relative > .bubble-element  { 
+    grid-area: stack;
+} 
+
+.bubble-r-container.fixed > .bubble-element  { 
+    position: absolute;
+} 
+
+.bubble-element.Image { 
+    display: flex; 
+    flex-direction: row; 
+    align-items: stretch;
+} 
+
+img { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    font: inherit; 
+    vertical-align: baseline; 
+    box-sizing: inherit;
+} 
+
+img { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+
+.bubble-element.Text { 
+    overflow-wrap: break-word;
+} 
+
+.bubble-r-container.flex.row { 
+    flex-direction: row; 
+    flex-wrap: wrap;
+} 
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-MFjLR.style-MFjLR {  
+   background-color: rgb(51, 51, 51);  
+    overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 100%;  
+    max-width: 100%;  
+    order: 1;  
+    min-height: 767px;  
+    height: max-content;  
+    flex-grow: 0;  
+    flex-shrink: 0;  
+    width: 100%;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-qdAh1.style-qdAh1 {  
+   overflow: visible;  
+    border-radius: 5px;  
+    padding: 0px;  
+    opacity: 1;  
+    place-self: center;  
+    min-width: 320px;  
+    max-width: 320px;  
+    min-height: 650px;  
+    max-height: 650px;  
+    width: 320px;  
+    height: 650px;  
+    margin: 0px;  
+    z-index: 3;  
+    background-color: rgba(255, 255, 255, 0);  
+    background-repeat: no-repeat;  
+    background-size: cover;  
+    background-image: url("https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1689824854919x785870007518954000%2Ffirstbg.jpg?w=384&h=780&auto=compress&fit=crop&dpr=1");  
+}  
+#style-eGXaB.style-eGXaB {  
+   background-color: rgba(217, 217, 217, 0.6);  
+    overflow: visible;  
+    border-radius: 10px;  
+    opacity: 1;  
+    top: 0px;  
+    left: 0px;  
+    width: 320px;  
+    height: 650px;  
+    z-index: 2;  
+}  
+#style-q9o8E.style-q9o8E {  
+   background-color: rgb(6, 141, 24);  
+    overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: start center;  
+    min-width: 250px;  
+    min-height: 100px;  
+    max-height: 100px;  
+    width: calc(100% - 0px);  
+    height: 100px;  
+    margin: 0px;  
+    z-index: 0;  
+}  
+#style-dQ53e.style-dQ53e {  
+   border-radius: 0px;  
+    opacity: 1;  
+    place-self: start center;  
+    min-width: 320px;  
+    max-width: 320px;  
+    width: 320px;  
+    height: max-content;  
+    margin: 50px 0px 0px;  
+    z-index: 1;  
+}  
+#style-ZVLSN.style-ZVLSN {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 55.8904%;  
+}  
+#style-m1Acy.style-m1Acy {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-cdEtQ.style-cdEtQ {  
+   overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: start center;  
+    min-width: 250px;  
+    min-height: 50px;  
+    max-height: 50px;  
+    width: calc(100% - 0px);  
+    height: 50px;  
+    margin: 0px;  
+    z-index: 0;  
+}  
+#style-MRf24.style-MRf24 {  
+   border-radius: 0px;  
+    opacity: 1;  
+    place-self: start center;  
+    min-width: 320px;  
+    max-width: 320px;  
+    width: 320px;  
+    height: max-content;  
+    margin: 50px 0px 0px;  
+    z-index: 1;  
+}  
+#style-Qe6Pk.style-Qe6Pk {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 55.8904%;  
+}  
+#style-CJAcf.style-CJAcf {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-caLIR.style-caLIR {  
+   overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: center;  
+    min-width: 280px;  
+    max-width: 280px;  
+    min-height: 100px;  
+    width: 280px;  
+    height: calc(100% - 0px);  
+    margin: 0px;  
+    z-index: 1;  
+}  
+#style-OdDNW.style-OdDNW {  
+   overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: start;  
+    min-width: 250px;  
+    max-width: 250px;  
+    min-height: 50px;  
+    max-height: 50px;  
+    width: 250px;  
+    height: 50px;  
+    margin: 20px 0px 0px;  
+    z-index: 0;  
+}  
+#style-qtAgp.style-qtAgp {  
+   border-radius: 0px;  
+    opacity: 1;  
+    place-self: start;  
+    min-width: 40px;  
+    max-width: 40px;  
+    width: 40px;  
+    height: max-content;  
+    margin: 10px 0px 0px 10px;  
+    z-index: 2;  
+}  
+#style-CsLVA.style-CsLVA {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 104.255%;  
+}  
+#style-8hWQj.style-8hWQj {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-gR1e6.style-gR1e6 {  
+   overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: start center;  
+    min-width: 250px;  
+    max-width: 250px;  
+    min-height: 50px;  
+    width: 250px;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 0;  
+}  
+#style-jQeoo.style-jQeoo {  
+   white-space: pre-wrap;  
+    overflow: visible;  
+    font-family: var(--font_default);  
+    font-size: 24px;  
+    font-weight: bold;  
+    color: rgb(255, 255, 255);  
+    text-align: center;  
+    line-height: 1.4;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: start center;  
+    min-width: 200px;  
+    max-width: 200px;  
+    min-height: 45px;  
+    width: 200px;  
+    height: max-content;  
+    margin: 10px 0px 0px;  
+    z-index: 3;  
+}  
+#style-jRrEj.style-jRrEj {  
+   overflow: visible;  
+    justify-content: flex-start;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: center;  
+    min-width: 150px;  
+    max-width: 150px;  
+    min-height: 82px;  
+    width: 150px;  
+    height: max-content;  
+    margin: 80px 0px 0px;  
+    z-index: 4;  
+}  
+#style-Ek6Nr.style-Ek6Nr {  
+   overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 30%;  
+    max-width: 30%;  
+    order: 1;  
+    min-height: 56px;  
+    height: max-content;  
+    flex-grow: 0;  
+    flex-shrink: 0;  
+    width: 30%;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-LY9o1.style-LY9o1 {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 60px;  
+    order: 1;  
+    width: 60px;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-zjWCj.style-zjWCj {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 119.675%;  
+}  
+#style-NOK8G.style-NOK8G {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-Vm7LW.style-Vm7LW {  
+   overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 80px;  
+    order: 2;  
+    min-height: 0px;  
+    height: max-content;  
+    flex-grow: 0;  
+    flex-shrink: 0;  
+    width: calc(100% - 0px);  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-29l5T.style-29l5T {  
+   border-radius: 0px;  
+    opacity: 1;  
+    place-self: center;  
+    min-width: 40px;  
+    width: calc(100% - 0px);  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-ejdhs.style-ejdhs {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 36.5285%;  
+}  
+#style-C5gzg.style-C5gzg {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-kDtXm.style-kDtXm {  
+   white-space: pre-wrap;  
+    overflow: visible;  
+    font-family: var(--font_default);  
+    font-size: 18px;  
+    font-weight: 400;  
+    color: var(--color_text_default);  
+    line-height: 1.4;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: center;  
+    min-width: 0px;  
+    min-height: 0px;  
+    width: max-content;  
+    height: max-content;  
+    margin: 0px 0px 10px;  
+    z-index: 3;  
+}  
+#style-lIZEG.style-lIZEG {  
+   overflow: visible;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: end center;  
+    min-width: 280px;  
+    max-width: 280px;  
+    min-height: 350px;  
+    width: 280px;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-o7A7W.style-o7A7W {  
+   overflow: visible;  
+    justify-content: flex-end;  
+    row-gap: 30px;  
+    border-radius: 0px;  
+    opacity: 1;  
+    place-self: start center;  
+    min-width: 215px;  
+    min-height: 59px;  
+    width: calc(100% - 0px);  
+    height: max-content;  
+    margin: 30px 0px 0px;  
+    z-index: 3;  
+}  
+#style-U6GoG.style-U6GoG {  
+   overflow: visible;  
+    justify-content: flex-start;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 100%;  
+    max-width: 100%;  
+    order: 1;  
+    min-height: 40px;  
+    height: max-content;  
+    flex-grow: 0;  
+    flex-shrink: 0;  
+    width: 100%;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-EJhA1.style-EJhA1 {  
+   overflow: visible;  
+    justify-content: flex-end;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 15%;  
+    max-width: 15%;  
+    order: 1;  
+    min-height: 40px;  
+    max-height: 40px;  
+    width: 15%;  
+    flex-grow: 1;  
+    height: 40px;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-gZx7a.style-gZx7a {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 110%;  
+    max-width: 110%;  
+    order: 1;  
+    width: 110%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: -1px 0px 0px;  
+    z-index: 2;  
+}  
+#style-a6QWo.style-a6QWo {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 90.4762%;  
+}  
+#style-Vvb7c.style-Vvb7c {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-AOZig.style-AOZig {  
+   background-color: rgb(255, 255, 255);  
+    overflow: visible;  
+    justify-content: space-around;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 65%;  
+    max-width: 65%;  
+    order: 2;  
+    min-height: 40px;  
+    max-height: 40px;  
+    width: 65%;  
+    flex-grow: 1;  
+    height: 40px;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-UMXVO.style-UMXVO {  
+   overflow: visible;  
+    justify-content: space-around;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 80%;  
+    max-width: 80%;  
+    order: 1;  
+    min-height: 0px;  
+    width: 80%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-2CrB1.style-2CrB1 {  
+   overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 25%;  
+    max-width: 25%;  
+    order: 1;  
+    min-height: 0px;  
+    width: 25%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-Tdqaf.style-Tdqaf {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 80%;  
+    max-width: 80%;  
+    order: 1;  
+    width: 80%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-e3J9U.style-e3J9U {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 100%;  
+}  
+#style-HVmOd.style-HVmOd {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-pYwAj.style-pYwAj {  
+   overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 25%;  
+    max-width: 25%;  
+    order: 2;  
+    min-height: 0px;  
+    width: 25%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-5YY5B.style-5YY5B {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 80%;  
+    max-width: 80%;  
+    order: 1;  
+    width: 80%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-5gfHs.style-5gfHs {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 100%;  
+}  
+#style-kDPwJ.style-kDPwJ {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-XoEzx.style-XoEzx {  
+   overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 25%;  
+    max-width: 25%;  
+    order: 3;  
+    min-height: 0px;  
+    width: 25%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-wJqkm.style-wJqkm {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 80%;  
+    max-width: 80%;  
+    order: 1;  
+    width: 80%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-LiCwX.style-LiCwX {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 100%;  
+}  
+#style-TPOs5.style-TPOs5 {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-yyPib.style-yyPib {  
+   background-color: rgb(10, 166, 31);  
+    overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px 20px 20px 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 20%;  
+    max-width: 20%;  
+    order: 3;  
+    min-height: 40px;  
+    width: 20%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-M17Ao.style-M17Ao {  
+   white-space: pre-wrap;  
+    overflow: visible;  
+    font-family: var(--font_default);  
+    font-size: 16px;  
+    font-weight: 600;  
+    color: rgb(255, 255, 255);  
+    line-height: 1.4;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 0px;  
+    order: 1;  
+    min-height: 0px;  
+    width: max-content;  
+    flex-grow: 0;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-rdnGh.style-rdnGh {  
+   overflow: visible;  
+    justify-content: flex-start;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 100%;  
+    max-width: 100%;  
+    order: 2;  
+    min-height: 40px;  
+    height: max-content;  
+    flex-grow: 0;  
+    flex-shrink: 0;  
+    width: 100%;  
+    margin: 0px;  
+    z-index: 1;  
+}  
+#style-4SLiS.style-4SLiS {  
+   overflow: visible;  
+    justify-content: flex-end;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 15%;  
+    max-width: 15%;  
+    order: 1;  
+    min-height: 40px;  
+    max-height: 40px;  
+    width: 15%;  
+    flex-grow: 1;  
+    height: 40px;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-hyVaH.style-hyVaH {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 110%;  
+    max-width: 110%;  
+    order: 1;  
+    width: 110%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: -1px 0px 0px;  
+    z-index: 2;  
+}  
+#style-HG7iB.style-HG7iB {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 90.4762%;  
+}  
+#style-z9rUK.style-z9rUK {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-m7bRB.style-m7bRB {  
+   background-color: rgb(255, 255, 255);  
+    overflow: visible;  
+    justify-content: space-around;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 65%;  
+    max-width: 65%;  
+    order: 2;  
+    min-height: 40px;  
+    max-height: 40px;  
+    width: 65%;  
+    flex-grow: 1;  
+    height: 40px;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-EwHOB.style-EwHOB {  
+   overflow: visible;  
+    justify-content: space-around;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 80%;  
+    max-width: 80%;  
+    order: 1;  
+    min-height: 0px;  
+    width: 80%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-UEXho.style-UEXho {  
+   overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 25%;  
+    max-width: 25%;  
+    order: 1;  
+    min-height: 0px;  
+    width: 25%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-X81Yw.style-X81Yw {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 80%;  
+    max-width: 80%;  
+    order: 1;  
+    width: 80%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-iseQa.style-iseQa {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 100%;  
+}  
+#style-V5WX6.style-V5WX6 {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-XqSKU.style-XqSKU {  
+   overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 25%;  
+    max-width: 25%;  
+    order: 2;  
+    min-height: 0px;  
+    width: 25%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-K9FvS.style-K9FvS {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 80%;  
+    max-width: 80%;  
+    order: 1;  
+    width: 80%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-8EPrS.style-8EPrS {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 100%;  
+}  
+#style-mbhNC.style-mbhNC {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-7do2O.style-7do2O {  
+   overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 25%;  
+    max-width: 25%;  
+    order: 3;  
+    min-height: 0px;  
+    width: 25%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-hHRjK.style-hHRjK {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 80%;  
+    max-width: 80%;  
+    order: 1;  
+    width: 80%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-9w74n.style-9w74n {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 100%;  
+}  
+#style-g2TzB.style-g2TzB {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-1hytk.style-1hytk {  
+   background-color: rgb(10, 166, 31);  
+    overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px 20px 20px 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 20%;  
+    max-width: 20%;  
+    order: 3;  
+    min-height: 40px;  
+    width: 20%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-EtFEC.style-EtFEC {  
+   white-space: pre-wrap;  
+    overflow: visible;  
+    font-family: var(--font_default);  
+    font-size: 16px;  
+    font-weight: 600;  
+    color: rgb(255, 255, 255);  
+    line-height: 1.4;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 0px;  
+    order: 1;  
+    min-height: 0px;  
+    width: max-content;  
+    flex-grow: 0;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-rQNd6.style-rQNd6 {  
+   overflow: visible;  
+    justify-content: flex-start;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 100%;  
+    max-width: 100%;  
+    order: 3;  
+    min-height: 40px;  
+    height: max-content;  
+    flex-grow: 0;  
+    flex-shrink: 0;  
+    width: 100%;  
+    margin: 0px;  
+    z-index: 0;  
+}  
+#style-kCNZa.style-kCNZa {  
+   overflow: visible;  
+    justify-content: flex-end;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 15%;  
+    max-width: 15%;  
+    order: 1;  
+    min-height: 40px;  
+    max-height: 40px;  
+    width: 15%;  
+    flex-grow: 1;  
+    height: 40px;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-fLE5h.style-fLE5h {  
+   border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 110%;  
+    max-width: 110%;  
+    order: 1;  
+    width: 110%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: -1px 0px 0px;  
+    z-index: 2;  
+}  
+#style-3CLeN.style-3CLeN {  
+   position: relative;  
+    height: 0px;  
+    padding-top: 90.4762%;  
+}  
+#style-jAmiL.style-jAmiL {  
+   top: 0px;  
+    left: 0px;  
+    display: block;  
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    border-radius: 0px;  
+}  
+#style-fP2Jg.style-fP2Jg {  
+   background-color: rgb(255, 255, 255);  
+    overflow: visible;  
+    justify-content: space-around;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 65%;  
+    max-width: 65%;  
+    order: 2;  
+    min-height: 40px;  
+    max-height: 40px;  
+    width: 65%;  
+    flex-grow: 1;  
+    height: 40px;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-UFg2i.style-UFg2i {  
+   overflow: visible;  
+    justify-content: space-around;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 80%;  
+    max-width: 80%;  
+    order: 1;  
+    min-height: 0px;  
+    width: 80%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-NQGgc.style-NQGgc {  
+   overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 25%;  
+    order: 3;  
+    min-height: 0px;  
+    width: 25%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-2SAH4.style-2SAH4 {  
+   white-space: pre-wrap;  
+    overflow: visible;  
+    font-family: var(--font_default);  
+    font-size: 18px;  
+    font-weight: 600;  
+    color: rgb(0, 0, 0);  
+    line-height: 1.4;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 0px;  
+    order: 2;  
+    min-height: 0px;  
+    width: max-content;  
+    flex-grow: 0;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+#style-cVoLT.style-cVoLT {  
+   background-color: rgb(10, 166, 31);  
+    overflow: visible;  
+    justify-content: center;  
+    border-radius: 0px 20px 20px 0px;  
+    opacity: 1;  
+    align-self: flex-start;  
+    min-width: 20%;  
+    max-width: 20%;  
+    order: 3;  
+    min-height: 40px;  
+    width: 20%;  
+    flex-grow: 1;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 2;  
+}  
+#style-7ezoG.style-7ezoG {  
+   white-space: pre-wrap;  
+    overflow: visible;  
+    font-family: var(--font_default);  
+    font-size: 16px;  
+    font-weight: 600;  
+    color: rgb(255, 255, 255);  
+    line-height: 1.4;  
+    border-radius: 0px;  
+    opacity: 1;  
+    align-self: center;  
+    min-width: 0px;  
+    order: 1;  
+    min-height: 0px;  
+    width: max-content;  
+    flex-grow: 0;  
+    height: max-content;  
+    margin: 0px;  
+    z-index: 3;  
+}  
+    </style>
+</head>
+
+<body>
+    <div class="bubble-element Group baTaIbi bubble-r-container relative snipcss-UyfTU style-MFjLR" id="style-MFjLR">
+        <div class="bubble-element Group baTaIbj bubble-r-container fixed style-qdAh1" id="style-qdAh1">
+          <div class="bubble-element Group baTaIbn bubble-r-container relative style-eGXaB" id="style-eGXaB">
+            <div class="bubble-element Group baTaIpaJ bubble-r-container relative style-q9o8E" id="style-q9o8E">
+              <div class="bubble-element Image baTaIpaU style-dQ53e" id="style-dQ53e">
+                <div class="aspect-ratio style-ZVLSN" id="style-ZVLSN">
+                </div>
+                <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701756100324x803555382099492700%2FGroup%2520191%2520%25281%2529.png?w=384&amp;h=215&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-m1Acy" class="style-m1Acy">
+              </div>
+            </div>
+            <div class="bubble-element Group baTaIqaF bubble-r-container relative style-cdEtQ" id="style-cdEtQ">
+              <div class="bubble-element Image baTaIqaK style-MRf24" id="style-MRf24">
+                <div class="aspect-ratio style-Qe6Pk" id="style-Qe6Pk">
+                </div>
+                <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701756100324x803555382099492700%2FGroup%2520191%2520%25281%2529.png?w=384&amp;h=215&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-CJAcf" class="style-CJAcf">
+              </div>
+            </div>
+            <div class="bubble-element Group baTaIbo bubble-r-container relative style-caLIR" id="style-caLIR">
+              <div class="bubble-element Group baTaIbp bubble-r-container relative style-OdDNW" id="style-OdDNW">
+                <div class="bubble-element Image baTaIbt style-qtAgp" id="style-qtAgp">
+                  <div class="aspect-ratio style-CsLVA" id="style-CsLVA">
+                  </div>
+                  <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694959079400x144972414897330600%2Fclose-exit-button-11703915-removebg-preview%25202%2520%25281%2529.png?w=48&amp;h=50&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-8hWQj" class="style-8hWQj">
+                </div>
+              </div>
+              <div class="bubble-element Group baTaIqaP bubble-r-container relative style-gR1e6" id="style-gR1e6">
+                <div class="bubble-element Text baTaIqaX style-jQeoo" id="style-jQeoo">{{ subject.name }}</div>
+                <div class="bubble-element Group baTaIqd bubble-r-container flex column style-jRrEj" id="style-jRrEj">
+                  <div class="bubble-element Group baTaIqi bubble-r-container flex row style-Ek6Nr" id="style-Ek6Nr">
+                    <div class="bubble-element Image baTaIqj style-LY9o1" id="style-LY9o1">
+                      <div class="aspect-ratio style-zjWCj" id="style-zjWCj">
+                      </div>
+                      <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701736233303x172557298856945700%2Fb40e6af070fcfd50adb9dac13e19687d-removebg-preview%25201.png?w=96&amp;h=115&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-NOK8G" class="style-NOK8G">
+                    </div>
+                  </div>
+                  <div class="bubble-element Group baTaIqn bubble-r-container relative style-Vm7LW" id="style-Vm7LW">
+                    <div class="bubble-element Image baTaIqo style-29l5T" id="style-29l5T">
+                      <div class="aspect-ratio style-ejdhs" id="style-ejdhs">
+                      </div>
+                      <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701736412166x224462887150858040%2F106511b1f30d22b8692fc501f80497ca-removebg-preview%25201.png?w=192&amp;h=70&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-C5gzg" class="style-C5gzg">
+                    </div>
+                    <div class="bubble-element Text baTaIqp style-kDtXm" id="style-kDtXm">  300TH</div>
+                  </div>
+                </div>
+              </div>
+              <div class="bubble-element Group baTaIbz bubble-r-container relative style-lIZEG" id="style-lIZEG">
+                <div class="bubble-element Group baTaInb bubble-r-container flex column style-o7A7W" id="style-o7A7W">
+                  {% for level in levels %}
+                  <div class="bubble-element Group baTaInd bubble-r-container flex row style-U6GoG" id="style-U6GoG">
+                    <div class="bubble-element Group baTaIoaA bubble-r-container flex row style-EJhA1" id="style-EJhA1">
+                      <div class="bubble-element Image baTaIoaB style-gZx7a" id="style-gZx7a">
+                        <div class="aspect-ratio style-a6QWo" id="style-a6QWo">
+                        </div>
+                        <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701746709125x163083004665407940%2FGroup%2520204%2520%25282%2529.png?w=64&amp;h=58&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-Vvb7c" class="style-Vvb7c">
+                      </div>
+                    </div>
+                    <div class="bubble-element Group baTaInh bubble-r-container flex row style-AOZig" id="style-AOZig">
+                      <div class="bubble-element Group baTaIni bubble-r-container flex row style-UMXVO" id="style-UMXVO">
+                        <div class="bubble-element Group baTaInj bubble-r-container flex row style-2CrB1" id="style-2CrB1">
+                          <div class="bubble-element Image baTaInn style-Tdqaf" id="style-Tdqaf">
+                            <div class="aspect-ratio style-e3J9U" id="style-e3J9U">
+                            </div>
+                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-HVmOd" class="style-HVmOd">
+                          </div>
+                        </div>
+                        <div class="bubble-element Group baTaIno bubble-r-container flex row style-pYwAj" id="style-pYwAj">
+                          <div class="bubble-element Image baTaInp style-5YY5B" id="style-5YY5B">
+                            <div class="aspect-ratio style-5gfHs" id="style-5gfHs">
+                            </div>
+                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-kDPwJ" class="style-kDPwJ">
+                          </div>
+                        </div>
+                        <div class="bubble-element Group baTaInt bubble-r-container flex row style-XoEzx" id="style-XoEzx">
+                          <div class="bubble-element Image baTaInu style-wJqkm" id="style-wJqkm">
+                            <div class="aspect-ratio style-LiCwX" id="style-LiCwX">
+                            </div>
+                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-TPOs5" class="style-TPOs5">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bubble-element Group baTaInv bubble-r-container flex row style-yyPib" id="style-yyPib">
+                      <div class="bubble-element Text baTaInz style-M17Ao" id="style-M17Ao">95%</div>
+                    </div>
+                  </div>
+                  <div class="bubble-element Group baTaIoaF bubble-r-container flex row style-rdnGh" id="style-rdnGh">
+                    <div class="bubble-element Group baTaIoaG bubble-r-container flex row style-4SLiS" id="style-4SLiS">
+                      <div class="bubble-element Image baTaIoaH style-hyVaH" id="style-hyVaH">
+                        <div class="aspect-ratio style-HG7iB" id="style-HG7iB">
+                        </div>
+                        <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701746709125x163083004665407940%2FGroup%2520204%2520%25282%2529.png?w=64&amp;h=58&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-z9rUK" class="style-z9rUK">
+                      </div>
+                    </div>
+                    <div class="bubble-element Group baTaIoaL bubble-r-container flex row style-m7bRB" id="style-m7bRB">
+                      <div class="bubble-element Group baTaIoaM bubble-r-container flex row style-EwHOB" id="style-EwHOB">
+                        <div class="bubble-element Group baTaIoaN bubble-r-container flex row style-UEXho" id="style-UEXho">
+                          <div class="bubble-element Image baTaIoaR style-X81Yw" id="style-X81Yw">
+                            <div class="aspect-ratio style-iseQa" id="style-iseQa">
+                            </div>
+                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-V5WX6" class="style-V5WX6">
+                          </div>
+                        </div>
+                        <div class="bubble-element Group baTaIoaX bubble-r-container flex row style-XqSKU" id="style-XqSKU">
+                          <div class="bubble-element Image baTaIoaY style-K9FvS" id="style-K9FvS">
+                            <div class="aspect-ratio style-8EPrS" id="style-8EPrS">
+                            </div>
+                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-mbhNC" class="style-mbhNC">
+                          </div>
+                        </div>
+                        <div class="bubble-element Group baTaIoaS bubble-r-container flex row style-7do2O" id="style-7do2O">
+                          <div class="bubble-element Image baTaIoaT style-hHRjK" id="style-hHRjK">
+                            <div class="aspect-ratio style-9w74n" id="style-9w74n">
+                            </div>
+                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-g2TzB" class="style-g2TzB">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bubble-element Group baTaIoaZ bubble-r-container flex row style-1hytk" id="style-1hytk">
+                      <div class="bubble-element Text baTaIqu style-EtFEC" id="style-EtFEC">100%</div>
+                    </div>
+                  </div>
+                  {% if level %}
+                  <div class="bubble-element Group baTaIoe bubble-r-container flex row style-rQNd6" id="style-rQNd6">
+                    <div class="bubble-element Group baTaIor bubble-r-container flex row style-kCNZa" id="style-kCNZa">
+                      <div class="bubble-element Image baTaIov style-fLE5h" id="style-fLE5h">
+                        <div class="aspect-ratio style-3CLeN" id="style-3CLeN">
+                        </div>
+                        <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701746709125x163083004665407940%2FGroup%2520204%2520%25282%2529.png?w=64&amp;h=58&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-jAmiL" class="style-jAmiL">
+                      </div>
+                    </div>
+                    <div class="bubble-element Group baTaIof bubble-r-container flex row style-fP2Jg" id="style-fP2Jg">
+                      <div class="bubble-element Group baTaIoj bubble-r-container flex row style-UFg2i" id="style-UFg2i">
+                        <div class="bubble-element Group baTaIok bubble-r-container flex row style-NQGgc" id="style-NQGgc">
+                          <div class="bubble-element Text baTaIol style-2SAH4" id="style-2SAH4">Level {{ level.number }}</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bubble-element Group baTaIop bubble-r-container flex row style-cVoLT" id="style-cVoLT">
+                      <div class="bubble-element Text baTaIoq style-7ezoG" id="style-7ezoG">0%</div>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>              
+</body>
+</html>
