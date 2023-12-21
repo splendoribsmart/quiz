@@ -444,22 +444,38 @@ img {
     z-index: 3;  
 }  
 #style-AHCkW.style-AHCkW {  
-   overflow: visible;  
-    justify-content: flex-end;  
+   overflow: auto;  
+    justify-content: flex-start;  
     row-gap: 30px;  
     border-radius: 0px;  
     opacity: 1;  
     align-self: center;  
     min-width: 215px;  
     order: 2;  
-    min-height: 59px;  
-    height: max-content;  
+    /* min-height: 59px;   */
+    height: 215px;  
     flex-grow: 0;  
     flex-shrink: 0;  
     width: calc(100% - 0px);  
     margin: 30px 0px 0px;  
     z-index: 3;  
-}  
+}
+
+#pikin{
+  /* display: inline-block; */
+  /* justify-content: flex-end;   */
+  row-gap: 30px;  
+  border-radius: 0px;  
+  opacity: 1;  
+  place-self: start center;  
+  min-width: 215px;  
+  min-height: 59px;  
+  width: calc(100% - 0px);  
+  height: max-content;  
+  /* margin: 0px 0px 0px;   */
+  z-index: 3;  
+}
+
 #style-Jyy2G.style-Jyy2G {  
    overflow: visible;  
     justify-content: flex-start;  
@@ -1150,6 +1166,17 @@ img {
     z-index: 3;  
 }  
 
+.level_link {
+  text-decoration: none;
+  color: #444;
+  font-size: 21px;
+  margin: auto;
+}
+
+.level {
+  margin: 14px 10px 10px 70px;
+}
+
     </style>
 </head>
 
@@ -1170,7 +1197,9 @@ img {
                   <div class="bubble-k5o Ima-vjy style-1RffI" id="style-1RffI">
                     <div class="style-LSMxC" id="style-LSMxC">
                     </div>
-                    <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694941574890x118839119303932210%2Fclose-exit-button-11703915-removebg-preview%25202%2520%25281%2529.png?w=64&amp;h=67&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-PxjDI" class="style-PxjDI">
+                    <a href="{% url 'subject_selection_desktop' %}">
+                      <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694941574890x118839119303932210%2Fclose-exit-button-11703915-removebg-preview%25202%2520%25281%2529.png?w=64&amp;h=67&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-PxjDI" class="style-PxjDI">
+                    </a>
                   </div>
                 </div>
                 <div class="bubble-k5o Tex-mcg style-QaOwL" id="style-QaOwL">{{ subject.name }}</div>
@@ -1193,81 +1222,60 @@ img {
                 </div>
               </div>
               <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od column-ps5 style-AHCkW" id="style-AHCkW">
-                <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-Jyy2G" id="style-Jyy2G">
-                  <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-7Cz6y" id="style-7Cz6y">
-                    <div class="bubble-k5o Ima-vjy style-5rggv" id="style-5rggv">
-                      <div class="style-3pJAR" id="style-3pJAR">
-                      </div>
-                      <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701746709125x163083004665407940%2FGroup%2520204%2520%25282%2529.png?w=96&amp;h=87&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-ZD2hI" class="style-ZD2hI">
-                    </div>
-                  </div>
-                  <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-tdNWh" id="style-tdNWh">
-                    <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-VrANr" id="style-VrANr">
-                      <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-foFOh" id="style-foFOh">
-                        <div class="bubble-k5o Ima-vjy style-5b9ob" id="style-5b9ob">
-                          <div class="style-nBnT1" id="style-nBnT1">
-                          </div>
-                          <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=64&amp;h=64&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-UL1dk" class="style-UL1dk">
-                        </div>
-                      </div>
-                      <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-I1FoP" id="style-I1FoP">
-                        <div class="bubble-k5o Ima-vjy style-DUK4S" id="style-DUK4S">
-                          <div class="style-UliMC" id="style-UliMC">
-                          </div>
-                          <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=64&amp;h=64&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-AgrnA" class="style-AgrnA">
-                        </div>
-                      </div>
-                      <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-AIssQ" id="style-AIssQ">
-                        <div class="bubble-k5o Ima-vjy style-rUBso" id="style-rUBso">
-                          <div class="style-wdKBF" id="style-wdKBF">
-                          </div>
-                          <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=64&amp;h=64&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-LO2qM" class="style-LO2qM">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-f3iAU" id="style-f3iAU">
-                    <div class="bubble-k5o Tex-mcg style-UB6D1" id="style-UB6D1">95%</div>
-                  </div>
-                </div>
+                <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od column-ps5" id="pikin">
+                {% for level in levels %}
+
+                {% for upoint in user_points %}
+                {% if upoint.level == level %}
                 
-                <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-hwWvX" id="style-hwWvX">
-                  <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-1GdBk" id="style-1GdBk">
-                    <div class="bubble-k5o Ima-vjy style-DEqfz" id="style-DEqfz">
-                      <div class="style-CW1v6" id="style-CW1v6">
-                      </div>
-                      <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701746709125x163083004665407940%2FGroup%2520204%2520%25282%2529.png?w=96&amp;h=87&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-dRrh6" class="style-dRrh6">
-                    </div>
-                  </div>
-                  <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-C2aaR" id="style-C2aaR">
-                    <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-G3oRm" id="style-G3oRm">
-                      <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-OQ88R" id="style-OQ88R">
-                        <div class="bubble-k5o Ima-vjy style-kJXi6" id="style-kJXi6">
-                          <div class="style-zMByg" id="style-zMByg">
-                          </div>
-                          <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=64&amp;h=64&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-E6wtK" class="style-E6wtK">
+                <a class="level_link" href="{% url 'htpdesktop' level.id %}">
+                  <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-hwWvX" id="style-hwWvX">
+                    <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-1GdBk" id="style-1GdBk">
+                      <div class="bubble-k5o Ima-vjy style-DEqfz" id="style-DEqfz">
+                        <div class="style-CW1v6" id="style-CW1v6">
                         </div>
-                      </div>
-                      <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-jghmk" id="style-jghmk">
-                        <div class="bubble-k5o Ima-vjy style-B45mC" id="style-B45mC">
-                          <div class="style-FqTQo" id="style-FqTQo">
-                          </div>
-                          <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=64&amp;h=64&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-9SL86" class="style-9SL86">
-                        </div>
-                      </div>
-                      <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-7q8oK" id="style-7q8oK">
-                        <div class="bubble-k5o Ima-vjy style-Yaaxt" id="style-Yaaxt">
-                          <div class="style-61jLn" id="style-61jLn">
-                          </div>
-                          <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=64&amp;h=64&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-cen4H" class="style-cen4H">
-                        </div>
+                        <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1703159507267x969355221152816000%2FGroup%2520204%2520%25283%2529.png?w=96&amp;h=87&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-dRrh6" class="style-dRrh6">
                       </div>
                     </div>
+                    <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-C2aaR" id="style-C2aaR">
+                      <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-G3oRm" id="style-G3oRm">
+                        {% if upoint.quiz_score < 17 %}<b class="level">Level {{ level.number }}</b>{% endif %}
+                        <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-OQ88R" id="style-OQ88R">
+                          <div class="bubble-k5o Ima-vjy style-kJXi6" id="style-kJXi6">
+                            <div class="style-zMByg" id="style-zMByg">
+                            </div>
+                            {% if upoint.quiz_score >= 17 %}
+                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=64&amp;h=64&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-E6wtK" class="style-E6wtK">
+                            {% endif %}
+                          </div>
+                        </div>
+                        <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-jghmk" id="style-jghmk">
+                          <div class="bubble-k5o Ima-vjy style-B45mC" id="style-B45mC">
+                            <div class="style-FqTQo" id="style-FqTQo">
+                            </div>
+                            {% if upoint.quiz_score >= 17 %}
+                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=64&amp;h=64&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-9SL86" class="style-9SL86">
+                            {% endif %}
+                          </div>
+                        </div>
+                        <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-7q8oK" id="style-7q8oK">
+                          <div class="bubble-k5o Ima-vjy style-Yaaxt" id="style-Yaaxt">
+                            <div class="style-61jLn" id="style-61jLn">
+                            </div>
+                            {% if upoint.quiz_score >= 17 %}
+                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=64&amp;h=64&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-cen4H" class="style-cen4H">
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-JqM87" id="style-JqM87">
+                      <div class="bubble-k5o Tex-mcg style-8WXJj" id="style-8WXJj">{% widthratio upoint.quiz_score 1 5 %}%</div>
+                    </div>
                   </div>
-                  <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-JqM87" id="style-JqM87">
-                    <div class="bubble-k5o Tex-mcg style-8WXJj" id="style-8WXJj">100%</div>
-                  </div>
-                </div>
+                </a>
+                
+                {% else %}
                 <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-KPgSG" id="style-KPgSG">
                   <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-DKU8e" id="style-DKU8e">
                     <div class="bubble-k5o Ima-vjy style-M6M9D" id="style-M6M9D">
@@ -1279,7 +1287,7 @@ img {
                   <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-vR3VA" id="style-vR3VA">
                     <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-UFACC" id="style-UFACC">
                       <div class="bubble-k5o Gro-sw2 container-8w7 fle-6od row-zgf style-oQEwB" id="style-oQEwB">
-                        <div class="bubble-k5o Tex-mcg style-wskQ6" id="style-wskQ6">Level 12</div>
+                        <div class="bubble-k5o Tex-mcg style-wskQ6" id="style-wskQ6">Level {{ level.number }}</div>
                       </div>
                     </div>
                   </div>
@@ -1287,6 +1295,14 @@ img {
                     <div class="bubble-k5o Tex-mcg style-aKq6h" id="style-aKq6h">0%</div>
                   </div>
                 </div>
+                
+                {% endif %}
+                {% endfor %}
+
+                
+                
+                {% endfor %}
+              </div>
               </div>
             </div>
           </div>

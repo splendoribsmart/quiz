@@ -848,28 +848,6 @@ def quiz_result_desktop(request, quiz_id, point_id):
     }
     return render(request, 'gameplay/quiz_result_desktop.html', context)
 
-def game_level_phone_view(request, subject_id):
-    subject = get_object_or_404(Subject, pk=subject_id)
-    levels = Level.objects.filter(subject=subject)
-    print(levels)
-    context = {'subject': subject, 'levels': levels}
-    return render(request, "gameplay/game_level_phone.html", context)
-
-def game_level_desktop_view(request, subject_id):
-    subject = get_object_or_404(Subject, pk=subject_id)
-    levels = Level.objects.filter(subject=subject)
-    print(levels)
-    context = {'subject': subject, 'levels': levels}
-    return render(request, "gameplay/game_level_desktop.html", context)
-
-def complete_desktop_view(request):
-    context = {}
-    return render(request, "gameplay/complete_desktop.html", context)
-
-def complete_phone_view(request):
-    context = {}
-    return render(request, "gameplay/complete_phone.html", context)
-
 @login_required
 def leaderboard_view(request):
     # Calculate the leaderboard score by summing up all total scores
@@ -1047,3 +1025,91 @@ def htp_desktop_view(request):
 def htp_phone_view(request):
     reset_countup_timer(request)
     return render(request, 'gameplay/htp_phone.html', {})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@login_required
+def game_level_phone_view(request, subject_id):
+    subject = get_object_or_404(Subject, pk=subject_id)
+    levels = Level.objects.filter(subject=subject)
+
+    # Quiz score pointer
+    user = request.user
+    # point = Point.objects.get
+    user_points = Point.objects.filter(user=user, level__subject=subject)
+    user_levels = Level.objects.filter(point__in=user_points)
+    user_quiz_scores = Quiz.objects.filter(level__in=user_levels)
+
+    print("Level:", levels)
+    print("User:", user)
+    print("User Points:", user_points) #type(user_points)
+    print("User Level:", user_levels)
+    print("User Quiz Score:", user_quiz_scores)
+
+    context = {
+        'subject': subject,
+        'levels': levels,
+        'user_points': user_points,
+        'user_levels': user_levels,
+        'user_quiz_scores': user_quiz_scores,
+        
+        }
+    return render(request, "gameplay/game_level_phone.html", context)
+
+@login_required
+def game_level_desktop_view(request, subject_id):
+    subject = get_object_or_404(Subject, pk=subject_id)
+    levels = Level.objects.filter(subject=subject)
+
+    # Quiz score pointer
+    user = request.user
+    # point = Point.objects.get
+    user_points = Point.objects.filter(user=user, level__subject=subject)
+    user_levels = Level.objects.filter(point__in=user_points)
+    user_quiz_scores = Quiz.objects.filter(level__in=user_levels)
+
+    print("Level:", levels)
+    print("User:", user)
+    print("User Points:", user_points) #type(user_points)
+    print("User Level:", user_levels)
+    print("User Quiz Score:", user_quiz_scores)
+
+    context = {
+        'subject': subject,
+        'levels': levels,
+        'user_points': user_points,
+        'user_levels': user_levels,
+        'user_quiz_scores': user_quiz_scores,
+        
+        }
+    return render(request, "gameplay/game_level_desktop.html", context)
+
+def complete_desktop_view(request):
+    context = {}
+    return render(request, "gameplay/complete_desktop.html", context)
+
+def complete_phone_view(request):
+    context = {}
+    return render(request, "gameplay/complete_phone.html", context)
