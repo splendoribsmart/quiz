@@ -174,6 +174,13 @@ img {
     margin: 0px;  
     z-index: 3;  
 }  
+
+#style-MFjLR.style-MFjLR {  
+    -ms-transform: scale(1.37); /* IE 9 */
+    -webkit-transform: scale(1.37); /* Safari 3-8 */
+    transform: scale(1.37); 
+}  
+
 #style-qdAh1.style-qdAh1 {  
    overflow: visible;  
     border-radius: 5px;  
@@ -1203,7 +1210,7 @@ img {
 }
 
 .level  {
-  margin: 13px 10px 10px 44px;
+  margin: 13px 10px 10px 10px;
 }
 
     </style>
@@ -1274,34 +1281,37 @@ img {
                     </div>
                     <div class="bubble-element Group baTaIoaL bubble-r-container flex row style-m7bRB" id="style-m7bRB">
                       <div class="bubble-element Group baTaIoaM bubble-r-container flex row style-EwHOB" id="style-EwHOB">
-                        {% if upoint.quiz_score < 17 %}<b class="level">Level {{ level.number }}</b>{% endif %}
-                        <div class="bubble-element Group baTaIoaN bubble-r-container flex row style-UEXho" id="style-UEXho">
-                          <div class="bubble-element Image baTaIoaR style-X81Yw" id="style-X81Yw">
-                            <div class="aspect-ratio style-iseQa" id="style-iseQa">
+                        {% if upoint.quiz_score < 17 %}<b class="level">Level {{ level.number }}</b>
+                        
+                        {% else %}
+                          <div class="bubble-element Group baTaIoaN bubble-r-container flex row style-UEXho" id="style-UEXho">
+                            <div class="bubble-element Image baTaIoaR style-X81Yw" id="style-X81Yw">
+                              <div class="aspect-ratio style-iseQa" id="style-iseQa">
+                              </div>
+                              {% if upoint.quiz_score >= 17 %}
+                              <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-V5WX6" class="style-V5WX6">{% else %}<img src="//cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1703381953857x460243190511039360/5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%203.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-V5WX6" class="style-V5WX6">
+                              {% endif %}
                             </div>
-                            {% if upoint.quiz_score >= 17 %}
-                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-V5WX6" class="style-V5WX6">{% else %}<img src="//cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1703381953857x460243190511039360/5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%203.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-V5WX6" class="style-V5WX6">
-                            {% endif %}
                           </div>
-                        </div>
-                        <div class="bubble-element Group baTaIoaX bubble-r-container flex row style-XqSKU" id="style-XqSKU">
-                          <div class="bubble-element Image baTaIoaY style-K9FvS" id="style-K9FvS">
-                            <div class="aspect-ratio style-8EPrS" id="style-8EPrS">
+                          <div class="bubble-element Group baTaIoaX bubble-r-container flex row style-XqSKU" id="style-XqSKU">
+                            <div class="bubble-element Image baTaIoaY style-K9FvS" id="style-K9FvS">
+                              <div class="aspect-ratio style-8EPrS" id="style-8EPrS">
+                              </div>
+                              {% if upoint.quiz_score >= 18 %}
+                              <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-mbhNC" class="style-mbhNC">{% else %}<img src="//cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1703381953857x460243190511039360/5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%203.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-V5WX6" class="style-V5WX6">
+                              {% endif %}
                             </div>
-                            {% if upoint.quiz_score >= 18 %}
-                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-mbhNC" class="style-mbhNC">{% else %}<img src="//cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1703381953857x460243190511039360/5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%203.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-V5WX6" class="style-V5WX6">
-                            {% endif %}
                           </div>
-                        </div>
-                        <div class="bubble-element Group baTaIoaS bubble-r-container flex row style-7do2O" id="style-7do2O">
-                          <div class="bubble-element Image baTaIoaT style-hHRjK" id="style-hHRjK">
-                            <div class="aspect-ratio style-9w74n" id="style-9w74n">
+                          <div class="bubble-element Group baTaIoaS bubble-r-container flex row style-7do2O" id="style-7do2O">
+                            <div class="bubble-element Image baTaIoaT style-hHRjK" id="style-hHRjK">
+                              <div class="aspect-ratio style-9w74n" id="style-9w74n">
+                              </div>
+                              {% if upoint.quiz_score >= 19 %}
+                              <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-g2TzB" class="style-g2TzB">{% else %}<img src="//cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1703381953857x460243190511039360/5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%203.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-V5WX6" class="style-V5WX6">
+                              {% endif %}
                             </div>
-                            {% if upoint.quiz_score >= 19 %}
-                            <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1701745590780x829549747549255700%2F5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%25202.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-g2TzB" class="style-g2TzB">{% else %}<img src="//cb7c7b16d92c4023527345220109c7d8.cdn.bubble.io/f1703381953857x460243190511039360/5d52cbd90f8fa2f3f0e4d063060527e8-removebg-preview%203.png?w=48&amp;h=48&amp;auto=compress&amp;dpr=1&amp;fit=max" id="style-V5WX6" class="style-V5WX6">
-                            {% endif %}
                           </div>
-                        </div>
+                          {% endif %}
                       </div>
                     </div>
                     <div class="bubble-element Group baTaIoaZ bubble-r-container flex row style-1hytk" id="style-1hytk">
