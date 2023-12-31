@@ -291,6 +291,21 @@ img {
     margin: 10px 0px 0px 10px;
     z-index: 2;
 }
+
+#style-G6Gdd.style-G6Gdd {
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    opacity: 1;
+    place-self: center;
+    min-width: 40px;
+    max-width: 50px;
+    width: 50px;
+    height: 22px;
+    margin: 0px 0px 0px -40px;
+    padding: 5px 0px 0px 5px;
+    z-index: 2;
+}
+
 #style-7mrxv.style-7mrxv {
    position: relative;
     height: 0px;
@@ -776,6 +791,12 @@ img {
                   </a>
 
 				</div>
+                <div class="bubble-ttm Ima-jk2 style-G6Gdd" id="style-G6Gdd">
+                    <div class="style-7mrxv" id="style-7mrxv">
+                    </div>
+                    <b style="font-size: small;">{{ question_number }} / {{ total_questions }} </b>
+  
+                  </div>
 				<div class="bubble-ttm Ima-jk2 style-L7bJ3" id="style-L7bJ3">
 				  <div class="style-X9Hdg" id="style-X9Hdg">
                 </div>
@@ -789,7 +810,8 @@ img {
               </div>
               <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fcb7c7b16d92c4023527345220109c7d8.cdn.bubble.io%2Ff1694959419930x769372065333613800%2FGroup%2520163.png?w=512&amp;h=288&amp;auto=compress&amp;dpr=1.5&amp;fit=max" id="style-aklnW" class="style-aklnW">
             </div>
-            <div class="bubble-ttm Tex-ni9 style-3Ctw9" id="style-3Ctw9">{{ question.text|safe }}</div>
+            <div class="bubble-ttm Tex-ni9 style-3Ctw9" id="style-3Ctw9">{{ question.text|safe }}
+                <small>question: {{ question_number }} / {{ total_questions }} </small></div>
           </div>
           <div class="bubble-ttm Gro-dhd container-zar fle-255 column-awo style-lKw6w" id="style-lKw6w">
             <div class="bubble-ttm Gro-dhd container-zar rel-chv style-I6eiY" id="style-I6eiY">
